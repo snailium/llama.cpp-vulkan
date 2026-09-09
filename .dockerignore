@@ -1,0 +1,30 @@
+# Keep build context small for faster + safer builds
+.git
+.gitignore
+benchmark/
+*.log
+*.md
+!README.md
+!docs/VULKAN-TUNING.md
+!CONTRIBUTING.md
+!STATUS.md
+node_modules/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Build artifacts
+build/
+*.so
+*.so.*
+llama
+llama-*
+
+# Docker
+*.tar
+
+# Models (never commit)
+models/
+*.gguf
+*.bin

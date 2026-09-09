@@ -1,0 +1,94 @@
+version: "3.8"
+
+# One service per card; run only the one that matches your hardware
+# (docker compose up b70  /  docker compose up xtx).
+# The image ships BOTH ANV and RADV ICDs — the --device index + optional
+# VK_DRIVER_FILES select which card is used.
+
+x-common: &common
+  build:
+    context: .
+    dockerfile: .devops/vulkan.Dockerfile
+    target: server
+    args:
+      UBUNTU_VERSION: "26.04"
+      MESA_VERSION: "26.1.7"
+  image: llama.cpp-vulkan:server
+  restart: unless-stopped
+  ports:
+    - "8080:8080"
+  volumes:
+    - /mnt/models:/models:ro
+    - vulkan-shader-cache:/root/.cache/llama.cpp   # warm shader starts
+  environment:
+    - LLAMA_ARG_HOST=0.0.0.0
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+    interval: 30s
+    timeout: 5s
+    retries: 3
+    start_period: 60s
+
+services:
+  b70:
+    <<: *common
+    container_name: llama-vulkan-b70
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
+    environment:
+      - LLAMA_ARG_HOST=0.0.0.0
+      # Force ANV on mixed boxes (comment out on a B70-only box):
+      # - VK_DRIVER_FILES=/usr/share/vulkan/icd.d/intel_icd.json
+    command:
+      - -m
+      - /models/Qwen3.8-27B-Q4_K_M.gguf
+      - --device
+      - "0"
+      - --n-gpu-layers
+      - "999"
+      - --ctx-size
+      - "98304"
+      - --cache-type-k
+      - f16
+      - --cache-type-v
+      - f16
+      - --flash-attn
+      - auto
+      - --port
+      - "8080"
+      - --host
+      - 0.0.0.0
+
+  xtx:
+    <<: *common
+    container_name: llama-vulkan-xtx
+    devices:
+      - /dev/dri/renderD129:/dev/dri/renderD129
+      - /dev/dri/card1:/dev/dri/card1
+    environment:
+      - LLAMA_ARG_HOST=0.0.0.0
+      # Force RADV on mixed boxes (comment out on a 7900 XTX-only box):
+      # - VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+    command:
+      - -m
+      - /models/Qwen3.8-27B-Q4_K_M.gguf
+      - --device
+      - "0"
+      - --n-gpu-layers
+      - "999"
+      - --ctx-size
+      - "32768"
+      - --cache-type-k
+      - q8_0
+      - --cache-type-v
+      - q8_0
+      - --flash-attn
+      - auto
+      - --port
+      - "8080"
+      - --host
+      - 0.0.0.0
+
+volumes:
+  vulkan-shader-cache:

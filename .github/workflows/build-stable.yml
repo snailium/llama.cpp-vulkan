@@ -1,0 +1,183 @@
+name: Build Stable (main)
+
+on:
+  schedule:
+    # Every 4 hours: check llama.cpp tags + Mesa releases for updates
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force a stable build even if this version combo already exists in GHCR'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  check-and-build-stable:
+    # Only run on main branch (schedule or manual)
+    if: |
+      github.ref_name == 'main' ||
+      (github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      issues: write
+
+    steps:
+      - name: Checkout repository (main)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # ============================================================
+      # Detect latest llama.cpp stable tag.
+      # ============================================================
+      - name: Detect latest llama.cpp stable tag
+        id: llama
+        run: |
+          git remote add upstream https://github.com/ggml-org/llama.cpp.git 2>/dev/null || true
+          git fetch upstream --tags --force
+          LATEST_V=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags | grep -E '^v[0-9]' | head -1)
+          V_DATE=$(git for-each-ref --format='%(creatordate:iso8601)' "refs/tags/$LATEST_V")
+          echo "latest_v=$LATEST_V" >> $GITHUB_OUTPUT
+          echo "v_date=$V_DATE" >> $GITHUB_OUTPUT
+          echo "Latest upstream stable: $LATEST_V"
+
+      # ============================================================
+      # Detect latest Mesa stable release (the single source of truth
+      # for the ANV/RADV ICDs — the B70 decode lever lives here, not in
+      # llama.cpp). mesa/mesa tags are vX.Y.Z. We record it as the
+      # MESA_VERSION reference pin: the Dockerfile's base stage FAILS
+      # the build if the distro's mesa-vulkan-drivers is older than it.
+      # ============================================================
+      - name: Detect latest Mesa stable release
+        id: mesa
+        run: |
+          set -e
+          MESAREL=$(curl -sf https://api.github.com/repos/mesa3d/mesa/releases/latest)
+          MESA=$(echo "$MESAREL" | jq -r '.tag_name' | sed 's/^v//')
+          [ -z "$MESA" ] || [ "$MESA" = "null" ] && { echo "ERR: failed to detect latest Mesa release" >&2; exit 1; }
+          echo "latest_mesa=$MESA" >> $GITHUB_OUTPUT
+          echo "Latest Mesa stable: $MESA"
+
+      # ============================================================
+      # Decide: skip if this exact version combo is already built.
+      # The image tag embeds the version fingerprint (server-m<Mesa>-<llama>-),
+      # so check GHCR for a tag with that prefix. A new Mesa or llama.cpp
+      # tag changes the prefix, so this check auto-covers updates too.
+      # ============================================================
+      - name: Decide if build is needed (skip if this combo already built)
+        id: decide
+        run: |
+          set -e
+          REPO="${{ github.repository }}/llama-vulkan"
+          PREFIX="server-m${{ steps.mesa.outputs.latest_mesa }}-${{ steps.llama.outputs.latest_v }}-"
+          SHOULD_BUILD=false
+          REASON=""
+          FORCE="${{ github.event.inputs.force || 'false' }}"
+
+          TOKEN=$(curl -s "https://ghcr.io/token?scope=repository:${REPO}:pull" | jq -r .token)
+          TAGS=$(curl -s -H "Authorization: Bearer $TOKEN" "https://ghcr.io/v2/${REPO}/tags/list" | jq -r '.tags[]? // empty' || true)
+
+          if [ -z "$TOKEN" ]; then
+            # registry check inconclusive -> fail closed to avoid a duplicate build
+            REASON="GHCR auth failed - skipped (will re-check next run)"
+          elif echo "$TAGS" | grep -qF "$PREFIX"; then
+            REASON="Already built ${PREFIX%?} in GHCR - skipping redundant rebuild"
+          else
+            SHOULD_BUILD=true
+            MESA_CUR=$(grep '^ARG MESA_VERSION=' .devops/vulkan.Dockerfile | head -1 | cut -d= -f2)
+            REASON="New stack: Mesa ${{ steps.mesa.outputs.latest_mesa }} + llama.cpp ${{ steps.llama.outputs.latest_v }} (Dockerfile pin $MESA_CUR)"
+          fi
+
+          if [ "$FORCE" == "true" ]; then
+            SHOULD_BUILD=true
+            REASON="Forced by manual dispatch (force=true)"
+          fi
+
+          echo "should_build=$SHOULD_BUILD" >> $GITHUB_OUTPUT
+          echo "build_reason=$REASON"
+
+      # ============================================================
+      # Build stage
+      # ============================================================
+      - name: Set up Docker Buildx
+        if: steps.decide.outputs.should_build == 'true'
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        if: steps.decide.outputs.should_build == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Refresh llama.cpp subtree at latest stable v tag
+        if: steps.decide.outputs.should_build == 'true'
+        run: |
+          rm -rf llama.cpp
+          git clone --depth 1 --branch "${{ steps.llama.outputs.latest_v }}" https://github.com/ggml-org/llama.cpp llama.cpp
+
+      - name: Compute temporary stable tag
+        if: steps.decide.outputs.should_build == 'true'
+        id: tag
+        run: |
+          TAG="server-m${{ steps.mesa.outputs.latest_mesa }}-${{ steps.llama.outputs.latest_v }}-$(date +%Y%m%d-%H%M)"
+          echo "image_tag=$TAG" >> $GITHUB_OUTPUT
+          echo "full_image=ghcr.io/${{ github.repository }}/llama-vulkan:${TAG}" >> $GITHUB_OUTPUT
+          echo "Using temporary tag: $TAG"
+
+      - name: Build and push (stable candidate)
+        if: steps.decide.outputs.should_build == 'true'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: .devops/vulkan.Dockerfile
+          target: server
+          push: true
+          tags: ghcr.io/${{ github.repository }}/llama-vulkan:${{ steps.tag.outputs.image_tag }}
+          build-args: |
+            UBUNTU_VERSION=26.04
+            MESA_VERSION=${{ steps.mesa.outputs.latest_mesa }}
+            BUILD_WEBUI=0
+            GGML_VULKAN=ON
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Create GitHub Issue with diff (stable)
+        if: steps.decide.outputs.should_build == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = '${{ steps.tag.outputs.image_tag }}';
+            const full = '${{ steps.tag.outputs.full_image }}';
+            const v = '${{ steps.llama.outputs.latest_v }}';
+            const mesa = '${{ steps.mesa.outputs.latest_mesa }}';
+
+            let diff = `**Stable candidate build (Vulkan, dual-target B70 + 7900 XTX)**\n\n`;
+            diff += `**Image**: \`${full}\`\n`;
+            diff += `**llama.cpp**: ${v}\n`;
+            diff += `**Mesa reference pin**: ${mesa} (build fails if distro mesa-vulkan-drivers is older)\n`;
+            diff += `**Build**: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\n`;
+            diff += `### Next steps (on your hardware)\n`;
+            diff += `1. Pull: \`docker pull ${full}\`\n`;
+            diff += `2. Run the T1-T5 suite on B70 (\`examples/b70-server.sh\`) and/or 7900 XTX (\`examples/7900xtx-server.sh\`)\n`;
+            diff += `3. Verify the offload line (n_gpu_layers) before trusting any number\n`;
+            diff += `4. If good, promote via \`scripts/promote-vulkan-image.sh <digest> vX.Y\`\n\n`;
+            diff += `Reason: ${{ steps.decide.outputs.build_reason }}`;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Vulkan Stable Image Ready: ${tag}`,
+              body: diff,
+              labels: ['stable', 'vulkan']
+            });

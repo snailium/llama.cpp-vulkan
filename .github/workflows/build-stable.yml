@@ -73,8 +73,22 @@ jobs:
           # container of the exact base image the Dockerfile builds on.
           CODE=$(docker run --rm "ubuntu:${UBUNTU}" cat /etc/os-release | awk -F= '/^VERSION_CODENAME/{print $2}')
           [ -n "$CODE" ] || { echo "ERR: could not resolve codename for ubuntu:${UBUNTU}" >&2; exit 1; }
-          PKG="http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu/dists/${CODE}/main/binary-amd64/Packages"
-          MESA=$(curl -sf "$PKG" | awk '/^Package: mesa-vulkan-drivers/{f=1; next} f && /^Version:/{print $2; exit}')
+          # Fetch the PPA index and extract mesa-vulkan-drivers. If the series'
+          # amd64 index is empty or lacks the package (kisak has only *preliminary*
+          # support for brand-new Ubuntu series), fall back to the newest fully
+          # supported LTS index: kisak builds one Mesa source package per release,
+          # so that version is the current upstream Mesa point release. The
+          # Dockerfile pin-check still gates the actually-installed driver.
+          fetch_mesa() {
+            curl -sf "http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu/dists/$1/main/binary-amd64/Packages" \
+              | awk '/^Package: mesa-vulkan-drivers/{f=1; next} f && /^Version:/{print $2; exit}'
+          }
+          MESA=$(fetch_mesa "$CODE")
+          if [ -z "$MESA" ]; then
+            echo "WARN: kisak-mesa PPA index for ${CODE} has no mesa-vulkan-drivers (preliminary series support); falling back to noble"
+            MESA=$(fetch_mesa "noble")
+            CODE="noble (fallback)"
+          fi
           [ -n "$MESA" ] || { echo "ERR: failed to detect Mesa in kisak-mesa PPA (series ${CODE})" >&2; exit 1; }
           # Trim to major.minor - point releases must not gate the build.
           MESA=$(echo "$MESA" | cut -d. -f1-2)

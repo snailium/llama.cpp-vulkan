@@ -71,7 +71,10 @@ jobs:
           # so that version is the current upstream Mesa point release. The
           # Dockerfile pin-check still gates the actually-installed driver.
           fetch_mesa() {
-            curl -sf "http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu/dists/$1/main/binary-amd64/Packages" \
+            # Note: the plain /Packages file is 404 on this PPA's nginx mirror;
+            # only the .gz/.xz encodings are served. Always use Packages.gz.
+            curl -sf "http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu/dists/$1/main/binary-amd64/Packages.gz" \
+              | gunzip 2>/dev/null \
               | awk '/^Package: mesa-vulkan-drivers/{f=1; next} f && /^Version:/{print $2; exit}'
           }
           MESA=$(fetch_mesa "$CODE")

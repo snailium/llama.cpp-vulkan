@@ -32,17 +32,18 @@ From the repo root (contains `.devops/vulkan.Dockerfile`):
 # Convenience script
 ./scripts/build-vulkan-image.sh server
 
-# ...or directly
+# ...or directly (Mesa 26.1+ comes from the kisak-mesa PPA by default)
 docker build \
   --target server \
   -t llama.cpp-vulkan:server \
   -f .devops/vulkan.Dockerfile \
   --build-arg UBUNTU_VERSION=26.04 \
-  --build-arg MESA_VERSION=26.1.7 \
+  --build-arg MESA_PPA=kisak/kisak-mesa \
+  --build-arg MESA_VERSION=26.1 \
   .
 ```
 
-Build targets: `server` (recommended), `light`, `full`. Override the Mesa reference pin at build time via `--build-arg MESA_VERSION=x.y.z` — the base stage **fails the build** if the distro's `mesa-vulkan-drivers` is older than the pin.
+Build targets: `server` (recommended), `light`, `full`. The runtime Vulkan driver (`mesa-vulkan-drivers`) is pulled from the **kisak-mesa PPA** so the image carries Mesa 26.1+ — the ANV cooperative-matrix2 decode lever on B70. `MESA_PPA=none` builds against the Ubuntu archive only (26.0.x — slower B70 decode). `MESA_VERSION` is a reference pin: the base stage **fails the build** if the installed `mesa-vulkan-drivers` is older than it.
 
 > **Driver model:** unlike the SYCL image (which ships its own IGC/compute-runtime), this image relies on the **host kernel driver** (`xe` for Intel, `amdgpu` for AMD) and ships the **user-space Vulkan ICDs** (ANV + RADV via `mesa-vulkan-drivers`). That is the standard, lowest-friction Vulkan deployment: host kernel does the DMA, container's ICD does the compute.
 

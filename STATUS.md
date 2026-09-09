@@ -8,8 +8,8 @@
 
 | Component | Version | Notes |
 |-----------|---------|-------|
-| Base image | `ubuntu:26.04` | Distro archive provides the ICDs |
-| Mesa (reference pin) | `26.1.7` | **Build fails** if distro `mesa-vulkan-drivers` < this (the ANV cooperative-matrix fix lives in 26.1.x) |
+| Base image | `ubuntu:26.04` | Ubuntu base + kisak-mesa PPA for the ICDs |
+| Mesa (reference pin) | `26.1` (`MESA_PPA=kisak/kisak-mesa`) | **Build fails** if installed `mesa-vulkan-drivers` < pin (ANV cooperative-matrix2 fix lives in 26.1.x). PPA resolves to the latest Mesa point release (e.g. 26.2.x) for the series; `MESA_PPA=none` gives archive Mesa 26.0.x (slower B70 decode) |
 | Vulkan loader | distro `libvulkan1` | Matches distro GL/GLVND stack |
 | ICDs | `mesa-vulkan-drivers` (ANV + RADV) | One package, both cards |
 | llama.cpp | upstream master (subtree) | CI tracks `v*` tags on `main`, latest `b*` on `dev` |
@@ -23,8 +23,8 @@
 ## Verified working
 
 - Image builds (`server`, `light`, `full` targets) against upstream llama.cpp master with Vulkan + dynamic backends + all CPU variants.
-- Mesa pin-check at build time fails loudly on a regressed distro archive.
-- **That's it.** No GPU has been run through this image yet.
+- Vulkan backend library confirmed present and exported (`libggml-vulkan.so`, incl. `ggml_backend_vk_reg` / device-query symbols); Mesa 26.1+ ICDs land via the kisak-mesa PPA; the pin-check fails loudly on an older Mesa.
+- **That's it.** No GPU has been run through this image yet (host-side device enumeration = next step on real B70 / 7900 XTX).
 
 ## Expected (from public data — to be confirmed here)
 

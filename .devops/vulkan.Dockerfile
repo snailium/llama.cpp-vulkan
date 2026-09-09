@@ -19,14 +19,19 @@ ARG APP_VERSION=N/A
 ARG APP_REVISION=N/A
 
 # === Mesa / Vulkan driver stack (passed from CI via --build-arg) ===
-# Defaults track the latest Mesa stable with the ANV cooperative-matrix fix.
-# MESA_VERSION is used only as a *reference pin* recorded in the image labels;
-# on Ubuntu 26.04 we install `mesa-vulkan-drivers` from the distro archive so
-# that the driver matches the distro's libvulkan/GL stack (CI verifies the
-# installed version against MESA_VERSION and fails loudly if it regresses below).
-ARG MESA_VERSION=26.1.7
-# Vulkan SDK components needed at build time (glslc + headers for shader AOT)
-ARG VULKAN_SDK_COMPONENTS="libvulkan-dev glslc spirv-headers"
+# Ubuntu 26.04's archive ships mesa-vulkan-drivers 26.0.x, which does NOT expose
+# VK_NV_cooperative_matrix2 on Battlemage (the ~2x B70 decode lever; it needs
+# Mesa 26.1+). We therefore pull the runtime driver from the kisak-mesa "fresh"
+# PPA inside the base stage, which tracks the latest Mesa point release for the
+# Ubuntu series. MESA_VERSION is a *reference pin*: the base stage fails the
+# build if the installed mesa-vulkan-drivers is older than the pin. Override the
+# PPA (e.g. to a mirror, or disable it for an offline/archive-only base by
+# passing MESA_PPA=none) via --build-arg.
+ARG MESA_PPA=kisak/kisak-mesa
+ARG MESA_VERSION=26.1
+# Vulkan SDK version used to extract glslc (shader AOT compiler) — see build stage.
+# libvulkan-dev / spirv-headers come from the distro archive, not the SDK.
+ARG VULKAN_SDK_VERSION=1.4.357.1
 
 # Feature toggles — KEEP ENABLED for best perf on B70 / 7900 XTX
 ARG GGML_VULKAN=ON
@@ -64,14 +69,40 @@ RUN mkdir -p dist && \
 # === Build stage ===
 FROM docker.io/ubuntu:$UBUNTU_VERSION AS build
 
-ARG VULKAN_SDK_COMPONENTS
+# Global ARGs used inside a stage's RUN must be re-declared here; otherwise the
+# shell sees them as empty (Docker stage scoping). GGML_VULKAN below drives the
+# cmake -DGGML_VULKAN flag for the compile step - an empty value disables the
+# Vulkan backend silently (builds CPU-only). Keep this ARG line in sync.
+ARG GGML_VULKAN
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       git build-essential cmake ninja-build wget xz-utils ca-certificates curl \
       libssl-dev \
-      ${VULKAN_SDK_COMPONENTS} \
     && rm -rf /var/lib/apt/lists/*
+
+# glslc (shader AOT) ships only in the Vulkan SDK. We commit the single binary
+# extracted from the official SDK tarball at .devops/bin/glslc (see its SHA256
+# note below) so builds work even when the SDK CDN blocks container egress —
+# some CDNs serve an HTML challenge page to datacenter IPs, which broke in-image
+# downloads. If the committed binary is missing, fall back to fetching it from
+# the official LunarG download endpoint. Everything else build-time
+# (libvulkan-dev, spirv-headers) comes from the distro archive so it matches
+# the runtime loader.
+COPY .devops/bin/glslc /usr/local/bin/glslc
+RUN chmod 755 /usr/local/bin/glslc && \
+    if ! glslc --version >/dev/null 2>&1; then \
+      echo "committed glslc unusable — falling back to official SDK download" && \
+      curl -sL "https://sdk.lunarg.com/sdk/download/${VULKAN_SDK_VERSION}/linux/vulkan_sdk.tar.xz?Human=true" -o /tmp/vsdk.tar.xz && \
+      tar -xJf /tmp/vsdk.tar.xz -C /tmp --wildcards '*/bin/glslc' && \
+      install -m 755 /tmp/*/*/bin/glslc /usr/local/bin/glslc && \
+      rm -rf /tmp/vsdk.tar.xz /tmp/1.*; \
+    fi && glslc --version
+
+# Build-time only Vulkan headers (libvulkan-dev, spirv-headers).
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libvulkan-dev spirv-headers && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -94,8 +125,16 @@ RUN echo "Building llama.cpp with Vulkan backend (dual-target: B70 + 7900 XTX)" 
       -DLLAMA_BUILD_TESTS=OFF && \
     cmake --build build --config Release -j$(nproc)
 
+# Stage every runtime/shared library into /app/lib. libggml.so + libggml-base.so
+# (core) and the per-backend MODULE libs (libggml-vulkan.so, libggml-cpu-*.so ...)
+# are all written by ninja under build/bin; search the whole tree in case a layout
+# differs. Assert the Vulkan backend landed - a silent CPU-only build is the failure
+# mode we most want to catch here (see the GGML_VULKAN ARG note in this file).
 RUN mkdir -p /app/lib && \
-    find build -name "*.so*" -exec cp -P {} /app/lib \;
+    find build -name "*.so*" -exec cp -P {} /app/lib \; && \
+    test -n "$(ls /app/lib/libggml-vulkan.so* 2>/dev/null)" && \
+      echo "OK: Vulkan backend staged ($(ls /app/lib/libggml-vulkan.so* | tr '\n' ' '))" \
+    || { echo "FATAL: libggml-vulkan.so missing - was -DGGML_VULKAN actually ON?" >&2; exit 1; }
 
 # Best-effort packaging of optional Python helper tools (conversion scripts, gguf-py,
 # requirements). llama.cpp's layout varies by version, so each copy is intentionally
@@ -117,6 +156,7 @@ ARG BUILD_DATE=N/A
 ARG APP_VERSION=N/A
 ARG APP_REVISION=N/A
 ARG MESA_VERSION
+ARG MESA_PPA
 ARG IMAGE_URL=https://github.com/ggml-org/llama.cpp
 ARG IMAGE_SOURCE=https://github.com/ggml-org/llama.cpp
 LABEL org.opencontainers.image.created=$BUILD_DATE \
@@ -130,31 +170,48 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
 
 # Install the user-space Vulkan driver stack.
 #   - libvulkan1: loader (matches distro)
-#   - mesa-vulkan-drivers: ANV (Intel) + RADV (AMD) — this is the critical package.
-#     On Ubuntu 26.04 it ships Mesa >= 26.1.x, which exposes VK_NV_cooperative_matrix2
-#     on Battlemage (the ~2x decode lever). We pin-check below.
-#   - libglvnd/GL stack: needed by some ICDs to resolve GL entry points.
-RUN apt-get update && \
+#   - mesa-vulkan-drivers: ANV (Intel) + RADV (AMD) - the critical package.
+#   - libglvnd/GL stack: some ICDs resolve GL entry points through it.
+# When MESA_PPA is set (default), enable it first so apt resolves mesa-vulkan-drivers
+# to >= 26.1 (the ANV cooperative-matrix2 decode lever on Battlemage) rather than the
+# 26.0.x the Ubuntu 26.04 archive carries. software-properties-common provides
+# add-apt-repository; apt resolves the PPA's higher mesa/libdrm automatically.
+# The install below is deliberately before any version pin so the PPA's co-dependent
+# libdrm/llvm stack stays consistent; the separate pin-check RUN enforces MESA_VERSION.
+RUN set -eux; \
+    apt-get update; \
+    if [ -n "${MESA_PPA}" ] && [ "${MESA_PPA}" != "none" ]; then \
+      apt-get install -y --no-install-recommends ca-certificates software-properties-common; \
+      add-apt-repository -y --no-update "ppa:${MESA_PPA}"; \
+      apt-get update; \
+    fi; \
     apt-get install -y --no-install-recommends \
       libgomp1 curl ffmpeg \
       libvulkan1 mesa-vulkan-drivers \
-      libglvnd0 libgl1 libglx0 libegl1 libgles2 \
-    && rm -rf /var/lib/apt/lists/*
+      libglvnd0 libgl1 libglx0 libegl1 libgles2; \
+    echo "Selected mesa-vulkan-drivers: $(apt-cache policy mesa-vulkan-drivers | awk '/Candidate:/{print $2; exit}')";
 
-# Pin-check: fail the build if the distro's Mesa regressed below the reference pin.
-# (CI passes MESA_VERSION from the tracked Mesa release; a distro archive that is
-#  older than the cooperative-matrix fix would silently halve B70 decode.)
+# Pin-check: fail the build if mesa-vulkan-drivers is older than the reference pin
+# MESA_VERSION. A regressed driver (pre-26.1) would silently halve B70 decode, so we
+# surface that as a hard error instead of shipping a nominally-Vulkan image that lacks
+# the fast cooperative-matrix2 path. Pass MESA_PPA=none only with an archive/base that
+# already carries Mesa >= MESA_VERSION - this check then gates it.
 RUN set -e; \
     INSTALLED=$(dpkg-query -W -f='${Version}' mesa-vulkan-drivers | cut -d. -f1-2); \
     echo "mesa-vulkan-drivers installed: $INSTALLED (reference pin: $MESA_VERSION)"; \
     MAJ_REF=${MESA_VERSION%%.*}; MIN_REF=$(echo "$MESA_VERSION" | cut -d. -f2); \
     MAJ_INST=${INSTALLED%%.*}; MIN_INST=$(echo "$INSTALLED" | cut -d. -f2); \
     if [ "$MAJ_INST" -lt "$MAJ_REF" ] || { [ "$MAJ_INST" -eq "$MAJ_REF" ] && [ "$MIN_INST" -lt "$MIN_REF" ]; }; then \
-      echo "ERR: distro Mesa $INSTALLED < reference $MESA_VERSION — B70 cooperative-matrix path may be missing." >&2; \
+      echo "ERR: installed Mesa $INSTALLED < reference $MESA_VERSION - B70 cooperative-matrix2 path is not present." >&2; \
+      echo "     Rebuild with the kisak-mesa PPA enabled (default) or a base carrying Mesa >= $MESA_VERSION." >&2; \
       exit 1; \
     fi
 
-RUN apt-get autoremove -y && apt-get clean -y && \
+# Trim build/PPA-enable tooling out of the image. Mesa/libvulkan stay; the
+# add-apt-repository helper stack (software-properties-common + Python) is no
+# longer needed at runtime and autoremove drops it (and its orphans) for us.
+RUN apt-get purge -y --auto-remove software-properties-common python3-apt 2>/dev/null || true; \
+    apt-get autoremove -y && apt-get clean -y && \
     rm -rf /tmp/* /var/tmp/* && \
     find /var/cache/apt/archives /var/lib/apt/lists -not -name lock -type f -delete && \
     find /var/cache -type f -delete

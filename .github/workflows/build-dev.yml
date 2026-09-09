@@ -139,6 +139,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/llama-vulkan:${{ steps.tag.outputs.image_tag }}
           build-args: |
             UBUNTU_VERSION=26.04
+            MESA_PPA=kisak/kisak-mesa
             MESA_VERSION=${{ steps.mesa.outputs.latest_mesa }}
             BUILD_WEBUI=0
             GGML_VULKAN=ON
@@ -158,7 +159,7 @@ jobs:
             let diff = `**Dev candidate build (Vulkan, dual-target B70 + 7900 XTX)**\n\n`;
             diff += `**Image**: \`${full}\`\n`;
             diff += `**llama.cpp ref**: ${ref}\n`;
-            diff += `**Mesa reference pin**: ${mesa}\n`;
+            diff += `**Mesa reference pin**: ${mesa} (installed via kisak-mesa PPA)\n`;
             diff += `**Build**: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\n`;
             diff += `### Next steps (on your hardware)\n`;
             diff += `1. Pull: \`docker pull ${full}\`\n`;

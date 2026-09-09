@@ -28,3 +28,8 @@ llama-*
 models/
 *.gguf
 *.bin
+
+# Vendored glslc binary (Vulkan SDK) - staged into the image by the Dockerfile
+# (COPY .devops/bin/glslc). Keep an explicit un-ignore so a future glob change
+# (e.g. a broad *-like rule) cannot silently drop the 10 MB tool from the context.
+!.devops/bin/glslc

@@ -9,7 +9,7 @@
 | Component | Version | Notes |
 |-----------|---------|-------|
 | Base image | `ubuntu:26.04` | Ubuntu base + kisak-mesa PPA for the ICDs |
-| Mesa (reference pin) | `26.1` (`MESA_PPA=kisak/kisak-mesa`) | **Build fails** if installed `mesa-vulkan-drivers` < pin (ANV cooperative-matrix2 fix lives in 26.1.x). PPA resolves to the latest Mesa point release (e.g. 26.2.x) for the series; `MESA_PPA=none` gives archive Mesa 26.0.x (slower B70 decode) |
+| Mesa (reference pin) | `26.1` (`MESA_PPA=kisak/kisak-mesa`) | **Build fails** if installed `mesa-vulkan-drivers` < pin (ANV cooperative-matrix2 fix lives in 26.1.x). Pin is major.minor; PPA resolves to the latest Mesa point release (e.g. 26.2.x) for the series and point releases never gate; `MESA_PPA=none` gives archive Mesa 26.0.x (slower B70 decode) |
 | Vulkan loader | distro `libvulkan1` | Matches distro GL/GLVND stack |
 | ICDs | `mesa-vulkan-drivers` (ANV + RADV) | One package, both cards |
 | llama.cpp | upstream master (subtree) | CI tracks `v*` tags on `main`, latest `b*` on `dev` |

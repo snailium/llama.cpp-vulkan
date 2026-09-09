@@ -13,8 +13,9 @@ x-common: &common
     args:
       UBUNTU_VERSION: "26.04"
       # Runtime driver Mesa 26.1+ arrives via the kisak PPA enabled inside the base
-      # stage (MESA_PPA). MESA_VERSION is the fail-if-older pin (cooperative-matrix2
-      # decode lever needs >= 26.1). Set MESA_PPA: none for an archive-only base.
+      # stage (MESA_PPA). MESA_VERSION is a major.minor fail-if-older pin
+      # (cooperative-matrix2 decode lever needs >= 26.1; point releases never gate).
+      # Set MESA_PPA: none for an archive-only base.
       MESA_PPA: "kisak/kisak-mesa"
       MESA_VERSION: "26.1"
   image: llama.cpp-vulkan:server

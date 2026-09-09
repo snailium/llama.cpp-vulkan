@@ -8,8 +8,9 @@ set -euo pipefail
 #
 # Mesa drivers come from the kisak-mesa PPA inside the Dockerfile base stage so the
 # image always carries the Mesa 26.1+ ANV cooperative-matrix2 path B70 needs (~2x
-# decode). The Dockerfile MESA_VERSION pin guards that. Override either with
-# --extra like:  MESA_VERSION=26.1 ./scripts/build-vulkan-image.sh server
+# decode). The Dockerfile MESA_VERSION pin (major.minor) guards that: the build
+# fails if the installed driver is older, point releases never gate. Override with
+# env vars like:  MESA_VERSION=26.1 ./scripts/build-vulkan-image.sh server
 
 TARGET=${1:-server}
 TAG=${2:-llama.cpp-vulkan:${TARGET}}

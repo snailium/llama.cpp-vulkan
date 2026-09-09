@@ -51,22 +51,35 @@ jobs:
           echo "Latest upstream stable: $LATEST_V"
 
       # ============================================================
-      # Detect latest Mesa stable release (the single source of truth
-      # for the ANV/RADV ICDs — the B70 decode lever lives here, not in
-      # llama.cpp). mesa/mesa tags are vX.Y.Z. We record it as the
-      # MESA_VERSION reference pin: the Dockerfile's base stage FAILS
-      # the build if the installed (PPA-provided) mesa-vulkan-drivers is older.
-      # Mesa lands in the image via the kisak-mesa PPA (MESA_PPA build arg).
+      # Detect the latest Mesa version (the single source of truth for the
+      # ANV/RADV ICDs - the B70 decode lever lives here, not in llama.cpp).
+      # Source: the kisak-mesa PPA's apt index for this image's Ubuntu series.
+      # That is exactly what the Dockerfile base stage installs, so the pin we
+      # compute here can never demand a version the PPA does not ship. (Mesa's
+      # upstream repo lives on gitlab.freedesktop.org and its GitHub org no
+      # longer hosts the source - the old releases/latest API 404s.)
+      # MESA_VERSION stays a major.minor reference pin: point releases
+      # (26.2.2) do not gate the build, but the base stage FAILS if the
+      # installed mesa-vulkan-drivers is below it.
       # ============================================================
-      - name: Detect latest Mesa stable release
+      - name: Detect latest Mesa release (kisak-mesa PPA index)
         id: mesa
         run: |
           set -e
-          MESAREL=$(curl -sf https://api.github.com/repos/mesa3d/mesa/releases/latest)
-          MESA=$(echo "$MESAREL" | jq -r '.tag_name' | sed 's/^v//')
-          [ -z "$MESA" ] || [ "$MESA" = "null" ] && { echo "ERR: failed to detect latest Mesa release" >&2; exit 1; }
+          UBUNTU="${{ vars.UBUNTU_VERSION }}"
+          [ -n "$UBUNTU" ] || { echo "ERR: repo variable UBUNTU_VERSION is not set" >&2; exit 1; }
+          # The PPA dists index is keyed by Ubuntu series codename (resolute, noble),
+          # not the numeric version. Resolve via /etc/os-release in a throwaway
+          # container of the exact base image the Dockerfile builds on.
+          CODE=$(docker run --rm "ubuntu:${UBUNTU}" cat /etc/os-release | awk -F= '/^VERSION_CODENAME/{print $2}')
+          [ -n "$CODE" ] || { echo "ERR: could not resolve codename for ubuntu:${UBUNTU}" >&2; exit 1; }
+          PKG="http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu/dists/${CODE}/main/binary-amd64/Packages"
+          MESA=$(curl -sf "$PKG" | awk '/^Package: mesa-vulkan-drivers/{f=1; next} f && /^Version:/{print $2; exit}')
+          [ -n "$MESA" ] || { echo "ERR: failed to detect Mesa in kisak-mesa PPA (series ${CODE})" >&2; exit 1; }
+          # Trim to major.minor - point releases must not gate the build.
+          MESA=$(echo "$MESA" | cut -d. -f1-2)
           echo "latest_mesa=$MESA" >> $GITHUB_OUTPUT
-          echo "Latest Mesa stable: $MESA"
+          echo "Latest Mesa (kisak-mesa PPA, ${CODE}): $MESA"
 
       # ============================================================
       # Decide: skip if this exact version combo is already built.

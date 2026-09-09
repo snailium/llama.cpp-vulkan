@@ -53,15 +53,24 @@ jobs:
           echo "latest_b=${LATEST_B:-none}" >> $GITHUB_OUTPUT
           echo "Latest upstream v*: $LATEST_V ; b*: ${LATEST_B:-none}"
 
-      - name: Detect latest Mesa stable release
+      - name: Detect latest Mesa release (kisak-mesa PPA index)
         id: mesa
         run: |
           set -e
-          MESAREL=$(curl -sf https://api.github.com/repos/mesa3d/mesa/releases/latest)
-          MESA=$(echo "$MESAREL" | jq -r '.tag_name' | sed 's/^v//')
-          [ -z "$MESA" ] || [ "$MESA" = "null" ] && { echo "ERR: failed to detect latest Mesa release" >&2; exit 1; }
+          UBUNTU="${{ vars.UBUNTU_VERSION }}"
+          [ -n "$UBUNTU" ] || { echo "ERR: repo variable UBUNTU_VERSION is not set" >&2; exit 1; }
+          # The PPA dists index is keyed by Ubuntu series codename (resolute, noble),
+          # not the numeric version. Resolve via /etc/os-release in a throwaway
+          # container of the exact base image the Dockerfile builds on.
+          CODE=$(docker run --rm "ubuntu:${UBUNTU}" cat /etc/os-release | awk -F= '/^VERSION_CODENAME/{print $2}')
+          [ -n "$CODE" ] || { echo "ERR: could not resolve codename for ubuntu:${UBUNTU}" >&2; exit 1; }
+          PKG="http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu/dists/${CODE}/main/binary-amd64/Packages"
+          MESA=$(curl -sf "$PKG" | awk '/^Package: mesa-vulkan-drivers/{f=1; next} f && /^Version:/{print $2; exit}')
+          [ -n "$MESA" ] || { echo "ERR: failed to detect Mesa in kisak-mesa PPA (series ${CODE})" >&2; exit 1; }
+          # Trim to major.minor - point releases must not gate the build.
+          MESA=$(echo "$MESA" | cut -d. -f1-2)
           echo "latest_mesa=$MESA" >> $GITHUB_OUTPUT
-          echo "Latest Mesa stable: $MESA"
+          echo "Latest Mesa (kisak-mesa PPA, ${CODE}): $MESA"
 
       - name: Decide if build is needed (skip if this combo already built)
         id: decide

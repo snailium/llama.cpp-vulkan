@@ -23,10 +23,10 @@ ARG APP_REVISION=N/A
 # VK_NV_cooperative_matrix2 on Battlemage (the ~2x B70 decode lever; it needs
 # Mesa 26.1+). We therefore pull the runtime driver from the kisak-mesa "fresh"
 # PPA inside the base stage, which tracks the latest Mesa point release for the
-# Ubuntu series. MESA_VERSION is a *reference pin*: the base stage fails the
-# build if the installed mesa-vulkan-drivers is older than the pin. Override the
-# PPA (e.g. to a mirror, or disable it for an offline/archive-only base by
-# passing MESA_PPA=none) via --build-arg.
+# Ubuntu series. MESA_VERSION is a *major.minor reference pin*: the base stage
+# fails the build if the installed mesa-vulkan-drivers is older than it (point
+# releases never gate). Override the PPA (e.g. to a mirror, or disable it for
+# an offline/archive-only base by passing MESA_PPA=none) via --build-arg.
 ARG MESA_PPA=kisak/kisak-mesa
 ARG MESA_VERSION=26.1
 # Vulkan SDK version used to extract glslc (shader AOT compiler) — see build stage.
@@ -196,14 +196,18 @@ RUN set -eux; \
 # surface that as a hard error instead of shipping a nominally-Vulkan image that lacks
 # the fast cooperative-matrix2 path. Pass MESA_PPA=none only with an archive/base that
 # already carries Mesa >= MESA_VERSION - this check then gates it.
+# MESA_VERSION is a major.minor reference pin (e.g. 26.1). The installed version is
+# trimmed to major.minor before comparison, so point releases (26.2.2) never gate the
+# build - only a driver older than the pin does. A 3-part value is accepted and trimmed.
 RUN set -e; \
     INSTALLED=$(dpkg-query -W -f='${Version}' mesa-vulkan-drivers | cut -d. -f1-2); \
     echo "mesa-vulkan-drivers installed: $INSTALLED (reference pin: $MESA_VERSION)"; \
-    MAJ_REF=${MESA_VERSION%%.*}; MIN_REF=$(echo "$MESA_VERSION" | cut -d. -f2); \
-    MAJ_INST=${INSTALLED%%.*}; MIN_INST=$(echo "$INSTALLED" | cut -d. -f2); \
+    REF=$(echo "$MESA_VERSION" | cut -d. -f1-2); \
+    MAJ_REF=${REF%%.*}; MIN_REF=${REF#*.}; \
+    MAJ_INST=${INSTALLED%%.*}; MIN_INST=${INSTALLED#*.}; \
     if [ "$MAJ_INST" -lt "$MAJ_REF" ] || { [ "$MAJ_INST" -eq "$MAJ_REF" ] && [ "$MIN_INST" -lt "$MIN_REF" ]; }; then \
-      echo "ERR: installed Mesa $INSTALLED < reference $MESA_VERSION - B70 cooperative-matrix2 path is not present." >&2; \
-      echo "     Rebuild with the kisak-mesa PPA enabled (default) or a base carrying Mesa >= $MESA_VERSION." >&2; \
+      echo "ERR: installed Mesa $INSTALLED < reference $REF - B70 cooperative-matrix2 path is not present." >&2; \
+      echo "     Rebuild with the kisak-mesa PPA enabled (default) or a base carrying Mesa >= $REF." >&2; \
       exit 1; \
     fi
 

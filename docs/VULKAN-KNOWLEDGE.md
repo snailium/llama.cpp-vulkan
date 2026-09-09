@@ -38,7 +38,7 @@ Consequences:
 
 **What this means for this repo:**
 
-1. The Dockerfile's `MESA_VERSION` pin-check exists because Mesa below 26.1 (e.g. the stock Ubuntu 26.04 archive's 26.0.x) would silently halve B70 decode. The base stage therefore pulls `mesa-vulkan-drivers` from the kisak-mesa PPA (`MESA_PPA`) to guarantee the 26.1+ cooperative-matrix2 path; the pin-check fails the build if the installed driver is older. CI tracks Mesa releases and rebuilds when they land.
+1. The Dockerfile's `MESA_VERSION` pin-check exists because Mesa below 26.1 (e.g. the stock Ubuntu 26.04 archive's 26.0.x) would silently halve B70 decode. The base stage therefore pulls `mesa-vulkan-drivers` from the kisak-mesa PPA (`MESA_PPA`) to guarantee the 26.1+ cooperative-matrix2 path; the pin-check is a **major.minor** fail-if-older gate (point releases like 26.2.2 never trip it). CI detects the current Mesa version from the kisak PPA's Launchpad apt index for the image's Ubuntu series and rebuilds when the major.minor moves.
 2. **f16 KV is the default recommendation for B70** (32 GB can afford it at 96k); q8_0 only when adding an MTP draft or pushing to 128k.
 3. Do not chase llama.cpp commits expecting decode gains on B70 — re-measure after **Mesa** updates instead.
 

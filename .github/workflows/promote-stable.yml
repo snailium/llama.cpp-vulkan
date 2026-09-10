@@ -1,0 +1,29 @@
+name: Promote Vulkan stable tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_tag:
+        description: Source candidate tag to promote to :stable
+        required: true
+        default: server-m26.2-v0.4.0-20260909-2255
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create :stable manifest
+        run: |
+          SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
+          DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:stable"
+          docker buildx imagetools create --tag "$DST" "$SRC"
+          docker buildx imagetools inspect "$DST" --format "stable -> {{.ManifestDigest}} (src {{.Name}})"

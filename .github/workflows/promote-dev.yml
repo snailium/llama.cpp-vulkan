@@ -1,0 +1,29 @@
+name: Promote Vulkan dev tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_tag:
+        description: Source dev candidate tag to promote to :server-dev
+        required: true
+        default: server-dev-m26.2-b10883-20260909-2330
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create :server-dev manifest
+        run: |
+          SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
+          DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:server-dev"
+          docker buildx imagetools create --tag "$DST" "$SRC"
+          docker buildx imagetools inspect "$DST" --format "server-dev -> {{.Ref}} (src {{.Name}})"

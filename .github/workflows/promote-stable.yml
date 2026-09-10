@@ -26,4 +26,4 @@ jobs:
           SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
           DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:stable"
           docker buildx imagetools create --tag "$DST" "$SRC"
-          docker buildx imagetools inspect "$DST" --format "stable -> {{.ManifestDigest}} (src {{.Name}})"
+          docker buildx imagetools inspect "$DST" --format "stable -> {{.Ref}} (src {{.Name}})"

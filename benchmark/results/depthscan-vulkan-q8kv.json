@@ -1,0 +1,50 @@
+[
+ {
+  "kv": "vulkan-q8kv",
+  "target_depth": 1024,
+  "prompt_n": 1028,
+  "cache_n": 0,
+  "ttft_s": 1.8,
+  "prefill_tps": 571.1,
+  "gen_n": 96,
+  "decode_tps": 35.6,
+  "draft_acc": 0.677,
+  "e2e_s": 4.8
+ },
+ {
+  "kv": "vulkan-q8kv",
+  "target_depth": 16384,
+  "prompt_n": 14752,
+  "cache_n": 1543,
+  "ttft_s": 43.19,
+  "prefill_tps": 341.6,
+  "gen_n": 96,
+  "decode_tps": 14.9,
+  "draft_acc": 0.616,
+  "e2e_s": 50.1
+ },
+ {
+  "kv": "vulkan-q8kv",
+  "target_depth": 32768,
+  "prompt_n": 16799,
+  "cache_n": 15779,
+  "ttft_s": 94.14,
+  "prefill_tps": 178.5,
+  "gen_n": 96,
+  "decode_tps": 8.4,
+  "draft_acc": 0.532,
+  "e2e_s": 105.5
+ },
+ {
+  "kv": "vulkan-q8kv",
+  "target_depth": 65536,
+  "prompt_n": 33088,
+  "cache_n": 32062,
+  "ttft_s": 328.96,
+  "prefill_tps": 100.6,
+  "gen_n": 96,
+  "decode_tps": 4.5,
+  "draft_acc": 0.474,
+  "e2e_s": 350.4
+ }
+]

@@ -1,5 +1,7 @@
 # Vulkan vs SYCL on B70 — why the gap, controlled depth scan (2026-09-10)
 
+Filed upstream: [ggml-org/llama.cpp#28721](https://github.com/ggml-org/llama.cpp/issues/28721).
+
 Question: why is Vulkan much slower than SYCL on our dense Qwen3.8-27B load, even
 though b10883 merged several GPU matmul updates and external sources report high
 Vulkan token rates?

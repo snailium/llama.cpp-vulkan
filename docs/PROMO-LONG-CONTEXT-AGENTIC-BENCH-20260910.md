@@ -19,6 +19,8 @@
 一句话：**"Vulkan 慢"是错觉，真正慢的是"B70 上的 Vulkan 跑长上下文 agent"**。这是
 backend-intrinsic（驱动/内核成熟度）问题，不是你的配置问题。
 
+> 已提交上游讨论：[ggml-org/llama.cpp#28721](https://github.com/ggml-org/llama.cpp/issues/28721)
+
 ---
 
 ## 为什么这个测试重要
@@ -103,6 +105,7 @@ python3 benchmark/depth_scan.py   # → benchmark/results/depthscan-<KV_LABEL>.j
 
 完整报告：[`benchmark/results/2026-09-10-long-context-agentic-depth-scan.md`](https://github.com/snailium/llama.cpp-vulkan/blob/main/benchmark/results/2026-09-10-long-context-agentic-depth-scan.md)
 · 研究写up：[`docs/VULKAN-PERF-RESEARCH-20260910.md`](https://github.com/snailium/llama.cpp-vulkan/blob/main/docs/VULKAN-PERF-RESEARCH-20260910.md)
+· **已提交上游**：[ggml-org/llama.cpp#28721](https://github.com/ggml-org/llama.cpp/issues/28721)（Vulkan 深上下文 decode 塌陷 + FA_SCALAR 假设 + RDNA3 对照）
 
 ---
 

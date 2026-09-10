@@ -19,7 +19,7 @@ vLLM/SGLang/TRT-LLM), but none of them measure **per-token decode rate as one se
 grows on a single consumer/prosumer card** — the exact thing that determines whether your
 agent feels fast or crawl at depth.
 
-We close that gap with a controlled per-depth scan.
+We close that gap with a controlled per-depth scan. (Filed upstream as [ggml-org/llama.cpp#28721](https://github.com/ggml-org/llama.cpp/issues/28721).)
 
 ## Method
 

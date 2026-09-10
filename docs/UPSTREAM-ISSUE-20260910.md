@@ -1,8 +1,7 @@
 <!--
-DRAFT — copy the body below (between the --- lines) into a new issue on ggml-org/llama.cpp.
-Suggested title:
-  [Vulkan] Deep-context decode collapses ~8x on Intel Arc Pro B70 (Xe2); RDNA3 does not
-Labels to request: vulkan, performance
+FILED 2026-09-10 as ggml-org/llama.cpp#28721 (label: performance; no 'vulkan' label exists upstream).
+  https://github.com/ggml-org/llama.cpp/issues/28721
+Body below is the filed text. Keep in sync if you update the issue.
 This is a measurement report + hypothesis, not a bug in the strict sense — we are happy
 to help reproduce. All numbers below were measured by us on real hardware with the
 reproduction recipe at the bottom.

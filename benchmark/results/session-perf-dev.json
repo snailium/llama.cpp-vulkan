@@ -1,0 +1,170 @@
+[
+  {
+    "file": "sessions-plain/session-1c6bc325-2eda-440d-9719-c129229e3374.jsonl",
+    "sessionId": "session-1c6bc325-2eda-440d-9719-c129229e3374",
+    "cwd": "/workspace",
+    "createdAt": 1789006823303,
+    "turns": 1,
+    "steps": 20,
+    "llmMs": 1558681,
+    "toolMs": 693,
+    "ttftMs": 460455,
+    "ttftSteps": 20,
+    "decodeMs": 1098226,
+    "decodeTokens": 5643,
+    "decodeTokensPerSecond": 5.138,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 2722,
+        "decodeMs": 1098226,
+        "outputTokens": 5643,
+        "tokensPerSecond": 5.138
+      }
+    ]
+  },
+  {
+    "file": "sessions-plain/session-2b5fe9e0-3edb-43b0-a842-a0676d8364a5.jsonl",
+    "sessionId": "session-2b5fe9e0-3edb-43b0-a842-a0676d8364a5",
+    "cwd": "/workspace",
+    "createdAt": 1789010571906,
+    "turns": 1,
+    "steps": 3,
+    "llmMs": 134821,
+    "toolMs": 109,
+    "ttftMs": 52828,
+    "ttftSteps": 3,
+    "decodeMs": 81993,
+    "decodeTokens": 1494,
+    "decodeTokensPerSecond": 18.221,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 2494,
+        "decodeMs": 81993,
+        "outputTokens": 1494,
+        "tokensPerSecond": 18.221
+      }
+    ]
+  },
+  {
+    "file": "sessions-plain/session-37ac5c50-f46f-4067-8a03-2d817bafe006.jsonl",
+    "sessionId": "session-37ac5c50-f46f-4067-8a03-2d817bafe006",
+    "cwd": "/workspace",
+    "createdAt": 1789006470314,
+    "turns": 1,
+    "steps": 5,
+    "llmMs": 111408,
+    "toolMs": 143,
+    "ttftMs": 21405,
+    "ttftSteps": 5,
+    "decodeMs": 90003,
+    "decodeTokens": 1654,
+    "decodeTokensPerSecond": 18.377,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 1884,
+        "decodeMs": 90003,
+        "outputTokens": 1654,
+        "tokensPerSecond": 18.377
+      }
+    ]
+  },
+  {
+    "file": "sessions-plain/session-82b32f17-5e47-4088-97bb-0e2a07d6977b.jsonl",
+    "sessionId": "session-82b32f17-5e47-4088-97bb-0e2a07d6977b",
+    "cwd": "/workspace",
+    "createdAt": 1789010714435,
+    "turns": 1,
+    "steps": 7,
+    "llmMs": 120848,
+    "toolMs": 3508,
+    "ttftMs": 15937,
+    "ttftSteps": 7,
+    "decodeMs": 104911,
+    "decodeTokens": 1928,
+    "decodeTokensPerSecond": 18.377,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 1146,
+        "decodeMs": 104911,
+        "outputTokens": 1928,
+        "tokensPerSecond": 18.377
+      }
+    ]
+  },
+  {
+    "file": "sessions-plain/session-c2e20bd4-4b22-4bc6-a146-8885ce83f128.jsonl",
+    "sessionId": "session-c2e20bd4-4b22-4bc6-a146-8885ce83f128",
+    "cwd": "/workspace",
+    "createdAt": 1789010845119,
+    "turns": 1,
+    "steps": 16,
+    "llmMs": 1427627,
+    "toolMs": 563,
+    "ttftMs": 593893,
+    "ttftSteps": 16,
+    "decodeMs": 833734,
+    "decodeTokens": 3919,
+    "decodeTokensPerSecond": 4.701,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 2238,
+        "decodeMs": 833734,
+        "outputTokens": 3919,
+        "tokensPerSecond": 4.701
+      }
+    ]
+  },
+  {
+    "file": "sessions-plain/session-c4d4540a-d52d-477d-a623-89f9b6600bb7.jsonl",
+    "sessionId": "session-c4d4540a-d52d-477d-a623-89f9b6600bb7",
+    "cwd": "/workspace",
+    "createdAt": 1789006114132,
+    "turns": 1,
+    "steps": 1,
+    "llmMs": 48013,
+    "toolMs": 0,
+    "ttftMs": 47814,
+    "ttftSteps": 1,
+    "decodeMs": 199,
+    "decodeTokens": 2,
+    "decodeTokensPerSecond": 10.05,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 47814,
+        "decodeMs": 199,
+        "outputTokens": 2,
+        "tokensPerSecond": 10.05
+      }
+    ]
+  },
+  {
+    "file": "sessions-plain/session-eb8349da-e4d1-4290-935b-379865f6a7d7.jsonl",
+    "sessionId": "session-eb8349da-e4d1-4290-935b-379865f6a7d7",
+    "cwd": "/workspace",
+    "createdAt": 1789006680722,
+    "turns": 1,
+    "steps": 4,
+    "llmMs": 112340,
+    "toolMs": 2067,
+    "ttftMs": 24474,
+    "ttftSteps": 4,
+    "decodeMs": 87866,
+    "decodeTokens": 1441,
+    "decodeTokensPerSecond": 16.4,
+    "turnsDetail": [
+      {
+        "turn": 1,
+        "ttftMs": 1840,
+        "decodeMs": 87866,
+        "outputTokens": 1441,
+        "tokensPerSecond": 16.4
+      }
+    ]
+  }
+]

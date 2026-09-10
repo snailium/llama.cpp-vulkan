@@ -1,0 +1,38 @@
+[
+ {
+  "kv": "vulkan-nodraft",
+  "target_depth": 1024,
+  "prompt_n": 1028,
+  "cache_n": 0,
+  "ttft_s": 1.62,
+  "prefill_tps": 635.4,
+  "gen_n": 96,
+  "decode_tps": 21.4,
+  "draft_acc": 0.0,
+  "e2e_s": 6.4
+ },
+ {
+  "kv": "vulkan-nodraft",
+  "target_depth": 16384,
+  "prompt_n": 14752,
+  "cache_n": 1543,
+  "ttft_s": 40.84,
+  "prefill_tps": 361.2,
+  "gen_n": 96,
+  "decode_tps": 13.7,
+  "draft_acc": 0.0,
+  "e2e_s": 48.3
+ },
+ {
+  "kv": "vulkan-nodraft",
+  "target_depth": 32768,
+  "prompt_n": 16799,
+  "cache_n": 15779,
+  "ttft_s": 89.07,
+  "prefill_tps": 188.6,
+  "gen_n": 96,
+  "decode_tps": 9.8,
+  "draft_acc": 0.0,
+  "e2e_s": 98.8
+ }
+]

@@ -75,3 +75,30 @@ runner `benchmark/depth_scan.py`.
   GEMM work; the b10883 matmul commits do not move our dense short-context
   decode (no headroom) nor the deep-context attention path.
 - Re-test recipe: `benchmark/depth_scan.py` (per-KV/backend rows above).
+## Addendum: does MTP increase token rate? (measured)
+
+MTP3 (Q8_0 draft, n-max 3, p-min 0.10) vs no-draft, same depth scan, 96-token
+decode. `predicted_per_second` = accepted main-model output tokens.
+
+| depth | Vulkan no-MTP | Vulkan MTP3 | gain | SYCL no-MTP | SYCL MTP3 | gain |
+|---|---|---|---|---|---|---|
+| ~1k  | 21.4 t/s | 35.6 t/s | **+66%** | 22.5 t/s | 38.5 t/s | **+71%** |
+| ~16k | 13.7 t/s | 14.9 t/s | +9% | 18.8 t/s | 31.7 t/s | **+69%** |
+| ~32k | 9.8 t/s  | 8.4 t/s  | -14% | 15.9 t/s | 22.8 t/s | **+43%** |
+
+Data: `benchmark/results/depthscan-{vulkan,sycl}-nodraft.json`.
+
+- **MTP genuinely increases token rate**: +66-71% at short context on BOTH
+  backends (single-row no-draft decode is ~21-22 t/s, latency/kernel-bound and
+  BELOW the 37 t/s bandwidth ceiling; MTP batches 4 rows/step and reaches the
+  ceiling). Our 35-39 t/s t1/t2 numbers already include this MTP gain.
+- **The MTP gain collapses with depth on Vulkan only**: +66% -> +9% -> -14%
+  (1k->16k->32k), while SYCL keeps +71% -> +69% -> +43%. At depth the
+  per-step latency is dominated by the O(L) attention cost (Vulkan's weak
+  deep-attention path) plus the fixed draft forward; draft acceptance also
+  drops with depth (0.68->0.47), so the draft no longer pays for its latency.
+  This is another expression of the same root cause (deep-attention scaling),
+  not a fault of MTP itself.
+- Practical upshot: keep MTP3 for short-context work on both backends; for
+  deep-context agent loops on Vulkan, MTP3 is neutral-to-harmful until the
+  deep-attention path improves upstream.

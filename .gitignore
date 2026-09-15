@@ -21,3 +21,6 @@ models/
 
 # Logs
 *.log
+
+# Local v0.4.1 validation working dir (test home, sessions, extracted logs)
+benchmark/.v041-run/

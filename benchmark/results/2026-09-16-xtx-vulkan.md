@@ -250,6 +250,30 @@ and the snippets contain the actual data, e.g.
 | `web_search_pro` calls | 3 | **8** |
 | outcome | FAIL — 70 identical calls to an invented endpoint | **PASS — 258 cm** |
 
+### Performance per task (server-side `slot print_timing`, weighted)
+
+Aggregates are weighted, never a mean of rates: prefill = `sum(prompt_n)/sum(prompt_ms)`,
+decode = `sum(predicted_n)/sum(predicted_ms)`, acceptance = `sum(accepted)/sum(generated)`.
+TTFT is the per-request `prompt eval time` (`prompt_ms`), reported as median and max.
+Windows taken from each session's `createdAt` through its run-log end.
+
+| Task | requests | prefill | prefill t/s | **TTFT med** | TTFT max | decode t/s | **draft acc** |
+|---|---|---|---|---|---|---|---|
+| t4_hostinfo | 7 | 2,104 tok / 7.0 s | 301.2 | **0.90 s** | 2.36 s | 77.3 | **0.749** |
+| t3_security | 18 | 49,667 tok / 116.5 s | 426.3 | **3.02 s** | 23.94 s | 41.3 | **0.458** |
+| t5_snowfall | 55 | 93,293 tok / 206.0 s | 452.9 | **1.66 s** | 77.99 s | 65.1 | **0.785** |
+
+Reading these:
+- **t3 is the deep-context workload** (49.7k prompt tokens across 18 requests) — its decode drops
+  to 41.3 t/s and draft acceptance to 0.458, i.e. the same "deeper context → lower acceptance"
+  pattern seen on the B70 runs, but the 7900 XTX still holds 41 t/s where B70 Vulkan collapsed to 5.4.
+- **t5's 77.99 s max TTFT** is a single non-cached prefill (the agent re-sent a large accumulated
+  context); the median is 1.66 s, so this is a tail event, not a general latency.
+- **t4 is short-context** (7 requests, 2.1k prompt tokens) and shows the best decode/acceptance.
+- `-v` is not enabled on this service, so per-request `timings` JSON is not in the log; these come
+  from `slot print_timing`, which covers only a subset of requests per task. Counts above are the
+  requests that emitted timings, not necessarily every request.
+
 The answer is correct in substance, not just in the final number: it names the right station
 (**6106001**, Ottawa Macdonald-Cartier Int'l Airport), gives the correct monthly breakdown
 (Nov 32.5 / Dec 54.6 / Jan 81.6 / Feb 48.3 / Mar ~41 cm — matching the ECCC data), cites the

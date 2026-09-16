@@ -222,3 +222,46 @@ It also explains t5's flakiness precisely: the model cannot recall the endpoint,
 one passing run (258.6 cm) reached the right endpoint through **web search**, not memory. t5 therefore
 hinges on whether the agent elects to search or to guess. Practical fixes: pin the endpoint/parameter
 in the prompt, or require the agent to search before asserting a data source.
+
+---
+
+## Addendum 3 — t3/t4/t5 re-run after the `web_search_pro` fix: **all three PASS**
+
+The harness was rebuilt with the DDG snippet-extraction fix (see
+`dsh-web-search-pro-REMEDIATION-20260916.md` for the root cause). New image digest
+`sha256:d13c8c30a78c7ca01cbdbde877e2a9a32b543712715b2282799d96f269e29c3e`.
+Verified **inside the image's vendored tgz** before running: `parseDdgHtml()` is now a two-pass
+parser, and against live DuckDuckGo HTML it returns **10/10 results with snippets (was 0/10)** —
+and the snippets contain the actual data, e.g.
+*"Total Snowfall in Ottawa Since November 2025 … Ottawa has received: 192.1 cm of snowfall"*.
+
+| Task | Result | Notes |
+|---|---|---|
+| t4_hostinfo | **PASS** | host JSON exact again (i5-7500T, 14 GiB, nvme0n1 465.8 GB, sda 476.9 GB) |
+| t3_security | **PASS** | 2 High + 5 Medium + 5 Low, per-item reasoning |
+| **t5_snowfall** | **PASS** | **258 cm** — matches the ECCC station ground truth (258.6 cm) |
+
+### t5 before vs after (same backend, same model, same prompt)
+
+| | broken search | fixed search |
+|---|---|---|
+| steps | 181 | **52** |
+| breaker denials | 83 | **9** |
+| `web_search_pro` calls | 3 | **8** |
+| outcome | FAIL — 70 identical calls to an invented endpoint | **PASS — 258 cm** |
+
+The answer is correct in substance, not just in the final number: it names the right station
+(**6106001**, Ottawa Macdonald-Cartier Int'l Airport), gives the correct monthly breakdown
+(Nov 32.5 / Dec 54.6 / Jan 81.6 / Feb 48.3 / Mar ~41 cm — matching the ECCC data), cites the
+sources it actually used, and correctly notes that 2026-12-31 is in the future.
+
+### What this establishes
+
+The earlier t5 failures were **caused by the search tool, not by the model or the backend**. With
+snippets present the agent stops guessing: it searches 8× instead of 3×, stays on the correct domain
+(`climate.weather.gc.ca`, 24 requests), never invents an API endpoint, and converges in a third of
+the steps. This is the clean causal confirmation that "the model got results and ignored them" was
+really "there were never any results to get".
+
+Also confirmed in this image: the **`dsh-relay` headless boot bug is fixed** — a fresh `DSH_HOME`
+now boots with no local workaround, and packages are vendored as `file:/plugs/…`.

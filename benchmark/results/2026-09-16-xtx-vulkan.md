@@ -152,3 +152,45 @@ Two caveats to carry forward:
 2. **t5 needs attention as a task, not as a backend.** It fails on both backends (agent loops on a
    non-existent weather host). Options: pin the data source in the prompt, or have the harness
    treat repeated identical denied calls as a terminal condition instead of looping.
+
+---
+
+## Addendum — re-run of t3/t4/t5 on the vendored harness (`sha256:675cd420…`)
+
+The image was rebuilt to **vendor its packages** (`/plugs/*.tgz`, pinned as
+`file:/plugs/…` — no npm access at start), which fixes the reproducibility issue noted above.
+Re-ran t3/t4/t5 against the same `xtx-vulkan` backend.
+
+| Task | Result | Notes |
+|---|---|---|
+| t4_hostinfo | **PASS** | JSON again matches the real host exactly (i5-7500T, 14 GiB, nvme0n1 465.8 GB, sda 476.9 GB, root 457 GB) |
+| t3_security | **PASS** | even more thorough than the first pass — **2 High + 5 Medium + 6 Low** with per-item reasoning |
+| t5_snowfall | **FAIL** | looped again, on a *different* invented endpoint (see below) |
+
+**Vendoring: fixed and verified.** `/plugs/` now holds 6 tgz files and the profile template pins
+them by exact path — `dsh-repeat-tool-breaker-0.3.3.tgz` installed as **0.3.3** (was 0.3.2 via a
+`^0.3.2` range). No network is needed at container start, so the harness is now reproducible.
+
+**`dsh-relay` in the headless bundle list: still broken.** The template still lists `dsh-relay`
+in `dsh.profile.bundles`, so a *fresh* `DSH_HOME` still fails to boot exactly as before:
+
+```
+dsh: 1 entry did not activate
+dsh-relay: pending (waiting for service: webServer)
+```
+
+The same local workaround (drop `dsh-relay` from the bundle list in the isolated test home) was
+required again. **This is the one remaining blocker for out-of-the-box headless runs.**
+
+**t5 failure mode changed but did not resolve.** This time the model found the correct *host*
+(`api.weather.gc.ca`) but invented a non-existent *path*
+(`/observations.json?cpuid=YOW`), then re-emitted that byte-identical command **70 times**.
+The 0.3.3 breaker denied 83 calls; the model re-emitted anyway. Across this session t5 has now
+failed 3/3 on the 7900 XTX and 1/1 on a B70 control run, while passing once on the older harness —
+so it is an unstable **task/agent** behaviour, reproducible on more than one backend, not a Vulkan
+defect.
+
+The interaction worth fixing is that a guard can only *deny*: once the first informative error has
+been seen, every subsequent attempt returns `REPEAT_TOOL_BLOCKED` instead of a fresh result, and the
+model stays in the loop. Terminating the turn after N consecutive denials would convert an unbounded
+loop into a bounded failure.

@@ -24,3 +24,6 @@ models/
 
 # Local v0.4.1 validation working dir (test home, sessions, extracted logs)
 benchmark/.v041-run/
+
+# 7900 XTX Vulkan validation working dir
+benchmark/.xtx-run/

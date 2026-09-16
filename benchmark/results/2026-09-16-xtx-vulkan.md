@@ -194,3 +194,31 @@ The interaction worth fixing is that a guard can only *deny*: once the first inf
 been seen, every subsequent attempt returns `REPEAT_TOOL_BLOCKED` instead of a fresh result, and the
 model stays in the loop. Terminating the turn after N consecutive denials would convert an unbounded
 loop into a bounded failure.
+
+---
+
+## Addendum 2 — is t5's failure caused by the q4_0 KV downgrade?
+
+**No.** Tested directly with an exact-recall probe (`recall_probe.py`): same model weights
+(`Qwen3.8-27B-Q4_K_M`), same sampling (temp 0.7 / top-p 0.80 / top-k 20 / presence 1.5, thinking off),
+only the KV precision differs. 8 samples per backend, asked for the ECCC `climate-daily` OGC API
+endpoint and its station-filter parameter:
+
+| Backend | KV | correct endpoint | correct param | both |
+|---|---|---|---|---|
+| B70 SYCL (golden) | **q8_0** | 3/8 | **0/8** | **0/8** |
+| 7900 XTX Vulkan | **q4_0** | 1/8 | **0/8** | **0/8** |
+
+The q8_0 golden backend fails the same probe, so the failure is **not** a quantization artifact.
+Both precisions emit fabricated hosts, paths and dataset UUIDs, e.g.
+`https://open-data.ecc.gc.ca/collections/climate-daily/items?stn_id=40109` (q8_0) and
+`https://open.canada.ca/data/en/dataset/9c03b546-…` (q4_0).
+
+The correct facts the task needs are `api.weather.gc.ca/collections/climate-daily/items` filtered by
+`CLIMATE_IDENTIFIER` — **0/8 recalled on both precisions**. This is a model knowledge gap, not a
+backend or quantization defect.
+
+It also explains t5's flakiness precisely: the model cannot recall the endpoint, so it guesses. The
+one passing run (258.6 cm) reached the right endpoint through **web search**, not memory. t5 therefore
+hinges on whether the agent elects to search or to guess. Practical fixes: pin the endpoint/parameter
+in the prompt, or require the agent to search before asserting a data source.

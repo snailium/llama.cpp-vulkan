@@ -26,7 +26,31 @@ Before anything else, call the `skill` tool for these, in order:
 Do not start testing before reading them. They contain the exact commands and the
 failure signatures that make results interpretable.
 
-## 1. Identify what you are testing
+## 1. Verify you can reach the GPU host - BEFORE anything else
+
+**This Session does not run on the machine that has the cards.** It runs on the
+control host (`PC-DEV`, `.90`), which has no discrete GPU, no `/dev/dri` and no
+`/models`. Both target cards, the model directory and every production container
+live on `home-ai` (`.101`).
+
+Run this first and confirm it prints `hostname : home-ai`:
+
+```bash
+scripts/on-gpu.sh --check
+```
+
+Every GPU command in the rest of this procedure goes through that wrapper, for
+example `scripts/on-gpu.sh 'docker ps -a'`.
+
+**If the check fails, STOP and report BLOCKED.** Do not run the suite locally and
+do not fabricate numbers.
+
+> ⚠️ **Never identify the host by port.** `.90` listens on **18080** - the same port
+> `b70-sycl` uses on `.101` - but that listener is an unrelated container. An agent
+> that checks `ss -ltn` and assumes "the GPU is here" will fail confusingly at the
+> first `/dev/dri` read. This exact mistake wasted one full Vulkan run.
+
+## 2. Identify what you are testing
 
 - Read `docs/GOLDEN-CONFIG.md` in this repository. Every parameter comes from there.
 - Record the **digest** you actually pulled, not just the tag.
@@ -34,7 +58,7 @@ failure signatures that make results interpretable.
   compare with the previous baseline. **A Mesa bump is a bigger change than a
   llama.cpp bump on this backend** and deserves its own line in the report.
 
-## 2. Test BOTH cards, sequentially, one at a time
+## 3. Test BOTH cards, sequentially, one at a time
 
 This image has two supported targets and **both must be tested** - but **never at
 the same time**.
@@ -65,7 +89,7 @@ For **each** card:
 Never stop, restart or remove a production container without the user's explicit
 consent - ask first, and name exactly which container you need down and for how long.
 
-## 3. Report per task, per card
+## 4. Report per task, per card
 
 For every task on every card, give:
 
@@ -86,7 +110,7 @@ q4_0 KV while the SYCL golden runs q8_0, so a Vulkan-vs-SYCL decode comparison i
 Do not extrapolate. Report only what you measured, and say which numbers you could
 not measure and why.
 
-## 4. Decide - the promote gate depends on the channel
+## 5. Decide - the promote gate depends on the channel
 
 The image tag tells you which channel you are validating. **The two channels have
 different gates**, and this is deliberate:

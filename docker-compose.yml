@@ -4,6 +4,39 @@ version: "3.8"
 # (docker compose up b70  /  docker compose up xtx).
 # The image ships BOTH ANV and RADV ICDs — the --device index + optional
 # VK_DRIVER_FILES select which card is used.
+#
+# ---------------------------------------------------------------------------
+# CONFIGURATION IS DELIVERED AS LLAMA_ARG_* ENVIRONMENT VARIABLES, NOT FLAGS.
+#
+# llama.cpp maps every server argument to an LLAMA_ARG_* variable, so the whole
+# configuration lives in `environment:` and neither service passes any argv.
+#
+# ⚠️ MINIMUM VERSION — READ BEFORE CHANGING THE IMAGE TAG
+#
+#   | variable group                              | floor        |
+#   |---------------------------------------------|--------------|
+#   | model / device / n-gpu-layers / ctx / KV /  | older than   |
+#   | flash-attn / host / port                    | v0.4.1       |
+#   | **sampling: TEMPERATURE, TOP_P, MIN_P,      | **>= b11078**|
+#   | PRESENCE_PENALTY, FREQUENCY_PENALTY,        |              |
+#   | REPEAT_PENALTY**                            |              |
+#
+# The six sampling variables were added in commit e0dff5847 ("args: add env vars
+# for temperature, top-p, min-p and penalties", #27380), first shipped in
+# **b11078**. Consequences:
+#
+#   * **v0.4.1 (b10964) and older does NOT support them.** They are silently
+#     ignored — no warning, no error — and the server falls back to its own
+#     defaults (temp 0.8, top_p 0.95, ...), changing output quality with no
+#     signal. **`:v0.4.1` and `:stable` are in this group**: both are built from
+#     llama.cpp b29c606, which is exactly v0.4.1.
+#   * **Any dev build before b11078 has the same gap.**
+#   * **v0.5.0 (>= b11146) is fine**, as is `:server-dev` built from b11078+.
+#
+# So: when pointing these services at an image older than b11078, move the six
+# sampling values back into `command:` (flags win over env vars, so both can
+# coexist safely) or accept that the server defaults apply.
+# ---------------------------------------------------------------------------
 
 x-common: &common
   build:
@@ -42,28 +75,26 @@ services:
       - /dev/dri/renderD128:/dev/dri/renderD128
       - /dev/dri/card0:/dev/dri/card0
     environment:
-      - LLAMA_ARG_HOST=0.0.0.0
       # Force ANV on mixed boxes (comment out on a B70-only box):
       # - VK_DRIVER_FILES=/usr/share/vulkan/icd.d/intel_icd.json
-    command:
-      - -m
-      - /models/Qwen3.8-27B-Q4_K_M.gguf
-      - --device
-      - "0"
-      - --n-gpu-layers
-      - "999"
-      - --ctx-size
-      - "98304"
-      - --cache-type-k
-      - f16
-      - --cache-type-v
-      - f16
-      - --flash-attn
-      - auto
-      - --port
-      - "8080"
-      - --host
-      - 0.0.0.0
+      - LLAMA_ARG_HOST=0.0.0.0
+      - LLAMA_ARG_PORT=8080
+      - LLAMA_ARG_MODEL=/models/Qwen3.8-27B-Q4_K_M.gguf
+      - LLAMA_ARG_DEVICE=0
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_CTX_SIZE=98304
+      - LLAMA_ARG_CACHE_TYPE_K=f16
+      - LLAMA_ARG_CACHE_TYPE_V=f16
+      - LLAMA_ARG_FLASH_ATTN=auto
+      # --- sampling: needs llama.cpp >= b11078; see the note at the top ----
+      - LLAMA_ARG_TEMPERATURE=0.7
+      - LLAMA_ARG_TOP_P=0.80
+      - LLAMA_ARG_TOP_K=20
+      - LLAMA_ARG_MIN_P=0.0
+      - LLAMA_ARG_PRESENCE_PENALTY=1.5
+      - LLAMA_ARG_FREQUENCY_PENALTY=0.0
+      - LLAMA_ARG_REPEAT_PENALTY=1.0
+    # No `command:` — every parameter is delivered as LLAMA_ARG_*.
 
   xtx:
     <<: *common
@@ -72,28 +103,26 @@ services:
       - /dev/dri/renderD129:/dev/dri/renderD129
       - /dev/dri/card1:/dev/dri/card1
     environment:
-      - LLAMA_ARG_HOST=0.0.0.0
       # Force RADV on mixed boxes (comment out on a 7900 XTX-only box):
       # - VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
-    command:
-      - -m
-      - /models/Qwen3.8-27B-Q4_K_M.gguf
-      - --device
-      - "0"
-      - --n-gpu-layers
-      - "999"
-      - --ctx-size
-      - "32768"
-      - --cache-type-k
-      - q8_0
-      - --cache-type-v
-      - q8_0
-      - --flash-attn
-      - auto
-      - --port
-      - "8080"
-      - --host
-      - 0.0.0.0
+      - LLAMA_ARG_HOST=0.0.0.0
+      - LLAMA_ARG_PORT=8080
+      - LLAMA_ARG_MODEL=/models/Qwen3.8-27B-Q4_K_M.gguf
+      - LLAMA_ARG_DEVICE=0
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      - LLAMA_ARG_CTX_SIZE=32768
+      - LLAMA_ARG_CACHE_TYPE_K=q8_0
+      - LLAMA_ARG_CACHE_TYPE_V=q8_0
+      - LLAMA_ARG_FLASH_ATTN=auto
+      # --- sampling: needs llama.cpp >= b11078; see the note at the top ----
+      - LLAMA_ARG_TEMPERATURE=0.7
+      - LLAMA_ARG_TOP_P=0.80
+      - LLAMA_ARG_TOP_K=20
+      - LLAMA_ARG_MIN_P=0.0
+      - LLAMA_ARG_PRESENCE_PENALTY=1.5
+      - LLAMA_ARG_FREQUENCY_PENALTY=0.0
+      - LLAMA_ARG_REPEAT_PENALTY=1.0
+    # No `command:` — every parameter is delivered as LLAMA_ARG_*.
 
 volumes:
   vulkan-shader-cache:

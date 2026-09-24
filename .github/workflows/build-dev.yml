@@ -11,6 +11,11 @@ on:
         required: false
         default: 'false'
         type: boolean
+      ref:
+        description: 'Pin the llama.cpp ref (tag/branch/sha). Empty = auto-detect the newest b* tag.'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   check-and-build-dev:
@@ -129,6 +134,22 @@ jobs:
             REASON="Forced by manual dispatch (force=true)"
           fi
 
+          # An explicit ref pin wins over auto-detection. This is how a dev build
+          # is pinned to a known-good tag when the newest one is not what we want.
+          PIN="${{ github.event.inputs.ref || '' }}"
+          if [ -n "$PIN" ]; then
+            REF="$PIN"
+            PREFIX="server-dev-m${{ steps.mesa.outputs.latest_mesa }}-${REF}-"
+            if [ -z "$TOKEN" ]; then
+              REASON="GHCR auth failed - skipped (will re-check next run)"
+            elif echo "$TAGS" | grep -qF "$PREFIX"; then
+              REASON="Already built ${PREFIX%?} in GHCR - skipping redundant rebuild"
+            else
+              SHOULD_BUILD=true
+              REASON="Pinned to llama.cpp $REF (override)"
+            fi
+          fi
+
           echo "should_build=$SHOULD_BUILD" >> $GITHUB_OUTPUT
           echo "build_reason=$REASON"
           echo "ref_used=$REF" >> $GITHUB_OUTPUT
@@ -150,6 +171,32 @@ jobs:
         run: |
           rm -rf llama.cpp
           git clone --depth 1 --branch "${{ steps.decide.outputs.ref_used }}" https://github.com/ggml-org/llama.cpp llama.cpp
+
+      # Apply our local patches on top of the upstream ref.
+      #
+      # Each patch is a plain `git apply`-able diff under patches/. Pinning them in
+      # the repo (rather than editing the subtree by hand) keeps the build
+      # reproducible: the same ref always yields the same source. A failed apply is
+      # fatal on purpose - a silently unpatched build is worse than no build,
+      # because the issue it opens would claim a fix that is not in the image.
+      - name: Apply local patches
+        if: steps.decide.outputs.should_build == 'true'
+        run: |
+          set -e
+          shopt -s nullglob
+          patches=(patches/*.patch)
+          if [ ${#patches[@]} -eq 0 ]; then
+            echo "No patches to apply."
+            exit 0
+          fi
+          cd llama.cpp
+          for p in "${patches[@]}"; do
+            echo "::group::Applying $(basename "$p")"
+            git apply --verbose "../$p"
+            echo "::endgroup::"
+          done
+          echo "Applied ${#patches[@]} patch(es)."
+          git --no-pager diff --stat
 
       - name: Compute temporary dev tag
         if: steps.decide.outputs.should_build == 'true'

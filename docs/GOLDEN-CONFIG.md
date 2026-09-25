@@ -15,12 +15,35 @@ Last verified: **2026-09-20**.
 | Field | Value |
 |---|---|
 | Registry | `ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan` |
-| Production tag | `:v0.4.1` (also `:stable`) |
+| Stable channel | `:stable` (plus a `:vX.Y` release tag) |
+| Dev channel | `:server-dev` |
+| Last known-good | **`:latest`** — see §1.1 |
 | Entrypoint | image default — **never override it** |
 
 This image ships **both** ANV (Intel) and RADV (AMD) ICDs; the `--device` index
 plus an optional `VK_DRIVER_FILES` selects the card. That is why one image serves
 two targets.
+
+### 1.1 Tag semantics
+
+| Tag | Moves when | Meaning |
+|---|---|---|
+| `:server-dev` | a flag: `promote-vulkan-image.sh <digest> "" <repo> dev` | current dev channel |
+| `:stable` + `:vX.Y` | `promote-vulkan-image.sh <digest> vX.Y` | stable release |
+| **`:latest`** | **any** promote — but only if the candidate is **newer** | last tested + promoted image, on **either** channel |
+
+**`:latest` is monotonic by image build date.** It tracks the most recently
+*built* image that we tested and promoted, and it never moves backwards: promoting
+an older digest (e.g. re-promoting a stable release after a dev build has already
+advanced `:latest`) leaves `:latest` where it is and prints
+`⊘ :latest NOT moved — this image is OLDER than :latest`.
+
+The point of the rule: `docker pull …:latest` must never hand someone bits older
+than what they already got. Decide by **image build time**, not by tag name or
+promote order — a dev tag can legitimately point at newer bits than a stable tag
+promoted afterwards.
+
+`promote-vulkan-image.sh` applies this automatically. Set `LATEST=0` to skip it.
 
 ---
 
@@ -184,3 +207,4 @@ Do not promote a Vulkan image on B70 evidence alone while this row reads unverif
 | Date | Change |
 |---|---|
 | 2026-09-20 | Initial golden record. XTX config taken from the live production container (`xtx-vulkan`); B70 config from `benchmark/configs/b70-mtp3-q4-96k.md` + `b70-f16-96k.md`, marked unverified. |
+| 2026-09-25 | Added `:latest` = last tested+promoted image (monotonic by build date) and dev/stable channel split to the promote script; §1.1 tag semantics. |

@@ -1,0 +1,23 @@
+{
+  "task": "v2",
+  "finish_reason": "stop",
+  "text_len": 2626,
+  "ttft_s": 2.157,
+  "wall_s": 23.689,
+  "prompt_tok": 1064,
+  "completion_tok": 1368,
+  "prefill_tps": 493.36,
+  "decode_tps": 63.49,
+  "draft_accepted": 869,
+  "draft_proposed": 1996,
+  "accept_rate": 43.54,
+  "v2_labels_found": 15,
+  "v2_labels_missing": [
+    "FCH",
+    "USB31A",
+    "USB32A",
+    "F_PANEL",
+    "F_AUDIO",
+    "U65"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "skill_file": "/tmp/vrun1/skill/SKILL.md",
+  "skill_sha256": "8af83da14abfa1408204e2eff762470c8dba0e8e4c5dae5893ee1656d1546a53",
+  "server_sampling": {
+    "temperature": 0.699999988079071,
+    "top_p": 0.800000011920929,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repeat_penalty": 1.0
+  },
+  "model": "/models/qwen3.8-27b/Qwen3.8-27B-Q4_K_M.gguf",
+  "mmproj_offload": "GPU: LLAMA_ARG_MMPROJ_OFFLOAD=1, no --no-mmproj-offload"
+}

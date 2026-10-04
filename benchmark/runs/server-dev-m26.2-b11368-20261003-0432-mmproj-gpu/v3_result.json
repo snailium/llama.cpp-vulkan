@@ -1,0 +1,14 @@
+{
+  "task": "v3",
+  "finish_reason": "stop",
+  "text_len": 671,
+  "ttft_s": 7.995,
+  "wall_s": 14.168,
+  "prompt_tok": 4160,
+  "completion_tok": 384,
+  "prefill_tps": 520.33,
+  "decode_tps": 62.05,
+  "draft_accepted": 243,
+  "draft_proposed": 560,
+  "accept_rate": 43.39
+}

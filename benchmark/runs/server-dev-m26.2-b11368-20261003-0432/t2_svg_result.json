@@ -1,0 +1,28 @@
+{
+  "task": "t2_svg",
+  "text_len": 10256,
+  "finish_reason": "stop",
+  "ttft_s": 0.484,
+  "wall_s": 44.645,
+  "usage": null,
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 32,
+    "prompt_ms": 254.958,
+    "prompt_per_token_ms": 7.9674375,
+    "prompt_per_second": 125.51086845676542,
+    "predicted_n": 4382,
+    "predicted_ms": 44160.946,
+    "predicted_per_token_ms": 10.080106368409039,
+    "predicted_per_second": 99.20530235018063,
+    "draft_n": 4180,
+    "draft_n_accepted": 3336
+  },
+  "prompt_tok": 32,
+  "completion_tok": 4382,
+  "prefill_tps": 66.12,
+  "decode_tps": 99.21,
+  "draft_accepted": 3336,
+  "draft_proposed": 4180,
+  "accept_rate": 79.81
+}

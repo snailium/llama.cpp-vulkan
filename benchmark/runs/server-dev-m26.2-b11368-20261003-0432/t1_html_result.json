@@ -1,0 +1,28 @@
+{
+  "task": "t1_html",
+  "text_len": 17792,
+  "finish_reason": "stop",
+  "ttft_s": 0.896,
+  "wall_s": 58.318,
+  "usage": null,
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 43,
+    "prompt_ms": 283.729,
+    "prompt_per_token_ms": 6.5983488372093015,
+    "prompt_per_second": 151.55306648245332,
+    "predicted_n": 5433,
+    "predicted_ms": 57419.126,
+    "predicted_per_token_ms": 10.570531296023564,
+    "predicted_per_second": 94.60262421967204,
+    "draft_n": 5448,
+    "draft_n_accepted": 4070
+  },
+  "prompt_tok": 43,
+  "completion_tok": 5433,
+  "prefill_tps": 47.97,
+  "decode_tps": 94.6,
+  "draft_accepted": 4070,
+  "draft_proposed": 5448,
+  "accept_rate": 74.71
+}

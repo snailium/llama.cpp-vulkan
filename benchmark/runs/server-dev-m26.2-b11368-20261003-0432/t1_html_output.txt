@@ -1,0 +1,517 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年-1024年世界重大事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .event-section {
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s;
+        }
+        
+        .event-section:hover {
+            background-color: #eef5fc;
+        }
+        
+        .year-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        
+        .event-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .event-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .event-item strong {
+            color: #2c3e50;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            margin-right: 10px;
+            font-size: 12px;
+            border-radius: 4px;
+            color: #fff;
+        }
+        
+        .tag-politics {
+            background-color: #e74c3c;
+        }
+        
+        .tag-wars {
+            background-color: #e67e22;
+        }
+        
+        .tag-culture {
+            background-color: #9b59b6;
+        }
+        
+        .tag-science {
+            background-color: #1abc9c;
+        }
+        
+        .tag-religion {
+            background-color: #f39c12;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .event-section {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>公元996年–1024年世界重大事件</h1>
+        <p class="subtitle">涵盖政治、战争、文化、科学与宗教等领域的重要历史事件</p>
+
+        <div class="event-section">
+            <div class="year-title">996年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗即位初期，继续推行庆历新政前的稳定政策，加强中央集权。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：拜占庭帝国与塞尔柱突厥人之间的边境冲突持续，威胁拜占庭小亚细亚地区安全。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</span>：宋代书院教育继续发展，学术氛围日益浓厚。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">997年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗赵恒在位，继续巩固统治，注重文治。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人继续向地中海和意大利南部扩张，西西里岛局势动荡。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">998年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋加强西北边防，应对西夏的潜在威胁。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代文学艺术继续繁荣，词作风格日趋多样化。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">999年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼征服英格兰前夕，威廉（征服者威廉）加紧备战，准备渡海入侵。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续推行温和的内外政策，社会经济相对稳定。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1000年</div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>世界</strong>：千年之交，全球各地举行各种庆祝活动，标志着公元第二千年的开始。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋进入千禧年，社会繁荣，经济发达，被誉为宋代盛世时期。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-religion">宗教</span>
+                <strong>欧洲</span>：基督教世界对千年末日的恐惧逐渐消散，教会影响力持续扩大。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1001年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉继续筹备入侵英格兰，与英国国王哈罗德建立联系。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续加强中央对地方的控制，完善官僚体系。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1002年</div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代印刷术进一步发展，书籍出版增多，知识传播加速。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼贵族与英格兰国王之间的矛盾加剧，为日后的诺曼征服埋下伏笔。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1003年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续推行文官政治，科举制度进一步完善。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉正式宣布对英格兰王位的要求，开始大规模军事准备。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1004年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>中国</strong>：北宋与辽国在澶州（今河南濮阳）交战，宋真宗御驾亲征。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：宋辽签订《澶渊之盟》，结束长期战争，开启百余年和平局面。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>欧洲</span>：诺曼人在英格兰的军事训练和物资准备进入最后阶段。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1005年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：《澶渊之盟》后，宋辽关系趋于稳定，边境贸易逐步恢复。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉继续加强海军力量，为渡海作战做准备。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代经济繁荣，城市商业活动日益活跃，市民文化兴起。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1006年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续巩固与辽国的和平关系，加强国内建设。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-science">科学</span>
+                <strong>中国</strong>：宋代科技持续发展，天文学、数学等领域取得进展。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1007年</div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>欧洲</span>：诺曼文化在英格兰的影响逐渐增强，拉丁文文献增多。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋继续推行重文轻武政策，文官地位不断提高。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1008年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉正式向教皇寻求支持，为入侵英格兰争取合法性。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：宋真宗继续稳定国内政局，加强对边疆地区的管理。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1009年</div>
+            <div class="event-item">
+                <span class="category-tag tag-religion">宗教</span>
+                <strong>欧洲</strong>：教皇支持威廉对英格兰王位的诉求，为其提供宗教合法性。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代佛教继续兴盛，禅宗影响力进一步扩大。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1010年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续推行文治，加强官僚制度建设。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：英格兰国王哈罗德·戈德温森巩固国内统治，应对诺曼威胁。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1011年</div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代文学艺术继续繁荣，诗人词人辈出。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>欧洲</span>：英格兰与诺曼底之间的外交关系紧张，双方互相试探。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1012年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉继续训练军队，建造战船，准备入侵英格兰。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-science">科学</span>
+                <strong>中国</strong>：宋代医药学发展，医学著作不断涌现。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1013年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：宋真宗继续加强中央集权，整顿吏治。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：英格兰加强海岸防御，准备应对诺曼入侵。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1014年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：英格兰与诺曼底之间的紧张局势达到顶点，战争一触即发。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代城市经济继续发展，手工业和商业繁荣。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1015年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续推行温和政策，注重民生改善。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉开始对英格兰沿岸进行试探性袭击，测试防御力量。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1016年</div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代教育体系进一步完善，书院和官学并重。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>欧洲</span>：英格兰国内政治斗争加剧，为诺曼征服创造机会。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1017年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉继续加强军事准备，等待有利时机。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-science">科学</span>
+                <strong>中国</strong>：宋代农业技术改进，粮食产量有所提高。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1018年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：宋真宗继续巩固与辽国的和平，边境贸易稳定。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>欧洲</span>：诺曼文化继续影响英格兰，社会结构发生变化。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1019年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：英格兰国王哈罗德·戈德温森去世，王位继承出现争议，诺曼征服机会成熟。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋国内政局稳定，经济持续发展。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1020年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</span>：诺曼人威廉率军渡海登陆英格兰，开始征服战争。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代文学艺术达到新高度，诗词创作繁荣。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1021年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</strong>：诺曼征服英格兰的战争正在进行，威廉逐步控制英格兰南部地区。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>中国</strong>：北宋真宗继续推行文治，加强中央对地方的控制。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1022年</div>
+            <div class="event-item">
+                <span class="category-tag tag-wars">战争</span>
+                <strong>欧洲</strong>：诺曼征服英格兰接近完成，威廉基本控制全英格兰。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代科学技术继续发展，天文历法有所改进。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1023年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>欧洲</strong>：威廉成为英格兰国王，开始建立诺曼统治体系，加强中央集权。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：宋代社会文化继续繁荣，市民生活丰富多彩。
+            </div>
+        </div>
+
+        <div class="event-section">
+            <div class="year-title">1024年</div>
+            <div class="event-item">
+                <span class="category-tag tag-politics">政治</span>
+                <strong>欧洲</strong>：诺曼征服英格兰后，威廉继续巩固统治，建立新的行政和法律体系。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-culture">文化</span>
+                <strong>中国</strong>：北宋真宗在位期间，社会相对稳定，经济文化持续发展。
+            </div>
+            <div class="event-item">
+                <span class="category-tag tag-religion">宗教</span>
+                <strong>欧洲</span>：基督教会在英格兰的影响力增强，诺曼文化通过教会传播。
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>注：以上事件为基于历史记载的整理，具体细节可能因史料不同而有所差异。</p>
+            <p>本页面旨在展示公元996年至1024年间世界范围内的重要历史事件。</p>
+        </div>
+    </div>
+</body>
+</html>
+```

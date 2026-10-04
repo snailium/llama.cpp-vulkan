@@ -1,0 +1,219 @@
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" style="background-color: #0B0D17; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1A1B35" />
+      <stop offset="100%" stop-color="#05050A" />
+    </radialGradient>
+
+    <!-- Big Bang Core Gradient -->
+    <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="30%" stop-color="#FFF066" />
+      <stop offset="70%" stop-color="#FF6600" />
+      <stop offset="100%" stop-color="#FF0033" />
+    </radialGradient>
+
+    <!-- Shockwave Gradient -->
+    <radialGradient id="shockwave" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#FF8800" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#FF0044" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Galaxy Gradients -->
+    <linearGradient id="galaxyGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#88CCFF" />
+      <stop offset="100%" stop-color="#FF88CC" />
+    </linearGradient>
+    <linearGradient id="galaxyGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD688" />
+      <stop offset="100%" stop-color="#88FFCC" />
+    </linearGradient>
+    <linearGradient id="galaxyGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CC88FF" />
+      <stop offset="100%" stop-color="#88AACC" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <filter id="glow-strong" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="700" fill="url(#bgGrad)" />
+
+  <!-- Title Section -->
+  <text x="600" y="50" fill="#FFFFFF" font-size="28" font-weight="bold" text-anchor="middle" letter-spacing="2">宇宙大爆炸理论</text>
+  <text x="600" y="75" fill="#AAB" font-size="14" text-anchor="middle" letter-spacing="1">从奇点到现代宇宙的演化过程</text>
+
+  <!-- Main Timeline -->
+  <line x1="100" y1="350" x2="1100" y2="350" stroke="#4A5568" stroke-width="2" stroke-dasharray="10,5" />
+  
+  <!-- Time Markers on Timeline -->
+  <circle cx="200" cy="350" r="5" fill="#FF6600" />
+  <circle cx="450" cy="350" r="5" fill="#FFCC00" />
+  <circle cx="700" cy="350" r="5" fill="#00CCFF" />
+  <circle cx="950" cy="350" r="5" fill="#FFFFFF" />
+
+  <!-- ================= STAGE 1: 奇点 (The Singularity) ================= -->
+  <g transform="translate(200, 350)">
+    <!-- Expanding shockwaves -->
+    <circle cx="0" cy="0" r="80" fill="url(#shockwave)" opacity="0.5" />
+    <circle cx="0" cy="0" r="40" fill="url(#shockwave)" opacity="0.8" />
+    
+    <!-- Core -->
+    <circle cx="0" cy="0" r="15" fill="url(#coreGrad)" filter="url(#glow-strong)" />
+    
+    <!-- Label -->
+    <line x1="0" y1="-20" x2="0" y2="-120" stroke="#FFF" stroke-width="1" stroke-dasharray="4,2" />
+    <circle cx="0" cy="-120" r="3" fill="#FFF" />
+    <text x="0" y="-140" fill="#FFFFFF" font-size="20" font-weight="bold" text-anchor="middle">1. 奇点</text>
+    <text x="0" y="-160" fill="#CCC" font-size="14" text-anchor="middle">时间 = 0</text>
+    <text x="0" y="250" fill="#889" font-size="12" text-anchor="middle">宇宙所有物质和能量</text>
+    <text x="0" y="265" fill="#889" font-size="12" text-anchor="middle">集中于一个无限致密的点</text>
+  </g>
+
+  <!-- ================= STAGE 2: 暴胀与基本粒子 (Inflation & Particles) ================= -->
+  <g transform="translate(450, 350)">
+    <!-- Radiating lines -->
+    <g stroke="#FF8800" stroke-width="2" opacity="0.7">
+      <line x1="0" y1="0" x2="60" y2="-60" />
+      <line x1="0" y1="0" x2="80" y2="0" />
+      <line x1="0" y1="0" x2="60" y2="60" />
+      <line x1="0" y1="0" x2="0" y2="80" />
+      <line x1="0" y1="0" x2="-60" y2="60" />
+      <line x1="0" y1="0" x2="-80" y2="0" />
+      <line x1="0" y1="0" x2="-60" y2="-60" />
+      <line x1="0" y1="0" x2="0" y2="-80" />
+    </g>
+
+    <!-- Particles -->
+    <g fill="#FFDD55" filter="url(#glow)">
+      <circle cx="60" cy="-60" r="4" />
+      <circle cx="80" cy="0" r="5" />
+      <circle cx="60" cy="60" r="3" />
+      <circle cx="0" cy="80" r="4" />
+      <circle cx="-60" cy="60" r="5" />
+      <circle cx="-80" cy="0" r="3" />
+      <circle cx="-60" cy="-60" r="4" />
+      <circle cx="0" cy="-80" r="5" />
+    </g>
+
+    <!-- Label -->
+    <line x1="0" y1="0" x2="120" y2="-120" stroke="#FFF" stroke-width="1" stroke-dasharray="4,2" />
+    <circle cx="120" cy="-120" r="3" fill="#FFF" />
+    <text x="130" y="-140" fill="#FFFFFF" font-size="20" font-weight="bold">2. 暴胀与粒子形成</text>
+    <text x="130" y="-120" fill="#CCC" font-size="14">时间 ≈ 10⁻³⁶ 秒</text>
+    <text x="130" y="250" fill="#889" font-size="12" text-anchor="start">宇宙以超光速极速膨胀，</text>
+    <text x="130" y="265" fill="#889" font-size="12" text-anchor="start">基本粒子（夸克、电子）形成</text>
+  </g>
+
+  <!-- ================= STAGE 3: 原子与宇宙微波背景辐射 (Atoms & CMB) ================= -->
+  <g transform="translate(700, 350)">
+    <!-- Glowing Gas Cloud -->
+    <circle cx="0" cy="0" r="100" fill="url(#shockwave)" opacity="0.3" />
+    <circle cx="0" cy="0" r="60" fill="#00AAFF" opacity="0.1" filter="url(#glow-strong)" />
+    
+    <!-- Early Atoms (Nucleus + Electron) -->
+    <g transform="translate(-40, -40)">
+      <circle cx="0" cy="0" r="6" fill="#00FFFF" />
+      <circle cx="0" cy="0" r="15" fill="none" stroke="#00FFFF" stroke-width="1" opacity="0.5" />
+      <circle cx="15" cy="0" r="2" fill="#FFFFFF" />
+    </g>
+    <g transform="translate(50, -20)">
+      <circle cx="0" cy="0" r="5" fill="#00FFFF" />
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#00FFFF" stroke-width="1" opacity="0.5" />
+      <circle cx="0" cy="-12" r="2" fill="#FFFFFF" />
+    </g>
+    <g transform="translate(-20, 50)">
+      <circle cx="0" cy="0" r="7" fill="#00FFFF" />
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#00FFFF" stroke-width="1" opacity="0.5" />
+      <circle cx="-18" cy="0" r="2" fill="#FFFFFF" />
+    </g>
+    <g transform="translate(40, 40)">
+      <circle cx="0" cy="0" r="5" fill="#00FFFF" />
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#00FFFF" stroke-width="1" opacity="0.5" />
+      <circle cx="10" cy="0" r="2" fill="#FFFFFF" />
+    </g>
+
+    <!-- Label -->
+    <line x1="0" y1="-80" x2="-50" y2="-150" stroke="#FFF" stroke-width="1" stroke-dasharray="4,2" />
+    <circle cx="-50" cy="-150" r="3" fill="#FFF" />
+    <text x="-60" y="-170" fill="#FFFFFF" font-size="20" font-weight="bold" text-anchor="end">3. 原子形成与</text>
+    <text x="-60" y="-145" fill="#FFFFFF" font-size="20" font-weight="bold" text-anchor="end">微波背景辐射</text>
+    <text x="-60" y="-125" fill="#CCC" font-size="14" text-anchor="end">时间 ≈ 380,000 年</text>
+    <text x="0" y="250" fill="#889" font-size="12" text-anchor="middle">电子与质子结合成原子，宇宙变得透明，</text>
+    <text x="0" y="265" fill="#889" font-size="12" text-anchor="middle">释放出的光即“宇宙微波背景辐射”(CMB)</text>
+  </g>
+
+  <!-- ================= STAGE 4: 星系形成与宇宙结构 (Galaxies & Large Scale Structure) ================= -->
+  <g transform="translate(950, 350)">
+    <!-- Expanding Universe Grid (Background context) -->
+    <path d="M -100 -100 L 100 -100 M -100 0 L 100 0 M -100 100 L 100 100 M -100 -100 L -100 100 M 0 -100 L 0 100 M 100 -100 L 100 100" stroke="#333" stroke-width="1" opacity="0.3" />
+    
+    <!-- Spiral Galaxy 1 -->
+    <g transform="translate(-40, -30)">
+      <path d="M 0,0 Q 30,-30 60,0 Q 30,30 0,0" fill="url(#galaxyGrad1)" opacity="0.8" />
+      <path d="M 0,0 Q -30,30 -60,0 Q -30,-30 0,0" fill="url(#galaxyGrad1)" opacity="0.8" />
+      <circle cx="0" cy="0" r="8" fill="#FFFFFF" filter="url(#glow)" />
+    </g>
+
+    <!-- Spiral Galaxy 2 -->
+    <g transform="translate(50, 20) scale(0.7) rotate(45)">
+      <path d="M 0,0 Q 30,-30 60,0 Q 30,30 0,0" fill="url(#galaxyGrad2)" opacity="0.9" />
+      <path d="M 0,0 Q -30,30 -60,0 Q -30,-30 0,0" fill="url(#galaxyGrad2)" opacity="0.9" />
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF" filter="url(#glow)" />
+    </g>
+
+    <!-- Elliptical Galaxy 3 -->
+    <g transform="translate(20, -60) scale(0.8)">
+      <ellipse cx="0" cy="0" rx="30" ry="15" fill="url(#galaxyGrad3)" opacity="0.8" />
+      <circle cx="0" cy="0" r="6" fill="#FFFFFF" filter="url(#glow)" />
+    </g>
+
+    <!-- Distant Stars -->
+    <circle cx="-70" cy="40" r="1.5" fill="#FFF" />
+    <circle cx="80" cy="-40" r="2" fill="#FFF" />
+    <circle cx="-20" cy="70" r="1" fill="#FFF" />
+    <circle cx="60" cy="70" r="1.5" fill="#FFF" />
+
+    <!-- Label -->
+    <line x1="0" y1="-100" x2="80" y2="-150" stroke="#FFF" stroke-width="1" stroke-dasharray="4,2" />
+    <circle cx="80" cy="-150" r="3" fill="#FFF" />
+    <text x="90" y="-170" fill="#FFFFFF" font-size="20" font-weight="bold">4. 星系形成</text>
+    <text x="90" y="-150" fill="#CCC" font-size="14">时间 ≈ 10 亿年后至今</text>
+    <text x="950" y="250" fill="#889" font-size="12" text-anchor="middle">引力使气体聚集形成恒星和星系，</text>
+    <text x="950" y="265" fill="#889" font-size="12" text-anchor="middle">宇宙仍在持续膨胀中 (暗能量驱动)</text>
+  </g>
+
+  <!-- Connecting Arrows between Stages -->
+  <g fill="#FFF" opacity="0.6">
+    <polygon points="280,345 300,350 280,355" />
+    <polygon points="530,345 550,350 530,355" />
+    <polygon points="780,345 800,350 780,355" />
+  </g>
+
+  <!-- Bottom Explanatory Footer -->
+  <g transform="translate(600, 630)">
+    <line x1="-500" y1="-20" x2="500" y2="-20" stroke="#333" stroke-width="1" />
+    <text x="0" y="0" fill="#AAB" font-size="13" text-anchor="middle">
+      <tspan font-weight="bold" fill="#FFF">核心理论：</tspan> 
+      宇宙并非从一个点“爆炸”到空间中，而是空间本身在膨胀。
+    </text>
+    <text x="0" y="20" fill="#AAB" font-size="13" text-anchor="middle">
+      <tspan font-weight="bold" fill="#FFF">证据支持：</tspan> 
+      星系红移 (哈勃定律)、宇宙微波背景辐射 (CMB) 的均匀性、轻元素 (氢、氦) 的丰度。
+    </text>
+  </g>
+
+</svg>
+```

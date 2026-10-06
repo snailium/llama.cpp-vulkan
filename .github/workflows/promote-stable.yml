@@ -7,6 +7,10 @@ on:
         description: Source candidate tag to promote to :stable
         required: true
         default: server-m26.2-v0.4.0-20260909-2255
+      semver_tag:
+        description: 'Optional extra version tag (e.g. v0.6.0). Leave blank to only move :stable.'
+        required: false
+        default: ''
 
 jobs:
   promote:
@@ -27,3 +31,22 @@ jobs:
           DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:stable"
           docker buildx imagetools create --tag "$DST" "$SRC"
           docker buildx imagetools inspect "$DST" --format "stable -> {{.Name}}"
+      - name: Create optional version tag
+        if: inputs.semver_tag != ''
+        run: |
+          SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
+          DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.semver_tag }}"
+          docker buildx imagetools create --tag "$DST" "$SRC"
+          docker buildx imagetools inspect "$DST" --format "${{ inputs.semver_tag }} -> {{.Name}}"
+      - name: Verify all promoted tags resolve to one digest
+        run: |
+          SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
+          want=$(docker buildx imagetools inspect "$SRC" --format '{{.Manifest.Digest}}')
+          for t in stable ${{ inputs.semver_tag }}; do
+            [ -z "$t" ] && continue
+            got=$(docker buildx imagetools inspect "ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:$t" --format '{{.Manifest.Digest}}')
+            if [ "$got" != "$want" ]; then
+              echo "ERR: :$t -> $got, expected $want" >&2; exit 1
+            fi
+            echo "OK :$t -> $got"
+          done

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年 - 1024年 世界大事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f3ef;
+            color: #333;
+            line-height: 1.8;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 50px 60px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #8b4513;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #d4a76a;
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 1em;
+            margin-bottom: 40px;
+        }
+
+        .event-list {
+            list-style: none;
+        }
+
+        .event-item {
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            background-color: #faf8f5;
+            border-left: 5px solid #d4a76a;
+            border-radius: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff9f0;
+        }
+
+        .event-year {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #5a3e2b;
+            margin-bottom: 6px;
+        }
+
+        .event-desc {
+            font-size: 0.98em;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .event-item {
+                padding: 18px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>公元996年 – 1024年 世界大事件</h1>
+        <p class="subtitle">这一时期涵盖了欧洲、亚洲及中东地区的重要历史事件</p>
+
+        <ul class="event-list">
+            <li class="event-item">
+                <div class="event-year">公元996年</div>
+                <div class="event-title">神圣罗马帝国皇帝奥托三世加冕为罗马皇帝</div>
+                <div class="event-desc">奥托三世（Otto III）于同年12月被教皇约翰十五世加冕为罗马皇帝，他致力于恢复西罗马帝国的荣光，并推动教会改革运动。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元997年</div>
+                <div class="event-title">奥托三世去世，亨利二世继位</div>
+                <div class="event-desc">年轻的皇帝奥托三世于21岁时去世，其堂兄萨克森公爵亨利（Henry II）继承皇位，成为神圣罗马帝国皇帝。亨利二世后来被尊为圣徒。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元998年</div>
+                <div class="event-title">基辅罗斯大公弗拉基米尔一世推动基督教化进程</div>
+                <div class="event-desc">弗拉基米尔一世继续巩固东正教在基辅罗斯的地位，修建教堂、设立主教区，使基督教逐渐成为罗斯各公国的国教，深刻影响了俄罗斯文明的发展。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元999年</div>
+                <div class="event-title">诺曼人持续扩张，征服西西里岛部分地区</div>
+                <div class="event-desc">诺曼冒险者继续在意大利南部和西西里岛活动，逐步从拜占庭帝国手中夺取领土。罗杰一世（Roger I）等诺曼领袖开始建立自己的领地。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1000年</div>
+                <div class="event-title">千年之交，欧洲社会动荡与信仰危机</div>
+                <div class="event-desc">虽然中世纪欧洲并未发生大规模"末日恐慌"，但千禧年的到来激发了宗教热情。这一年也是许多编年史家记录的重要时间节点，标志着进入第二个千年。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1002年</div>
+                <div class="event-title">亨利二世正式加冕为神圣罗马帝国皇帝</div>
+                <div class="event-desc">教皇格利高里五世（Gregory V）在罗马为亨利二世加冕。格利高里五世是第一位德意志籍教皇，标志着德意志与罗马教会之间日益紧密的联系。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1004年</div>
+                <div class="event-title">北宋仁宗即位（赵祯）</div>
+                <div class="event-desc">宋真宗赵恒去世后，其子赵祯继位，即宋仁宗。宋仁宗在位期间（1022–1063年）被认为是北宋政治相对清明、文化繁荣的时期之一。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1005年</div>
+                <div class="event-title">契丹（辽国）与北宋关系紧张</div>
+                <div class="event-desc">辽圣宗耶律隆绪在位期间，辽国频繁南下侵扰北宋边境。双方军事对峙加剧，为后来的澶渊之盟埋下伏笔。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1008年</div>
+                <div class="event-title">诺曼人在西西里建立塔兰托伯爵领</div>
+                <div class="event-desc">诺曼领袖理查德（Richard of Aversa）巩固了在意大利南部的统治，诺曼人的军事力量在地中海地区日益壮大，开始对拜占庭帝国构成威胁。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1010年</div>
+                <div class="event-title">基辅罗斯大公雅罗斯拉夫·弗拉基米罗维奇崛起</div>
+                <div class="event-desc">雅罗斯拉夫（Yaroslav the Wise）开始在罗斯政治中扮演重要角色。他后来成为基辅大公，在位期间推动法律编纂、教育发展及对外扩张，被誉为"智者雅罗斯拉夫"。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1012年</div>
+                <div class="event-title">拜占庭帝国与塞尔柱突厥冲突加剧</div>
+                <div class="event-desc">塞尔柱突厥人在小亚细亚地区不断扩张，对拜占庭帝国的东部边境构成严重威胁。拜占庭皇帝巴列奥略一世（Basil II）虽已去世，但其遗留的地缘政治问题持续发酵。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1015年</div>
+                <div class="event-title">诺曼人开始系统征服西西里岛</div>
+                <div class="event-desc">罗杰一世（Roger I of Sicily）率领诺曼军队深入西西里岛，逐步击败当地的阿拉伯总督势力。这场征服将持续数十年，最终导致诺曼西西里王国的建立。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1018年</div>
+                <div class="event-title">亨利二世去世，康拉德二世继位</div>
+                <div class="event-desc">神圣罗马帝国皇帝亨利二世去世，法兰克尼亚公爵康拉德（Conrad II）当选为国王。康拉德后来于1027年被加冕为皇帝，开启了萨利安王朝的统治。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1020年</div>
+                <div class="event-title">北宋与辽国边境冲突持续</div>
+                <div class="event-desc">宋真宗在位后期，辽国多次发动南侵。北宋内部对于是否采取强硬军事立场存在分歧，朝廷围绕"守边"还是"和议"展开激烈争论。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1022年</div>
+                <div class="event-title">宋仁宗即位，开启"仁宗朝"新时代</div>
+                <div class="event-desc">赵祯正式登基为皇帝，改元天圣。宋仁宗在位期间，范仲淹、欧阳修等名臣相继登上政治舞台，推动庆历新政，宋代文化进入鼎盛时期。</div>
+            </li>
+
+            <li class="event-item">
+                <div class="event-year">公元1024年</div>
+                <div class="event-title">诺曼人继续征服西西里岛</div>
+                <div class="event-desc">罗杰一世持续向西西里岛内陆推进，攻占多个阿拉伯控制的城镇。诺曼人与当地穆斯林、基督教居民之间的复杂互动逐渐形成，为后来多元文化的西西里社会奠定基础。</div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p>注：以上事件基于历史文献整理，部分具体日期可能存在学术争议。不同地区的历史进程并非完全同步，本列表侧重于当时世界主要文明圈的重大事件。</p>
+        </div>
+    </div>
+</body>
+</html>

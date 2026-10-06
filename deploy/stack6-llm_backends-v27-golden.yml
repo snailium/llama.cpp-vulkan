@@ -1,0 +1,266 @@
+version: "3.8"
+
+# .101 (home-ai) dual-GPU llama.cpp inference backends
+# Deployed as Portainer stack "llm_backends" on endpoint 3.
+#
+#   b70-sycl    Intel Arc B70  · SYCL/oneAPI (Level Zero) · host :18080
+#   xtx-vulkan  AMD RX 7900XTX · Vulkan (RADV)            · host :18090
+#
+# Both containers see the SAME model directory mounted as /models, so the
+# in-container paths are identical. Only /models/qwen3.8-27b is exposed.
+#
+# ⚠️ .101 is a MIXED Intel+AMD box. The Vulkan loader would otherwise pick
+#    either GPU; VK_DRIVER_FILES pins it to RADV (the 7900 XTX).
+#    NOTE: the image ships `radeon_icd.json` — NOT `radeon_icd.x86_64.json`
+#    as examples/7900xtx-server.sh suggests. Using the wrong filename makes
+#    the loader fall back to enumerating everything.
+#
+# Device map verified on .101:
+#   0000:0c:00.0  B70      -> card1     renderD128
+#   0000:10:00.0  7900XTX  -> card2     renderD129
+
+services:
+  # ------------------------------------------------------------------ B70 SYCL
+  # Converted to LLAMA_ARG_* env form 2026-09-24. No `command:` at all —
+  # llama.cpp maps every server argument to an env var, so the config is one
+  # readable block per concern.
+  #
+  # ⚠️ MODEL FILES: switched from the unsloth-era conversion to the official
+  # ggml-org conversion on 2026-09-24. Both the main model AND the MTP draft
+  # failed sha256 verification against ggml-org's published LFS hashes:
+  #     Qwen3.8-27B-Q4_K_M.gguf   31629f53... (old)  vs  c600de03... (official)
+  #     mtp-Qwen3.8-27B-Q8_0.gguf cbf60a0c... (old)  vs  6447a4e9... (official)
+  # The main model matters most: DFlash2's PR states GGUFs generated before
+  # 2026-08-27 MUST be reconverted or **vision is broken**. The old file was
+  # dated 2026-08-20. The previous GGUF is kept as *.bak alongside, not deleted.
+  # All four current files verify against the official hashes.
+  #
+  # Sampling env vars require llama.cpp >= b11078; this image (v0.5.0) is fine.
+  b70-sycl:
+    image: ghcr.io/snailium/llama.cpp-sycl-intel-b70/llama-sycl-b70:latest
+    container_name: b70-sycl
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - "18080:8080"
+    volumes:
+      - /models/qwen3.8-27b:/models:ro
+    environment:
+      # --- runtime ---------------------------------------------------------
+      # B70 is the only Level Zero device -> index 0
+      - ONEAPI_DEVICE_SELECTOR=level_zero:0
+      - SYCL_CACHE_PERSISTENT=0
+      - ZES_ENABLE_SYSMAN=1
+      # --- model -----------------------------------------------------------
+      - LLAMA_ARG_MODEL=/models/Qwen3.8-27B-Q4_K_M.gguf
+      - LLAMA_ARG_MMPROJ=/models/mmproj-Qwen3.8-27B-Q8_0.gguf
+      - LLAMA_ARG_MMPROJ_OFFLOAD=false
+      - LLAMA_ARG_IMAGE_MIN_TOKENS=1024
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      # --- context / KV ----------------------------------------------------
+      - LLAMA_ARG_CTX_SIZE=131072
+      - LLAMA_ARG_CACHE_TYPE_K=q8_0
+      - LLAMA_ARG_CACHE_TYPE_V=q8_0
+      - LLAMA_ARG_FLASH_ATTN=on
+      # --- speculative decoding (MTP, n-max 3) -----------------------------
+      # n-max 3 is measured-best. An A/B on 2026-09-24 (t1+t2, golden config)
+      # gave n3 decode 47.71/47.94 vs n2 40.23/43.26 — n2 is 10-16% WORSE here.
+      # That contradicts the RTX 3090 study's mtp-n2 finding; the difference is
+      # that study's temp 1.0 / top-p 0.95 / xhigh reasoning vs our temp 0.7 /
+      # reasoning off. Optimal draft depth depends on how predictable the
+      # decoded stream is, so do not "fix" this to 2 without re-measuring.
+      - LLAMA_ARG_SPEC_DRAFT_MODEL=/models/mtp-Qwen3.8-27B-Q8_0.gguf
+      - LLAMA_ARG_SPEC_TYPE=draft-mtp
+      - LLAMA_ARG_SPEC_DRAFT_N_MAX=3
+      - LLAMA_ARG_SPEC_DRAFT_P_MIN=0.1
+      - LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_K=q8_0
+      - LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_V=q8_0
+      # --- chat / reasoning ------------------------------------------------
+      - LLAMA_ARG_REASONING=off
+      - LLAMA_ARG_CHAT_TEMPLATE_KWARGS={"enable_thinking":false,"preserve_thinking":false}
+      # --- sampling --------------------------------------------------------
+      - LLAMA_ARG_TEMPERATURE=0.7
+      - LLAMA_ARG_TOP_P=0.80
+      - LLAMA_ARG_TOP_K=20
+      - LLAMA_ARG_MIN_P=0.0
+      - LLAMA_ARG_PRESENCE_PENALTY=1.5
+      - LLAMA_ARG_FREQUENCY_PENALTY=0.0
+      - LLAMA_ARG_REPEAT_PENALTY=1.0
+      # --- serving ---------------------------------------------------------
+      # one request slot per GPU: the server queues instead of running 4
+      # concurrent sequences competing for the shared KV pool. Pairs with the
+      # sticky-session routing (one session == one GPU == one slot).
+      - LLAMA_ARG_N_PARALLEL=1
+      - LLAMA_ARG_HOST=0.0.0.0
+      - LLAMA_ARG_PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+
+  # ------------------------------------------------------------- 7900XTX Vulkan
+  #
+  # Fully env-driven, like b70-sycl. This became possible on 2026-09-25 when the
+  # service moved from the pinned `:v0.4.1` tag to `:latest`:
+  #
+  #   :v0.4.1  = llama.cpp b29c606 == v0.4.1  -> the six sampling env vars DO NOT
+  #              EXIST (they were added in b11078). Using them there would have
+  #              been a SILENT no-op: the server would fall back to its own
+  #              defaults (temp 0.8 / top_p 0.95) with no warning, quietly
+  #              changing output quality. That is why this service previously
+  #              kept its six sampling values as CLI flags.
+  #   :latest  = b11165 (> b11078)            -> all six are supported and were
+  #              confirmed accepted via /props by the repo's own test run.
+  #
+  # ⚠️ IMPORTANT: the env-var form is now safe ONLY because the image tag is
+  # `:latest`. If this service is ever pinned back to a pre-b11078 image, the
+  # six sampling variables MUST go back to CLI flags (flags win over env vars,
+  # so the two forms can coexist).
+  # ⚠️ MODEL FILES: NOT switched to ggml-org. The Q4_0 MTP module in use is the
+  # unsloth Dynamic-3.0 one (1.37 GB), deliberately kept: it is what makes
+  # ctx 131072 + MTP fit in 24 GB at all (the Q8_0 draft leaves 218 MiB free and
+  # decode collapses to 10.5 t/s). ggml-org's Q4_0 MTP is 1.68 GB and has NOT
+  # been validated for this card's VRAM ceiling.
+  xtx-vulkan:
+    image: ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:v0.6.0
+    container_name: xtx-vulkan
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - "18090:8080"
+    volumes:
+      - /models/qwen3.8-27b:/models:ro
+      # warm shader starts
+      - vulkan-shader-cache:/root/.cache/llama.cpp
+    environment:
+      # pin the Vulkan loader to RADV (the 7900 XTX) on this mixed box
+      - VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.json
+      - LLAMA_ARG_MODEL=/models/Qwen3.8-27B-Q4_K_M.gguf
+      - LLAMA_ARG_KV_OFFLOAD=1
+      - LLAMA_ARG_MMPROJ=/models/mmproj-Qwen3.8-27B-Q8_0.gguf
+      # LLAMA_ARG_MMPROJ_OFFLOAD intentionally ABSENT: the flag defaults to
+      # enabled, so omitting it keeps the vision projector on the GPU.
+      # Measured 2026-10-06 (issue #10): image prefill 53.8 -> 480.3 t/s
+      # (V1, 8.9x) and TTFT 65.6 -> 7.35 s, as a clean single-variable A/B.
+      - LLAMA_ARG_IMAGE_MIN_TOKENS=1024
+      # ⚠️ This llama.cpp build takes device NAMES, not indices: `--device 0`
+      # aborts with 'invalid device: 0'. With VK_DRIVER_FILES pinned to RADV
+      # exactly one device is enumerated and its name is Vulkan0.
+      - LLAMA_ARG_DEVICE=Vulkan0
+      - LLAMA_ARG_N_GPU_LAYERS=999
+      # KV precision history:
+      #   2026-09-24: q4_0 — 18.9 GB weights + ~4.3 GB q8_0 KV (@131072) + 3.0 GB
+      #   MTP draft does not fit in 24560 MiB. Swapping the Q8_0 draft for the
+      #   Q4_0 one (1.37 vs 3.16 GB) freed ~1.9 GB and made q4_0 KV fit.
+      #   2026-10-05: EXPERIMENT q8_0 K + q8_0 V -> measured only 628 MiB free.
+      #   2026-10-06: ADOPTED q8_0 K + q4_0 V  [= fallback (a) of that experiment]
+      #   Re-validated as a full battery plus a whole-window depth scan on THIS
+      #   exact config (issue #10, digest sha256:ab9b618a...):
+      #     - 720 MiB free after load, 621 MiB after a 91k-token probe; KV is
+      #       preallocated, so the margin does NOT shrink as context fills
+      #     - decode decays smoothly 71.4 -> 27.4 t/s (2.6x) over 1k -> 131k,
+      #       no wedge, no ring timeout, no device loss, 0 crashes
+      #     - T2 decode 93.6 t/s
+      #   Rollback = restore q8_0/q8_0 (or q4_0/q4_0). Pre-change compose kept
+      #   at stack6-v26-backup-before-golden.yml.
+      - LLAMA_ARG_CTX_SIZE=131072
+      - LLAMA_ARG_CACHE_TYPE_K=q8_0
+      - LLAMA_ARG_CACHE_TYPE_V=q4_0
+      - LLAMA_ARG_FLASH_ATTN=on
+      # MTP draft is Q4_0 (1.37 GB vs Q8_0's 3.16 GB); the ~1.9 GB saved is what
+      # lets ctx 131072 + MTP fit.
+      - LLAMA_ARG_SPEC_DRAFT_MODEL=/models/mtp-Qwen3.8-27B-Q4_0.gguf
+      - LLAMA_ARG_SPEC_TYPE=draft-mtp
+      - LLAMA_ARG_SPEC_DRAFT_N_MAX=4
+      - LLAMA_ARG_SPEC_DRAFT_P_MIN=0.1
+      - LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_K=q8_0
+      - LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_V=q4_0
+      - LLAMA_ARG_REASONING=off
+      - LLAMA_ARG_CHAT_TEMPLATE_KWARGS={"enable_thinking":false,"preserve_thinking":false}
+      # --- sampling (needs llama.cpp >= b11078; fine on b11165 = :latest) ---
+      - LLAMA_ARG_TEMPERATURE=0.7
+      - LLAMA_ARG_TOP_P=0.80
+      - LLAMA_ARG_TOP_K=20
+      - LLAMA_ARG_MIN_P=0.0
+      - LLAMA_ARG_PRESENCE_PENALTY=1.5
+      - LLAMA_ARG_FREQUENCY_PENALTY=0.0
+      - LLAMA_ARG_REPEAT_PENALTY=1.0
+      - LLAMA_ARG_N_PARALLEL=1
+      - LLAMA_ARG_HOST=0.0.0.0
+      - LLAMA_ARG_PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+
+
+
+  # ------------------------------------------------------------------ Olla
+  # Session-affinity router in front of both llama.cpp backends.
+  # 2026-09-17: added so two DSH sessions land on separate GPUs and stay pinned
+  # (KV/prompt cache reuse). See /home/gwang/llm-router/ for the full design.
+  #
+  #  * least-connections: with --parallel 1 on each backend, a busy GPU holds
+  #    1 connection, so the next session lands on the idle GPU.
+  #  * sticky_sessions: session_header first (X-Olla-Session-ID, injected by the
+  #    dsh-llm-session-header plugin), prefix_hash as fallback. prefix_hash
+  #    ALONE is insufficient here: DSH sessions share a system prompt, so their
+  #    prefixes collide and both would pin to one GPU (verified).
+  #  * XTX listed first in the config -> wins the initial least-connections tie.
+  # ------------------------------------------------------- SMG (Shepherd)
+  # 2026-09-19: replaces Olla as the session-affinity router.
+  #
+  # Why SMG over Olla: Olla's least-connections counts INSTANTANEOUS in-flight
+  # connections, so two alternating sessions both see the other as idle and get
+  # pinned to the same GPU (measured: both sessions on xtx-vulkan, b70 idle 6h).
+  # SMG's --assignment-mode min_group selects by **assigned routing-key count**,
+  # which is the primitive that was missing.
+  #
+  # Verified 2026-09-19 (smg-test on :40115):
+  #   - stickiness: 5/5 requests of one key -> same GPU
+  #   - distribution: 8 new sessions -> 4/4 split across both GPUs
+  #   - failover: a key pinned to a stopped worker re-routes to the live one (HTTP 200)
+  #   - auto-recovery: restarted worker rejoins after ~90-120s
+  #   - SSE streaming passes through unchanged; tool_calls returned correctly
+  #
+  # NOTE --request-timeout-secs 1800: a cold prefill of a ~100k-token agent prompt
+  # takes 170-210s before the first byte. Olla's default 30s header timeout caused
+  # spurious 502s and DSH retries. Do not lower this.
+  smg:
+    image: lightseekorg/smg:latest
+    container_name: smg
+    restart: unless-stopped
+    ports:
+      - "40114:30000"
+    command:
+      - --host
+      - 0.0.0.0
+      - --port
+      - "30000"
+      - --worker-urls
+      - http://192.168.111.101:18090
+      - http://192.168.111.101:18080
+      - --policy
+      - manual
+      - --assignment-mode
+      - min_group
+      - --routing-key-headers
+      - X-SMG-Routing-Key
+      - --routing-key-override
+      - --request-timeout-secs
+      - "1800"
+    healthcheck:
+      test: ["CMD", "/opt/venv/bin/python3", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:30000/health',timeout=3).status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  vulkan-shader-cache:

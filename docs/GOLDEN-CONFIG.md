@@ -94,8 +94,8 @@ LLAMA_ARG_SPEC_DRAFT_MODEL=/models/mtp-Qwen3.8-27B-Q4_0.gguf
 LLAMA_ARG_SPEC_TYPE=draft-mtp
 LLAMA_ARG_SPEC_DRAFT_N_MAX=4
 LLAMA_ARG_SPEC_DRAFT_P_MIN=0.1
-LLAMA_ARG_SPEC_DRAFT_TYPE_K=q4_0
-LLAMA_ARG_SPEC_DRAFT_TYPE_V=q4_0
+LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_K=q4_0
+LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_V=q4_0
 LLAMA_ARG_REASONING=off
 LLAMA_ARG_CHAT_TEMPLATE_KWARGS={"enable_thinking":false,"preserve_thinking":false}
 LLAMA_ARG_N_PARALLEL=1
@@ -111,6 +111,37 @@ LLAMA_ARG_PORT=8080
 ```
 
 With `VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.json`.
+
+### ⚠️ The draft-KV variable is `…_CACHE_TYPE_K`, NOT `…_TYPE_K`
+
+The flag and its environment variable deliberately differ in shape upstream:
+
+```cpp
+// common/arg.cpp
+{"--spec-draft-type-k", "-ctkd", "--cache-type-k-draft"}, "TYPE", ...
+).set_env("LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_K"));
+//        ^^^^ flag reads "type"      ^^^^ env reads "cache_type"
+```
+
+So `LLAMA_ARG_SPEC_DRAFT_TYPE_K` **does not exist**. `LLAMA_ARG_*` names that don't exist are
+**silently ignored** — no warning, no error, no non-zero exit — and the server falls back to
+the draft KV default, which is **f16**. A launch using the wrong spelling therefore runs a
+*different configuration than the one documented*, and nothing in the log says so. On the
+7900 XTX that is exactly the 24 GB budget this file is tuned against, so it would also make a
+decode figure un-attributable to the q4_0 config the golden specifies.
+
+Verify what the server actually took rather than trusting the config:
+
+```bash
+docker logs <container> 2>&1 | grep 'spec common_specu: - gpu_layers'
+# want: cache_k=q4_0, cache_v=q4_0
+# wrong name => cache_k=f16, cache_v=f16
+```
+
+This was wrong in this file from the earliest commits and had also propagated into the
+running `xtx-vulkan` container (fixed 2026-10-06). It is **not** a v0.6.0 regression: the
+wrong name has never existed in any build — checked `v0.5.0` (`a7106ff2…`), `b11117`, `b11368`,
+`v0.6.0` and `llama-vulkan:latest`, all of which expose only `…_CACHE_TYPE_K/_V`.
 
 ### ⚠️ Minimum llama.cpp version for the env-var form
 
@@ -330,3 +361,4 @@ Do not promote a Vulkan image on B70 evidence alone.
 | 2026-09-20 | **B70 block: added the missing vision flags** (`--mmproj`, `--no-mmproj-offload`, `--image-min-tokens 1024`). They had been absent since the first commit — a transcription omission, not a design choice (see §4 note). |
 | 2026-09-20 | **§1/§6 updated after the b11064 dual-target run.** XTX re-verified and promoted to `:server-dev`. B70 marked verified-but-not-recommended: measured ~8x deep-context decode collapse → **use SYCL on the B70**. Version identity expressed as the llama.cpp `b` tag, not `vX.Y`. |
 | 2026-09-23 | **§4 rewritten to the `LLAMA_ARG_*` environment-variable form**; `docker-compose.yml` and both `examples/*.sh` now pass **no flags at all**. Added the **version floor**: the six sampling variables need **>= b11078** (commit `e0dff5847`, #27380) and are *silently ignored* on v0.4.1 and older — which includes this repo's own `:v0.4.1` and `:stable` images, both built from llama.cpp `b29c606` (verified by reading the tag). `USE_SAMPLING_FLAGS=1` covers those. |
+| 2026-10-06 | **Fixed the draft-KV variable name: `LLAMA_ARG_SPEC_DRAFT_TYPE_K/_V` → `LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_K/_V`** (§4), and added a note explaining the flag/env naming mismatch so it is not silently "corrected" back. The old name does not exist upstream and is silently ignored, so a launch built from this file ran the draft KV at its **f16 default** while the doc claimed q4_0 — and on the XTX that is the 24 GB budget this file is tuned against. Confirmed against the image: `grep -aoE 'LLAMA_ARG_SPEC[A-Z_]*' /app/libllama-common.so.0` exposes `…_CACHE_TYPE_K/_V` and **no** `…_TYPE_K/_V`. The same wrong spelling had propagated into the running `xtx-vulkan` container (via the deployed Portainer stack), which was re-applied the same day. **Not a v0.6.0 regression** — checked `v0.5.0`, `b11117`, `b11368`, `v0.6.0` and `llama-vulkan:latest`: all expose only the correct name. Found while validating the sibling SYCL image; see [llama.cpp-sycl-intel-b70#26](https://github.com/snailium/llama.cpp-sycl-intel-b70/issues/26). |

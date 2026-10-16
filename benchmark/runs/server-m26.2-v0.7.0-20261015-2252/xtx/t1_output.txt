@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年-1024年世界大事记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background-color: #f5f0e8;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6741);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .intro {
+            background-color: #fff;
+            border-left: 5px solid #4a6741;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #4a6741, #2c3e50);
+            border-radius: 2px;
+        }
+
+        .year-section {
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .year-title {
+            font-size: 1.6em;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .year-title::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background-color: #4a6741;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px #4a6741;
+        }
+
+        .event-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .event-item {
+            background-color: #fff;
+            margin-bottom: 15px;
+            padding: 18px 22px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-left: 4px solid #ddd;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-left-color: #4a6741;
+        }
+
+        .event-region {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .event-title {
+            font-size: 1.15em;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .event-desc {
+            font-size: 0.98em;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #2c3e50;
+            color: #ccc;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            .year-title {
+                font-size: 1.3em;
+            }
+            .event-item {
+                padding: 15px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>公元996年—1024年 世界大事记</h1>
+    <p>跨越欧亚非大陆的重要历史事件汇编</p>
+</header>
+
+<div class="container">
+
+    <div class="intro">
+        <h2>概述</h2>
+        <p>公元996年至1024年，世界正处于中世纪的中期。这一时期，欧洲经历了诺曼征服、十字军东征的酝酿；中国处于五代十国末期及北宋初期，政治经济逐渐稳定；伊斯兰世界在法蒂玛王朝和塞尔柱突厥人的崛起中动荡；拜占庭帝国则面临内部权力斗争与外部威胁。以下按年份列出这一期间发生的主要历史事件。</p>
+    </div>
+
+    <div class="timeline">
+
+        <!-- 996年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元996年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋太宗赵光义在位期间，继续推行文治政策</div>
+                    <div class="event-desc">北宋朝廷继续加强中央集权，完善科举制度，推动文化教育发展。同时，边境与辽国保持对峙状态。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">埃塞尔雷德二世（"决策迟缓者"）继续统治英格兰</div>
+                    <div class="event-desc">丹麦国王斯韦恩·福克比尔德多次入侵英格兰沿海地区，英格兰面临持续的维京人威胁。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界 · 法蒂玛王朝</span>
+                    <div class="event-title">法蒂玛哈里发穆伊兹·利-达特·拉赫曼统治埃及</div>
+                    <div class="event-desc">法蒂玛王朝在开罗建立首都，成为伊斯兰世界重要的政治和文化中心，什叶派影响力扩大。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 997年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元997年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">埃塞尔雷德二世去世，爱德华（忏悔者）继位</div>
+                    <div class="event-desc">英格兰国王埃塞尔雷德二世于1005年去世前，其子克努特和哈罗德等人争夺王位。实际上，1002年埃塞尔雷德去世，1005年克努特大帝入侵。此处修正：997年，埃塞尔雷德二世仍在位，继续应对丹麦人的威胁。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋太宗继续治理，加强边防</div>
+                    <div class="event-desc">北宋朝廷加强对北方辽国的防御，同时发展江南地区的经济和文化。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 998年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元998年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">埃塞尔雷德二世支付丹钱以换取和平</div>
+                    <div class="event-desc">为抵御丹麦国王斯韦恩·福克比尔德的入侵，埃塞尔雷德二世再次向维京人支付"丹钱"（Dane-geld），以换取暂时的安宁。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界</span>
+                    <div class="event-title">法蒂玛王朝与塞尔柱突厥人之间的冲突加剧</div>
+                    <div class="event-desc">塞尔柱突厥人在安纳托利亚和小亚细亚地区扩张势力，对拜占庭帝国和法蒂玛王朝构成威胁。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 999年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元999年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">埃塞尔雷德二世被迫流亡诺曼底</div>
+                    <div class="event-desc">丹麦国王斯韦恩·福克比尔德入侵英格兰，埃塞尔雷德二世逃往诺曼底避难。次年（1000年）斯韦恩去世，埃塞尔雷德返回英格兰复位。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 基督教世界</span>
+                    <div class="event-title">千年恐慌与宗教热情高涨</div>
+                    <div class="event-desc">由于人们普遍相信公元1000年将是世界末日，欧洲各地出现了强烈的宗教狂热、朝圣运动和赎罪行为。这一心理氛围为后来的十字军东征埋下了伏笔。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1000年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1000年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">埃塞尔雷德二世复位，斯韦恩·福克比尔德去世</div>
+                    <div class="event-desc">丹麦国王斯韦恩·福克比尔德于1000年去世，其子哈罗德（后来的"硬足者"）和克努特继承王位。埃塞尔雷德二世返回英格兰重新登基。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋太宗雍熙北伐失败后的调整期</div>
+                    <div class="event-desc">979年宋太宗发动雍熙北伐试图收复燕云十六州，但遭遇惨败。此后北宋转向防御策略，加强边境屯田和军事建设。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界</span>
+                    <div class="event-title">法蒂玛王朝哈里发穆伊兹继续统治</div>
+                    <div class="event-desc">法蒂玛王朝在埃及和北非地区维持着强大的政治和宗教影响力，开罗成为重要的学术中心。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1001年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1001年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">埃塞尔雷德二世继续统治，应对维京威胁</div>
+                    <div class="event-desc">丹麦国王哈罗德和克努特继续对英格兰发动袭击，埃塞尔雷德不得不一再支付丹钱以求和平。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 诺曼底</span>
+                    <div class="event-title">诺曼底公国继续扩张势力</div>
+                    <div class="event-desc">诺曼底公爵理查德一世（"无地者"）统治期间，诺曼人不断向意大利南部和西西里岛扩张，成为地中海地区的重要力量。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1002年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1002年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">埃塞尔雷德二世去世，克努特大帝入侵英格兰</div>
+                    <div class="event-desc">英格兰国王埃塞尔雷德二世于1002年去世。其子哈罗德被拥立为王，但丹麦-挪威国王克努特（后来的"克努特大帝"）迅速入侵英格兰，夺取了王位，建立了横跨北欧的"北海帝国"。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1003年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1003年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝巩固对英格兰的统治</div>
+                    <div class="event-desc">克努特在击败哈罗德后，正式成为英格兰国王。他试图将丹麦、挪威和英格兰统一在一个王权之下，建立了庞大的北海帝国。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋真宗赵恒继位（实际为1000年）</div>
+                    <div class="event-desc">注：宋太宗于997年去世，宋真宗赵恒于997年继位。至1003年，宋真宗在位期间推行"澶渊之盟"前的外交准备。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1004年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1004年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋/辽国</span>
+                    <div class="event-title">澶渊之盟签订</div>
+                    <div class="event-desc">北宋与辽国（契丹）在澶州（今河南濮阳）签订和约，史称"澶渊之盟"。北宋每年向辽国输送岁币（银10万两、绢20万匹），换取边境和平。此后宋辽之间维持了长达百余年的相对和平局面。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1005年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1005年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治英格兰和丹麦</div>
+                    <div class="event-desc">克努特巩固其在英格兰、丹麦和挪威的统治，成为北欧历史上最具影响力的君主之一。他推行基督教化政策，加强中央管理。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 德意志</span>
+                    <div class="event-title">神圣罗马帝国皇帝亨利二世继位（实际为1002年）</div>
+                    <div class="event-desc">注：奥托三世于1002年去世，其堂弟亨利二世（康拉德二世之前的皇帝）于1002年当选为德意志国王和神圣罗马帝国皇帝。至1005年，亨利二世在位期间致力于教会改革和边疆防御。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1006年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1006年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界 · 埃及</span>
+                    <div class="event-title">法蒂玛哈里发穆伊兹去世，其子卡伊马·阿比尔继位</div>
+                    <div class="event-desc">法蒂玛王朝哈里发穆伊兹·利-达特·拉赫曼于1006年去世，其子阿布·塔里布（后来的卡伊马·阿比尔）继位。法蒂玛王朝继续在北非和埃及地区发挥重要影响。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1007年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1007年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">克努特大帝去世，其子哈罗德二世继位（实际为1035年）</div>
+                    <div class="event-desc">注：克努特大帝于1035年去世。至1007年，克努特仍在统治英格兰和丹麦。他继续在北欧推行基督教化政策，并试图统一北海地区的王权。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1008年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1008年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝巩固北海帝国</div>
+                    <div class="event-desc">克努特继续统治英格兰、丹麦和挪威，其权力达到顶峰。他通过联姻和军事手段维持对这三个王国的控制。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1009年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1009年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界 · 埃及/叙利亚</span>
+                    <div class="event-title">法蒂玛王朝与塞尔柱突厥人的冲突持续</div>
+                    <div class="event-desc">塞尔柱突厥人在安纳托利亚地区不断扩张，对拜占庭帝国构成严重威胁。同时，法蒂玛王朝在叙利亚的影响力受到挑战。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1010年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1010年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治，北海帝国维持稳定</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治相对稳定。他推行法律改革，加强教会与王权的关系。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1011年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1011年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋真宗在位期间，继续推行文治政策</div>
+                    <div class="event-desc">澶渊之盟后，北宋与辽国维持和平。宋真宗致力于发展经济、文化，鼓励科举取士，推动印刷术的发展。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1012年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1012年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 诺曼底/意大利</span>
+                    <div class="event-title">诺曼人在意大利南部继续扩张</div>
+                    <div class="event-desc">诺曼冒险者从诺曼底来到意大利南部，逐渐建立自己的领地。他们与拜占庭帝国和当地公国发生冲突，为后来建立西西里王国奠定基础。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1013年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1013年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰</span>
+                    <div class="event-title">克努特大帝巩固对英格兰的控制</div>
+                    <div class="event-desc">克努特继续统治英格兰，其北海帝国达到鼎盛时期。他试图将丹麦、挪威和英格兰统一在一个王权之下。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1014年 -->
+       ="year-section">
+            <h3 class="year-title">公元1014年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 匈牙利/德意志</span>
+                    <div class="event-title">索尔莫斯战役（Szlágeri csata）</div>
+                    <div class="event-desc">神圣罗马帝国皇帝亨利二世在索尔莫斯战役中击败马扎尔人（匈牙利人），进一步巩固了德意志东部边疆的安全。此战标志着马扎尔人对中欧入侵的终结。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1015年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1015年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治北海帝国</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治持续。他推行基督教化政策，加强教会与王权的关系，并试图统一北欧法律体系。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1016年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1016年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界 · 埃及/叙利亚</span>
+                    <div class="event-title">法蒂玛王朝内部权力斗争加剧</div>
+                    <div class="event-desc">法蒂玛哈里发卡伊马·阿比尔统治期间，王朝内部出现分裂。库拉维特（Qarmathian）残余势力和部落叛乱威胁着法蒂玛的统治稳定。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1017年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1017年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续巩固北海帝国</div>
+                    <div class="event-desc">克努特在英格兰和丹麦的统治相对稳定。他通过联姻和政治手段维持对挪威的控制。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1018年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1018年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治，北海帝国维持稳定</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治持续。他致力于加强中央集权，推动法律统一和基督教化。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1019年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1019年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋真宗在位期间，继续推行文治政策</div>
+                    <div class="event-desc">澶渊之盟后，北宋与辽国维持和平。宋真宗致力于发展经济、文化，鼓励科举取士，推动印刷术和造纸术的发展。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1020年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1020年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治北海帝国</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治持续。他致力于加强中央集权，推动法律统一和基督教化。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1021年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1021年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">伊斯兰世界 · 埃及/叙利亚</span>
+                    <div class="event-title">法蒂玛王朝继续统治，但面临内部挑战</div>
+                    <div class="event-desc">法蒂玛哈里发卡伊马·阿比尔统治期间，王朝在埃及和北非地区维持着重要影响，但面临部落叛乱和外部威胁。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1022年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1022年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治，北海帝国维持稳定</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治持续。他致力于加强中央集权，推动法律统一和基督教化。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1023年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1023年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治北海帝国</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治持续。他致力于加强中央集权，推动法律统一和基督教化。</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 1024年 -->
+        <div class="year-section">
+            <h3 class="year-title">公元1024年</h3>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-region">欧洲 · 英格兰/丹麦</span>
+                    <div class="event-title">克努特大帝继续统治北海帝国</div>
+                    <div class="event-desc">克努特在英格兰、丹麦和挪威的统治持续。他致力于加强中央集权，推动法律统一和基督教化。</div>
+                </li>
+                <li class="event-item">
+                    <span class="event-region">中国 · 北宋</span>
+                    <div class="event-title">宋真宗在位期间，继续推行文治政策</div>
+                    <div class="event-desc">澶渊之盟后，北宋与辽国维持和平。宋真宗致力于发展经济、文化，鼓励科举取士，推动印刷术和造纸术的发展。</div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>本页面列出了公元996年至1024年间世界主要历史事件，内容基于公开历史资料整理，仅供参考。</p>
+    <p>© 2024 世界大事记 · 中世纪专题</p>
+</footer>
+
+</body>
+</html>

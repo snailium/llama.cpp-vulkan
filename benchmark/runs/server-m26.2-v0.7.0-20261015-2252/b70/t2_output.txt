@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- 渐变定义 -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a0a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="explosionCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="20%" style="stop-color:#ffff99;stop-opacity:0.9" />
+      <stop offset="40%" style="stop-color:#ffcc00;stop-opacity:0.7" />
+      <stop offset="60%" style="stop-color:#ff6600;stop-opacity:0.5" />
+      <stop offset="80%" style="stop-color:#cc3300;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#990000;stop-opacity:0" />
+    </radialGradient>
+    
+    <radialGradient id="galaxyGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#aaccff;stop-opacity:0.8" />
+      <stop offset="70%" style="stop-color:#6699cc;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#336699;stop-opacity:0" />
+    </radialGradient>
+    
+    <linearGradient id="timelineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff3300;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffcc00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#66aaff;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 星星滤镜 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="900" height="700" fill="url(#bgGradient)" />
+  
+  <!-- 标题 -->
+  <text x="450" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">宇宙大爆炸理论</text>
+  <text x="450" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#aaccff">The Big Bang Theory</text>
+  
+  <!-- 中央爆炸区域 -->
+  <g transform="translate(450, 350)">
+    <!-- 外层扩散环 -->
+    <circle cx="0" cy="0" r="280" fill="none" stroke="#336699" stroke-width="1" opacity="0.3" stroke-dasharray="5,5"/>
+    <circle cx="0" cy="0" r="220" fill="none" stroke="#4477aa" stroke-width="1.5" opacity="0.4" stroke-dasharray="8,4"/>
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#5588bb" stroke-width="2" opacity="0.5" stroke-dasharray="10,5"/>
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#ffcc00" stroke-width="2" opacity="0.6" stroke-dasharray="12,4"/>
+    
+    <!-- 爆炸核心 -->
+    <circle cx="0" cy="0" r="80" fill="url(#explosionCenter)" filter="url(#softGlow)"/>
+    <circle cx="0" cy="0" r="30" fill="#ffffff" opacity="0.9" filter="url(#glow)"/>
+    
+    <!-- 辐射线 -->
+    <g stroke="#ffcc66" stroke-width="1.5" opacity="0.7">
+      <line x1="0" y1="-40" x2="0" y2="-90"/>
+      <line x1="28" y1="-28" x2="63" y2="-63"/>
+      <line x1="40" y1="0" x2="90" y2="0"/>
+      <line x1="28" y1="28" x2="63" y2="63"/>
+      <line x1="0" y1="40" x2="0" y2="90"/>
+      <line x1="-28" y1="28" x2="-63" y2="63"/>
+      <line x1="-40" y1="0" x2="-90" y2="0"/>
+      <line x1="-28" y1="-28" x2="-63" y2="-63"/>
+    </g>
+    
+    <!-- 扩散粒子 -->
+    <g fill="#ffffff">
+      <circle cx="120" cy="-80" r="3" opacity="0.8"/>
+      <circle cx="150" cy="40" r="2.5" opacity="0.7"/>
+      <circle cx="-130" cy="60" r="3" opacity="0.8"/>
+      <circle cx="-100" cy="-110" r="2" opacity="0.6"/>
+      <circle cx="80" cy="140" r="2.5" opacity="0.7"/>
+      <circle cx="-160" cy="-30" r="2" opacity="0.6"/>
+      <circle cx="180" cy="-50" r="2" opacity="0.5"/>
+      <circle cx="-180" cy="100" r="2.5" opacity="0.6"/>
+      <circle cx="50" cy="-170" r="2" opacity="0.5"/>
+      <circle cx="-60" cy="160" r="2" opacity="0.5"/>
+    </g>
+    
+    <!-- 星系 -->
+    <g filter="url(#glow)">
+      <ellipse cx="200" cy="-120" rx="18" ry="8" fill="url(#galaxyGrad)" transform="rotate(-30, 200, -120)"/>
+      <circle cx="200" cy="-120" r="4" fill="#ffffff" opacity="0.9"/>
+      
+      <ellipse cx="-180" cy="130" rx="15" ry="7" fill="url(#galaxyGrad)" transform="rotate(45, -180, 130)"/>
+      <circle cx="-180" cy="130" r="3.5" fill="#ffffff" opacity="0.9"/>
+      
+      <ellipse cx="220" cy="100" rx="14" ry="6" fill="url(#galaxyGrad)" transform="rotate(-15, 220, 100)"/>
+      <circle cx="220" cy="100" r="3" fill="#ffffff" opacity="0.8"/>
+      
+      <ellipse cx="-200" cy="-80" rx="16" ry="7" fill="url(#galaxyGrad)" transform="rotate(60, -200, -80)"/>
+      <circle cx="-200" cy="-80" r="3.5" fill="#ffffff" opacity="0.9"/>
+      
+      <ellipse cx="100" cy="200" rx="12" ry="5" fill="url(#galaxyGrad)" transform="rotate(-45, 100, 200)"/>
+      <circle cx="100" cy="200" r="3" fill="#ffffff" opacity="0.8"/>
+      
+      <ellipse cx="-120" cy="-200" rx="13" ry="5.5" fill="url(#galaxyGrad)" transform="rotate(20, -120, -200)"/>
+      <circle cx="-120" cy="-200" r="3" fill="#ffffff" opacity="0.8"/>
+    </g>
+    
+    <!-- 背景星星 -->
+    <g fill="#ffffff">
+      <circle cx="300" cy="-200" r="1.5" opacity="0.6"/>
+      <circle cx="-320" cy="150" r="1.5" opacity="0.5"/>
+      <circle cx="280" cy="220" r="1" opacity="0.4"/>
+      <circle cx="-250" cy="-250" r="1.5" opacity="0.5"/>
+      <circle cx="350" cy="50" r="1" opacity="0.4"/>
+      <circle cx="-350" cy="-50" r="1.5" opacity="0.5"/>
+      <circle cx="250" cy="-280" r="1" opacity="0.3"/>
+      <circle cx="-280" cy="280" r="1" opacity="0.3"/>
+    </g>
+  </g>
+  
+  <!-- 时间线 -->
+  <g transform="translate(0, 600)">
+    <rect x="100" y="0" width="700" height="8" rx="4" fill="url(#timelineGrad)" opacity="0.8"/>
+    
+    <!-- 时间节点 -->
+    <!-- t=0 大爆炸瞬间 -->
+    <circle cx="150" cy="4" r="6" fill="#ff3300" stroke="#ffffff" stroke-width="2"/>
+    <text x="150" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#ffcc99">t = 0</text>
+    <text x="150" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffffff">大爆炸瞬间</text>
+    
+    <!-- 10^-43秒 普朗克时期 -->
+    <circle cx="280" cy="4" r="5" fill="#ff6600" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="280" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffcc99">10⁻⁴³ 秒</text>
+    <text x="280" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">普朗克时期</text>
+    
+    <!-- 10^-6秒 夸克-胶子等离子体 -->
+    <circle cx="420" cy="4" r="5" fill="#ffcc00" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="420" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffff99">10⁻⁶ 秒</text>
+    <text x="420" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">夸克-胶子等离子体</text>
+    
+    <!-- 38万年 复合时期 -->
+    <circle cx="560" cy="4" r="5" fill="#99ccff" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="560" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ccddff">38万年</text>
+    <text x="560" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">复合时期·CMB释放</text>
+    
+    <!-- 4亿年 第一颗恒星 -->
+    <circle cx="700" cy="4" r="5" fill="#66aaff" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="700" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ccddff">4亿年</text>
+    <text x="700" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">第一颗恒星形成</text>
+    
+    <!-- 现在 -->
+    <circle cx="800" cy="4" r="6" fill="#aaddff" stroke="#ffffff" stroke-width="2"/>
+    <text x="800" y="-15" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#ccddff">现在</text>
+    <text x="800" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffffff">宇宙持续膨胀</text>
+  </g>
+  
+  <!-- 左侧说明框 -->
+  <g transform="translate(30, 120)">
+    <rect x="0" y="0" width="180" height="160" rx="10" fill="#0a1530" opacity="0.85" stroke="#4477aa" stroke-width="1"/>
+    <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">关键概念</text>
+    <line x1="20" y1="35" x2="160" y2="35" stroke="#4477aa" stroke-width="1"/>
+    
+    <circle cx="25" cy="55" r="4" fill="#ffcc00"/>
+    <text x="38" y="59" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">宇宙起源于一个</text>
+    <text x="38" y="75" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">极热、极密的奇点</text>
+    
+    <circle cx="25" cy="95" r="4" fill="#ff6600"/>
+    <text x="38" y="99" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">空间本身在膨胀，</text>
+    <text x="38" y="115" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">而非物质向空间中运动</text>
+    
+    <circle cx="25" cy="135" r="4" fill="#66aaff"/>
+    <text x="38" y="139" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">宇宙微波背景辐射</text>
+    <text x="38" y="155" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">是重要证据之一</text>
+  </g>
+  
+  <!-- 右侧说明框 -->
+  <g transform="translate(690, 120)">
+    <rect x="0" y="0" width="180" height="160" rx="10" fill="#0a1530" opacity="0.85" stroke="#4477aa" stroke-width="1"/>
+    <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">观测证据</text>
+    <line x1="20" y1="35" x2="160" y2="35" stroke="#4477aa" stroke-width="1"/>
+    
+    <circle cx="25" cy="55" r="4" fill="#ffcc00"/>
+    <text x="38" y="59" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">哈勃定律：星系</text>
+    <text x="38" y="75" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">红移与距离成正比</text>
+    
+    <circle cx="25" cy="95" r="4" fill="#ff6600"/>
+    <text x="38" y="99" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">宇宙微波背景辐射</text>
+    <text x="38" y="115" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">(CMB) 均匀分布</text>
+    
+    <circle cx="25" cy="135" r="4" fill="#66aaff"/>
+    <text x="38" y="139" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">轻元素丰度与</text>
+    <text x="38" y="155" font-family="Arial, sans-serif" font-size="12" fill="#dddddd">理论预测吻合</text>
+  </g>
+  
+  <!-- 底部注释 -->
+  <text x="450" y="675" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#8899aa">宇宙年龄约为138亿年 · 当前膨胀速率由哈勃常数描述</text>
+  
+  <!-- 装饰性星星 -->
+  <g fill="#ffffff">
+    <circle cx="50" cy="50" r="1.5" opacity="0.6"/>
+    <circle cx="850" cy="50" r="1" opacity="0.5"/>
+    <circle cx="30" cy="350" r="1.5" opacity="0.4"/>
+    <circle cx="870" cy="350" r="1" opacity="0.5"/>
+    <circle cx="100" cy="650" r="1" opacity="0.3"/>
+    <circle cx="800" cy="650" r="1.5" opacity="0.4"/>
+  </g>
+</svg>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年至1024年世界大事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background-color: #f5f5dc;
+            color: #333;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b0000;
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 15px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .year-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #c9a96e;
+            background-color: #fdfaf3;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .year-section:hover {
+            background-color: #f9f2e4;
+            transition: background-color 0.3s ease;
+        }
+
+        .year-title {
+            font-size: 1.5em;
+            color: #8b0000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .event-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            font-size: 1em;
+        }
+
+        .event-list li:last-child {
+            border-bottom: none;
+        }
+
+        .event-list li::before {
+            content: "◆";
+            color: #c9a96e;
+            margin-right: 8px;
+            font-size: 0.8em;
+        }
+
+        .region-tag {
+            display: inline-block;
+            background-color: #e8d5b7;
+            color: #5a3e1b;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .year-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>公元996年至1024年世界大事件</h1>
+        <p class="intro">以下是公元996年至1024年间世界上发生的重大历史事件，涵盖欧洲、亚洲、中东等地区的重要发展。</p>
+
+        <div class="timeline">
+
+            <!-- 996年 -->
+            <div class="year-section">
+                <div class="year-title">996年</div>
+                <ul class="event-list">
+                    <li>宋真宗即位（赵恒），宋朝进入"咸平之治"时期。<span class="region-tag">中国</span></li>
+                    <li>奥斯曼·贝格在拜占庭帝国安纳托利亚地区建立早期奥斯曼部落政权。<span class="region-tag">小亚细亚</span></li>
+                    <li>诺曼征服英格兰后，威廉一世继续巩固对英格兰的统治。<span class="region-tag">英格兰</span></li>
+                </ul>
+            </div>
+
+            <!-- 997年 -->
+            <div class="year-section">
+                <div class="year-title">997年</div>
+                <ul class="event-list">
+                    <li>宋真宗在位期间，宋朝经济文化持续发展。<span class="region-tag">中国</span></li>
+                    <li>拜占庭帝国皇帝巴西尔二世开始对保加利亚第一帝国发动长期战争（"巴尔干战役"）。<span class="region-tag">拜占庭/保加利亚</span></li>
+                </ul>
+            </div>
+
+            <!-- 998年 -->
+            <div class="year-section">
+                <div class="year-title">998年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国与保加利亚战争持续，巴西尔二世取得多项军事胜利。<span class="region-tag">巴尔干半岛</span></li>
+                    <li>宋真宗时期，宋朝与辽国关系趋于稳定。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 999年 -->
+            <div class="year-section">
+                <div class="year-title">999年</div>
+                <ul class="event-list">
+                    <li>拜占庭皇帝巴西尔二世继续对保加利亚的征服战争。<span class="region-tag">巴尔干半岛</span></li>
+                    <li>欧洲各地修道院文化繁荣，学术活动活跃。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+            <!-- 1000年 -->
+            <div class="year-section">
+                <div class="year-title">1000年</div>
+                <ul class="event-list">
+                    <li>公元1000年，千禧年到来，欧洲各地举行盛大庆祝活动。<span class="region-tag">欧洲</span></li>
+                    <li>宋朝继续发展科举制度，文化繁荣。<span class="region-tag">中国</span></li>
+                    <li>拜占庭帝国与保加利亚战争接近尾声。<span class="region-tag">巴尔干半岛</span></li>
+                </ul>
+            </div>
+
+            <!-- 1001年 -->
+            <div class="year-section">
+                <div class="year-title">1001年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国基本完成对保加利亚第一帝国的征服，巴西尔二世成为巴尔干地区的霸主。<span class="region-tag">拜占庭</span></li>
+                    <li>宋朝与辽国维持和平状态，边境贸易活跃。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1002年 -->
+            <div class="year-section">
+                <div class="year-title">1002年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国巩固对巴尔干地区的控制，恢复帝国荣光。<span class="region-tag">拜占庭</span></li>
+                    <li>欧洲各地封建制度继续发展，骑士文化兴起。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+            <!-- 1003年 -->
+            <div class="year-section">
+                <div class="year-title">1003年</div>
+                <ul class="event-list">
+                    <li>宋真宗时期，宋朝经济繁荣，农业和手工业发展迅速。<span class="region-tag">中国</span></li>
+                    <li>拜占庭帝国内部政治稳定，巴西尔二世继续推行改革。<span class="region-tag">拜占庭</span></li>
+                </ul>
+            </div>
+
+            <!-- 1004年 -->
+            <div class="year-section">
+                <div class="year-title">1004年</div>
+                <ul class="event-list">
+                    <li>宋朝与辽国在澶州（今河南濮阳）发生大战，宋军取得关键胜利。<span class="region-tag">中国</span></li>
+                    <li>此战为后来的"澶渊之盟"奠定了基础。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1005年 -->
+            <div class="year-section">
+                <div class="year-title">1005年</div>
+                <ul class="event-list">
+                    <li><strong>澶渊之盟</strong>：宋朝与辽国签订和约，双方维持和平关系近百年，宋朝每年向辽国支付岁币。<span class="region-tag">中国</span></li>
+                    <li>这一和约促进了宋辽之间的经济文化交流，边境地区繁荣发展。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1006年 -->
+            <div class="year-section">
+                <div class="year-title">1006年</div>
+                <ul class="event-list">
+                    <li>澶渊之盟后，宋辽边境进入和平时期，贸易往来频繁。<span class="region-tag">中国</span></li>
+                    <li>拜占庭帝国继续巩固其在巴尔干和安纳托利亚的统治。<span class="region-tag">拜占庭</span></li>
+                </ul>
+            </div>
+
+            <!-- 1007年 -->
+            <div class="year-section">
+                <div class="year-title">1007年</div>
+                <ul class="event-list">
+                    <li>宋朝内部政治稳定，宋真宗继续推行文治政策。<span class="region-tag">中国</span></li>
+                    <li>欧洲各地封建领主之间的小规模冲突持续。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+            <!-- 1008年 -->
+            <div class="year-section">
+                <div class="year-title">1008年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国皇帝巴西尔二世继续巩固帝国统治。<span class="region-tag">拜占庭</span></li>
+                    <li>宋朝文化继续繁荣，理学思想开始萌芽。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1009年 -->
+            <div class="year-section">
+                <div class="year-title">1009年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国与塞尔柱突厥人在安纳托利亚边境发生冲突。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝继续维持与辽国的和平关系。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1010年 -->
+            <div class="year-section">
+                <div class="year-title">1010年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国面临塞尔柱突厥人的日益增长的压力。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝经济文化持续发展，城市繁荣。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1011年 -->
+            <div class="year-section">
+                <div class="year-title">1011年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国与塞尔柱突厥人的边境冲突加剧。<span class="region-tag">安纳托利亚</span></li>
+                    <li>欧洲各地修道院继续推动学术和文化发展。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+            <!-- 1012年 -->
+            <div class="year-section">
+                <div class="year-title">1012年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国皇帝巴西尔二世去世，其弟查士丁尼二世继位。<span class="region-tag">拜占庭</span></li>
+                    <li>宋朝继续维持宋辽和平局面。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1013年 -->
+            <div class="year-section">
+                <div class="year-title">1013年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国新皇帝查士丁尼二世即位，面临内部和外部多重挑战。<span class="region-tag">拜占庭</span></li>
+                    <li>塞尔柱突厥人在安纳托利亚的影响力继续扩大。<span class="region-tag">安纳托利亚</span></li>
+                </ul>
+            </div>
+
+            <!-- 1014年 -->
+            <div class="year-section">
+                <div class="year-title">1014年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国与塞尔柱突厥人发生重要战役，拜占庭军队遭受重大损失。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝继续维持宋辽和平关系，边境贸易繁荣。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1015年 -->
+            <div class="year-section">
+                <div class="year-title">1015年</div>
+                <ul class="event-list">
+                    <li>塞尔柱突厥人继续向安纳托利亚西部推进。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝内部政治稳定，经济持续发展。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1016年 -->
+            <div class="year-section">
+                <div class="year-title">1016年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国面临塞尔柱突厥人的持续压力，帝国东部领土受到威胁。<span class="region-tag">拜占庭</span></li>
+                    <li>欧洲各地封建制度继续演变。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+            <!-- 1017年 -->
+            <div class="year-section">
+                <div class="year-title">1017年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国与塞尔柱突厥人的冲突持续。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝继续维持宋辽和平局面。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1018年 -->
+            <div class="year-section">
+                <div class="year-title">1018年</div>
+                <ul class="event-list">
+                    <li>塞尔柱突厥人在安纳托利亚建立更稳固的统治基础。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝文化继续繁荣，学术活动活跃。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1019年 -->
+            <div class="year-section">
+                <div class="year-title">1019年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国皇帝查士丁尼二世试图恢复帝国在安纳托利亚的控制力。<span class="region-tag">拜占庭</span></li>
+                    <li>宋朝继续维持宋辽和平关系。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1020年 -->
+            <div class="year-section">
+                <div class="year-title">1020年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国与塞尔柱突厥人的冲突进入新阶段。<span class="region-tag">安纳托利亚</span></li>
+                    <li>欧洲各地封建领主之间的权力斗争继续。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+            <!-- 1021年 -->
+            <div class="year-section">
+                <div class="year-title">1021年</div>
+                <ul class="event-list">
+                    <li>塞尔柱突厥人在安纳托利亚的影响力进一步巩固。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝继续维持宋辽和平局面，经济繁荣。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1022年 -->
+            <div class="year-section">
+                <div class="year-title">1022年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国面临内部政治动荡和外部军事压力。<span class="region-tag">拜占庭</span></li>
+                    <li>宋朝继续维持宋辽和平关系。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1023年 -->
+            <div class="year-section">
+                <div class="year-title">1023年</div>
+                <ul class="event-list">
+                    <li>塞尔柱突厥人继续向安纳托利亚西部扩张。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝文化继续发展，理学思想逐渐成型。<span class="region-tag">中国</span></li>
+                </ul>
+            </div>
+
+            <!-- 1024年 -->
+            <div class="year-section">
+                <div class="year-title">1024年</div>
+                <ul class="event-list">
+                    <li>拜占庭帝国皇帝查士丁尼二世去世，其子罗曼努斯三世继位。<span class="region-tag">拜占庭</span></li>
+                    <li>塞尔柱突厥人在安纳托利亚的统治基础进一步稳固，为后来奥斯曼帝国的崛起奠定基础。<span class="region-tag">安纳托利亚</span></li>
+                    <li>宋朝继续维持宋辽和平局面，经济文化繁荣。<span class="region-tag">中国</span></li>
+                    <li>欧洲各地封建制度继续演变，骑士文化进一步发展。<span class="region-tag">欧洲</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>注：以上事件基于历史记载整理，部分细节可能因史料差异而有所不同。</p>
+            <p>公元996年 - 1024年世界大事件汇总</p>
+        </footer>
+    </div>
+</body>
+</html>

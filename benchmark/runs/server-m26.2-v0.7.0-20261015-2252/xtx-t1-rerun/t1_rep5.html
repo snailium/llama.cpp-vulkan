@@ -1,0 +1,249 @@
+这是一个关于公元 996 年至 1024 年世界大事记的完整 HTML 页面。该时间段涵盖了北宋初期、拜占庭帝国、欧洲中世纪以及中国辽朝的重要历史事件。
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年 - 1024年 世界大事记</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #bdc3c7;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        .timeline {
+            list-style: none;
+            padding-left: 0;
+            position: relative;
+        }
+
+        /* 时间轴线条 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 15px;
+            bottom: 15px;
+            width: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* 时间轴圆点 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            background-color: white;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .year {
+            display: inline-block;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .event-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+
+        .event-desc {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ecf0f1;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+            main {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>世界大事记</h1>
+        <div class="subtitle">公元 996 年 — 公元 1024 年</div>
+    </header>
+
+    <main>
+        <ul class="timeline">
+            <li class="timeline-item">
+                <span class="year">996 年</span>
+                <div class="event-title">宋太宗驾崩，宋真宗即位</div>
+                <div class="event-desc">北宋第二位皇帝赵光义（宋太宗）去世，其子赵恒继位，是为宋真宗。这一年也是欧洲诺曼征服者威廉一世（征服者威廉）统治英格兰期间的重要年份。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">997 年</span>
+                <div class="event-title">拜占庭皇帝巴西尔二世去世</div>
+                <div class="event-desc">拜占庭帝国皇帝巴西尔二世（Basil II）去世。他被称为“保加利亚人的屠夫”，在位期间极大地扩张了拜占庭的领土并恢复了帝国的繁荣。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">998 年</span>
+                <div class="event-title">宋真宗平定李顺起义</div>
+                <div class="event-desc">北宋成都发生李顺领导的农民起义，宋真宗派王继恩等率军镇压，最终平息叛乱。这一事件反映了北宋初期社会矛盾的加剧。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">999 年</span>
+                <div class="event-title">克朗尼修道院建立</div>
+                <div class="event-desc">爱尔兰都柏林的克朗尼修道院（Christ Church Cathedral）由诺曼修士建立，成为爱尔兰重要的宗教和文化中心。同年，诺曼征服者威廉一世继续巩固其在英格兰的统治。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1000 年</span>
+                <div class="event-title">千年之交与欧洲动荡</div>
+                <div class="event-desc">公元一千年到来。虽然民间流传“末日审判”的恐惧，但实际社会活动并未停滞。在欧洲，诺曼人继续向意大利南部和西西里岛扩张；在中国，北宋进入相对稳定的时期。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1002 年</span>
+                <div class="event-title">宋真宗与辽签订“澶渊之盟”前夕的军事冲突</div>
+                <div class="event-desc">辽圣宗耶律隆绪多次南侵北宋边境。北宋在防御战中表现顽强，双方开始寻求外交解决途径，为次年著名的“澶渊之盟”奠定基础。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1004 年</span>
+                <div class="event-title">澶渊之盟签订</div>
+                <div class="event-desc">北宋与辽国在澶州（今河南濮阳）附近签订和约，史称“澶渊之盟”。北宋每年向辽输送岁币，双方维持和平状态长达百余年，促进了边境贸易和文化交流。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1005 年</span>
+                <div class="event-title">诺曼征服英格兰后的巩固期</div>
+                <div class="event-desc">征服者威廉一世完成《土地调查册》（Domesday Book）的编制工作，这是中世纪欧洲最详尽的土地和人口普查之一，用于加强王权对土地的掌控。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1008 年</span>
+                <div class="event-title">科尔多瓦哈里发国衰落</div>
+                <div class="event-desc">伊比利亚半岛的科尔多瓦哈里发国陷入内战，权力碎片化。这一时期标志着伊斯兰文明在西欧影响力的开始减弱，为后来基督教收复失地运动埋下伏笔。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1010 年</span>
+                <div class="event-title">宋真宗大兴土木与崇道</div>
+                <div class="event-desc">宋真宗在位期间推崇道教，宣称获得天书，多次举行封禅泰山等仪式。这一时期北宋文化繁荣，但财政支出也大幅增加。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1015 年</span>
+                <div class="event-title">诺曼征服英格兰的后续影响</div>
+                <div class="event-desc">诺曼贵族在英格兰各地建立城堡，强化统治。诺曼法语成为英国上层社会的语言，对后来的英语发展产生深远影响。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1016 年</span>
+                <div class="event-title">拜占庭帝国内部权力斗争</div>
+                <div class="event-desc">拜占庭皇帝巴西尔二世去世后，其弟查士丁尼二世继位。帝国面临来自塞尔柱突厥人在东部的威胁以及国内的政治不稳定。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1018 年</span>
+                <div class="event-title">宋真宗驾崩，仁宗即位</div>
+                <div class="event-desc">北宋皇帝宋真宗赵恒去世，其子赵祯继位，是为宋仁宗。虽然此时他年仅13岁，但由刘太后垂帘听政，开启了北宋历史上著名的“仁宗盛治”。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1020 年</span>
+                <div class="event-title">欧洲修道院改革运动兴起</div>
+                <div class="event-desc">以圣伯尔纳铎（St. Bernard of Clairvaux）为代表的西多会（Cistercians）开始在欧洲各地建立新的修道院，强调简朴和严格的宗教生活，对中世纪教会改革产生重要影响。</div>
+            </li>
+
+            <li class="timeline-item">
+                <span class="year">1024 年</span>
+                <div class="event-title">宋仁宗亲政与北宋文化高峰</div>
+                <div class="event-desc">刘太后撤帘，宋仁宗开始亲政。这一时期是北宋文化的黄金时代，理学、诗词、绘画等艺术形式达到高度繁荣。同时，辽国在圣宗耶律隆绪的统治下也处于强盛期。</div>
+            </li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>注：以上事件基于历史记载整理，具体细节可能因史料不同而略有差异。</p>
+        <p>&copy; 2023 历史大事记网页</p>
+    </footer>
+</div>
+
+</body>
+</html>
+```

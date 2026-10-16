@@ -1,0 +1,28 @@
+{
+  "text": "\u6839\u636e\u60a8\u63d0\u4f9b\u7684\u8f6e\u80ce\u4fa7\u58c1\u7167\u7247\uff0c\u4ee5\u4e0b\u662f\u53ef\u89c1\u7684\u6a21\u538b\u6587\u5b57\u4fe1\u606f\uff1a\n\n1.  **\u5c3a\u5bf8\u89c4\u683c\uff1a** `255/70R18`\n2.  **\u8f7d\u91cd\u6307\u6570\u548c\u901f\u5ea6\u7b49\u7ea7\uff1a** `113S` \uff08\u5176\u4e2d\u201c113\u201d\u4e3a\u8f7d\u91cd\u6307\u6570\uff0c\u201cS\u201d\u4e3a\u901f\u5ea6\u7b49\u7ea7\uff09\n3.  **\u54c1\u724c\u548c\u578b\u53f7\u540d\uff1a**\n    *   \u54c1\u724c\uff1a`BFGOODRICH` (\u767e\u8def\u9a70)\n    *   \u7cfb\u5217/\u578b\u53f7\uff1a`KODIAK` (\u79d1\u8fea\u514b)\n4.  **\u8ba4\u8bc1/\u9002\u7528\u6807\u8bc6\uff1a** `M+S` (\u6ce5\u5730+\u96ea\u5730)\u3001\u4e09\u89d2\u5f62\u5185\u6709\u96ea\u82b1\u6807\u5fd7 (3PMSF\uff0c\u8868\u793a\u901a\u8fc7\u4e25\u51ac\u96ea\u5730\u6d4b\u8bd5)\n\n> **\u8bf4\u660e\uff1a**  \n> - \u201cM+S\u201d \u662f Mud and Snow\uff08\u6ce5\u5730\u548c\u96ea\u5730\uff09\u7684\u7f29\u5199\uff0c\u5e38\u89c1\u4e8e\u5168\u5730\u5f62\u6216\u51ac\u5b63\u8f6e\u80ce\u3002  \n> - \u4e09\u89d2\u5f62\u5185\u7684\u96ea\u82b1\u7b26\u53f7\uff083PMSF\uff09\u662f\u66f4\u4e25\u683c\u7684\u51b0\u96ea\u8def\u9762\u6027\u80fd\u8ba4\u8bc1\u6807\u5fd7\uff0c\u6bd4 M+S \u66f4\u5177\u53c2\u8003\u4ef7\u503c\u3002  \n> - \u201cKODIAK\u201d \u662f BFGoodrich \u65d7\u4e0b\u7684\u4e00\u4e2a\u8d8a\u91ce/\u5168\u5730\u5f62\u8f6e\u80ce\u7cfb\u5217\u540d\u79f0\u3002\n\n\u2705 \u6240\u6709\u4fe1\u606f\u5747\u6e05\u6670\u53ef\u8fa8\uff0c\u65e0\u6a21\u7cca\u6216\u7f3a\u5931\u90e8\u5206\u3002",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 262,
+    "prompt_tokens": 4160,
+    "total_tokens": 4422,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "prompt_tokens": 4160,
+  "completion_tokens": 262,
+  "wall_s": 20.679834365844727,
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 4160,
+    "prompt_ms": 15920.959,
+    "prompt_per_token_ms": 3.827153605769231,
+    "prompt_per_second": 261.2907928473404,
+    "predicted_n": 262,
+    "predicted_ms": 4042.291,
+    "predicted_per_token_ms": 15.487704980842912,
+    "predicted_per_second": 64.567345596841,
+    "draft_n": 360,
+    "draft_n_accepted": 172
+  }
+}

@@ -1,5 +1,14 @@
 # Muse-Glimmer-30B on the 7900 XTX — context pressure scan (the 21.6k crash)
 
+> ⚠️ **SUPERSEDED — see [root cause](2026-10-16-muse-glimmer-sigsegv-root-cause.md).**
+> The boundary below was labelled "~21.6k tokens" because my filler used
+> `depth × 1.6` characters. **The real variable is the byte size of the rendered chat
+> template, not the token count**: the crash is thread-stack exhaustion at the default
+> 8 MiB stack, and it triggers at ~30-40 KB of content. An ASCII payload with only 1931
+> tokens passes; CJK at 35k chars (~18k tokens) fails. Token counts in the table below are
+> therefore correct as measurements but misleading as the boundary's cause, and
+> `--ulimit stack=67108864` moves the wall to ~200 KB / ~50k tokens.
+
 **Date:** 2026-10-16 · **Card:** 7900 XTX (Vulkan/RADV, Mesa 26.2.3) · **Image:** `llama-vulkan:v0.7.0`
 **Runner:** [`ctx_pressure.py`](../../../.tmp/muse/ctx_pressure.py) — samples free VRAM every 50 ms
 *throughout* each request and reports the minimum, so a transient peak allocation cannot hide.

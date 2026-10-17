@@ -25,12 +25,20 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create :stable manifest
+      - name: Create :stable and :latest manifests
         run: |
           SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
-          DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:stable"
-          docker buildx imagetools create --tag "$DST" "$SRC"
-          docker buildx imagetools inspect "$DST" --format "stable -> {{.Name}}"
+          # :latest is promoted in the SAME step as :stable, deliberately.
+          # It used to be maintained by hand and drifted: on 2026-10-17 :latest
+          # still pointed at 0.5.0-dev (b11165) while :stable was 0.6.0, because
+          # nothing in CI ever touched it. Anything pinning :latest - the
+          # Portainer stack does - was running a two-release-old binary. Moving
+          # both here means the two floating tags cannot disagree.
+          for TAG in stable latest; do
+            DST="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:$TAG"
+            docker buildx imagetools create --tag "$DST" "$SRC"
+            docker buildx imagetools inspect "$DST" --format "$TAG -> {{.Name}}"
+          done
       - name: Create optional version tag
         if: inputs.semver_tag != ''
         run: |
@@ -42,7 +50,9 @@ jobs:
         run: |
           SRC="ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:${{ inputs.source_tag }}"
           want=$(docker buildx imagetools inspect "$SRC" --format '{{.Manifest.Digest}}')
-          for t in stable ${{ inputs.semver_tag }}; do
+          # `latest` is in this list so a drift like the 2026-10-17 one fails the
+          # run instead of going unnoticed for two releases.
+          for t in stable latest ${{ inputs.semver_tag }}; do
             [ -z "$t" ] && continue
             got=$(docker buildx imagetools inspect "ghcr.io/snailium/llama.cpp-vulkan/llama-vulkan:$t" --format '{{.Manifest.Digest}}')
             if [ "$got" != "$want" ]; then

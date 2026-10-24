@@ -1,5 +1,13 @@
 # Context checkpoints on the XTX: verified, and the production number
 
+> ⚠️ **REVISED — the recommendation below is wrong.** The `count x depth` extrapolation was
+> tested to 130k depth and **does not happen**: peak host RSS was 6,465 MiB with the
+> production default and nothing OOM'd, because the live checkpoint set saturates (~+98 MiB
+> from 32k to 127k depth). Do **not** set `--ctx-checkpoints 4`; leave the default 32. See
+> [2026-10-24-xtx-130k-depth-no-oom.md](2026-10-24-xtx-130k-depth-no-oom.md). Everything in
+> this file about the *mechanism* (host RAM, VRAM flat, 27,734 B/token, the FULL seq_rm gate)
+> stands — only the linear extrapolation to a worst case was wrong.
+
 **Date:** 2026-10-23 · **Card:** RX 7900 XTX (Vulkan/RADV) · **Image:** `:latest` = v0.7.0 (`620d222`)
 **Config:** production exactly — Qwen3.8-27B-Q4_K_M, ctx 131072, KV **q8_0 K / q4_0 V**,
 MTP4 draft (draft KV q8_0/q4_0), FA on, `--parallel 1`, `--cache-ram 0` for the A/B only.

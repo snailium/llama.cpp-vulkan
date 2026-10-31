@@ -52,16 +52,25 @@ context no longer matches and `git apply` will refuse it.
 
 ## Note: the stable workflow never applied this patch
 
-While retiring it I diffed the two build workflows and found that
-`build-stable.yml` has **no patch step at all** — only `build-dev.yml` globs
-`patches/*.patch`. So every stable image we ran (v0.5.0 through v0.8.0) was built
-**without** this clamp.
+While retiring it I diffed the two build workflows and found that `build-stable.yml` has **no
+patch step at all** — only `build-dev.yml` globs `patches/*.patch`. So no stable image ever
+carried our clamp.
 
-That had no observed consequence because the k-past-`end_k` branch only fires when `K` is not
-a multiple of `BK * BK_STEP` (= 128 for the dense path), and our models have `K = 256`. The
-batteries were passing on images that were missing a fix whose precondition our shapes never
-meet — a latent hole, not an active one.
+Which stable images actually lacked the fix is a separate question, and the answer is **not**
+"all of them":
 
-It stays latent on stable only until upstream cuts a `v*` containing `2864937a7`; that commit
-is in `b12019`, which is newer than `v0.8.0`. Nothing to do now that the patch is retired:
-both workflows agree by having nothing to apply.
+| stable tag | contains upstream `2864937a7`? | had our clamp? | net |
+|---|---|---|---|
+| v0.5.0 | no | no | **missing the fix** |
+| v0.6.0 | no | no | **missing the fix** |
+| v0.7.0 | no | no | **missing the fix** — this was production |
+| **v0.8.0** | **yes** (first tag containing it is `b11952`) | no | **has upstream's fix** |
+
+So the divergence mattered for v0.5.0–v0.7.0 only. It had no observed consequence because the
+k-past-`end_k` branch only fires when `K` is not a multiple of `BK * BK_STEP` (= 128 on the
+dense path) and our models use `K = 256`: the batteries were passing on images missing a fix
+whose precondition our shapes never meet. A latent hole, never an active one.
+
+v0.8.0 and everything after it are correct by upstream's own change, which is also why the
+v0.8.0 dev-build run at `b12019` failed on the patch: the file had already been rewritten.
+Nothing to do now — both workflows agree by having nothing to apply.

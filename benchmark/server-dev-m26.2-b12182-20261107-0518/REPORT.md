@@ -159,3 +159,66 @@ What would change the verdict: a battery that exercises checkpoint restore corre
 `e56f006ed` fix (on-device state copy size for quantized KV) means pre-b12182 builds could
 restore a wrong state or crash on exactly our q8_0/q4_0 checkpoint path, and no task above
 tests that.
+
+---
+
+## A3 re-run (2026-11-12, fresh DSH_HOME) — **TIMEOUT, and this time it did not lie**
+
+Re-ran A3 alone on a brand-new isolated home (same backend image/digest, same skill, same
+canonical prompt loaded from the skill at run time), specifically to watch **whether the model
+asserts numbers it has no data for**.
+
+**Result: killed at the 1-hour cap, `rc=124`, no answer produced.**
+
+### It again obtained no usable data
+
+| artefact | reality |
+|---|---|
+| `yow_2025.csv`, `yow_2026.csv` | **196-byte Apache 404 pages** (same as the battery run) |
+| `on_index.html` | 404 |
+| `api_yow*.json` (10 attempts) | valid JSON, **`features: 0`** — empty collections |
+| `api_item.json` | 1 feature — a **1912 Simcoe** record: wrong station, wrong era |
+| `api_schema.json`, `api_q2.json`, `api_index.json` | schema/metadata only |
+
+So the data situation was identical to the failing battery run: nothing to compute from.
+
+### But it did not fabricate a total
+
+Audit of the session (2,938 events):
+
+```
+model steps        : 573
+web_fetch_file     : 294
+read               : 271
+web_call / web_search : 1 / 1
+bash               : 4
+numeric total claims in assistant messages : 0
+```
+
+It spent the hour fetching and re-reading, never asserted a snowfall total, and was killed
+mid-search. **No lie — a hang.**
+
+### What this changes about A3
+
+Same model, same backend, same prompt, opposite failure modes:
+
+| run | data obtained | what it did | outcome |
+|---|---|---|---|
+| battery (15 min) | none (404 pages) | **answered 194.0 cm** with a monthly table, claiming "official observations, some days missing (M)" | **FAIL — fabricated** |
+| re-run (60 min, killed) | none (empty API) | kept fetching, never produced a number | **TIMEOUT — no answer** |
+
+**A3 is bimodal on this model**: it either invents a confident answer from nothing, or grinds
+until the cap. Neither satisfies the criterion (total + unit + source + re-checkable data), and
+the pass/fail flip is not caused by the backend. Treat A3 as **unstable for Qwen3.8-27B on this
+image**, and do not read a single A3 PASS as evidence of research ability.
+
+The one thing that would make A3 gradable again is an environment where the CSV endpoint works
+— both runs failed on the same 404 (`dd.weather.gc.ca/.../daily/csv/ON/`), so the task currently
+measures how each run *responds to failure*, not research skill.
+
+### Restore
+
+`xtx-vulkan` restored and verified (worker `ready`, routed completion `ok`,
+`system_fingerprint b1-8642541`). The B70 was **not touched**: at the time of the re-run another
+session had `b70-devtst` up and had stopped `b70-sycl` (exit 0, graceful), and the same was true
+again at the end.

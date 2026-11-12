@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年-1024年世界大事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            background-color: #f5f0e8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background-color: #8b4513;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #8b4513;
+            border-radius: 2px;
+        }
+
+        .year-section {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .year-section::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background-color: #8b4513;
+            border-radius: 50%;
+            border: 3px solid #f5f0e8;
+        }
+
+        .year-header {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 10px;
+        }
+
+        .event-list {
+            list-style: none;
+            padding-left: 15px;
+        }
+
+        .event-list li {
+            background-color: white;
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 4px solid #d2a679;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .event-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-list li strong {
+            color: #5a2d0c;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #8b4513;
+            color: white;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .year-header {
+                font-size: 1.2em;
+            }
+
+            .event-list li {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>公元996年 - 1024年 世界大事件</h1>
+            <p>跨越近三十年的全球重要历史事件汇编</p>
+        </header>
+
+        <div class="timeline">
+
+            <!-- 996年 -->
+            <div class="year-section">
+                <div class="year-header">公元996年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗即位后继续推行庆历新政前的改革措施，加强中央集权，整顿吏治。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴西尔二世统治下继续扩张，收复部分巴尔干地区领土。</li>
+                </ul>
+            </div>
+
+            <!-- 997年 -->
+            <div class="year-section">
+                <div class="year-header">公元997年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗继续推行文官制度改革，科举制度进一步完善。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国与保加利亚王国之间的战争持续，巴西尔二世逐步收复失地。</li>
+                </ul>
+            </div>
+
+            <!-- 998年 -->
+            <div class="year-section">
+                <div class="year-header">公元998年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，经济文化继续发展，瓷器贸易繁荣。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区的军事行动取得进展。</li>
+                </ul>
+            </div>
+
+            <!-- 999年 -->
+            <div class="year-section">
+                <div class="year-header">公元999年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，海上丝绸之路贸易活跃，广州成为重要港口。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国继续与保加利亚作战，巴西尔二世展现出卓越的军事才能。</li>
+                </ul>
+            </div>
+
+            <!-- 1000年 -->
+            <div class="year-section">
+                <div class="year-header">公元1000年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，文化昌盛，诗词创作繁荣，印刷术进一步发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区取得重大军事胜利。</li>
+                    <li><strong>伊斯兰世界：</strong>法蒂玛王朝统治下的埃及经济文化发展，开罗成为重要文化中心。</li>
+                </ul>
+            </div>
+
+            <!-- 1001年 -->
+            <div class="year-section">
+                <div class="year-header">公元1001年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，继续加强中央集权，整顿地方行政。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国与保加利亚的战争进入关键阶段。</li>
+                </ul>
+            </div>
+
+            <!-- 1002年 -->
+            <div class="year-section">
+                <div class="year-header">公元1002年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，农业技术进步，水稻种植范围扩大。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国继续对保加利亚施加军事压力。</li>
+                </ul>
+            </div>
+
+            <!-- 1003年 -->
+            <div class="year-section">
+                <div class="year-header">公元1003年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，科举考试制度进一步完善，选拔更多文官。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区的军事行动持续进行。</li>
+                </ul>
+            </div>
+
+            <!-- 1004年 -->
+            <div class="year-section">
+                <div class="year-header">公元1004年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，经济继续发展，商业贸易繁荣。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国与保加利亚的战争接近尾声。</li>
+                </ul>
+            </div>
+
+            <!-- 1005年 -->
+            <div class="year-section">
+                <div class="year-header">公元1005年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，文化教育发展，书院制度兴起。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国与保加利亚的战争进入最后阶段。</li>
+                </ul>
+            </div>
+
+            <!-- 1006年 -->
+            <div class="year-section">
+                <div class="year-header">公元1006年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，继续推行文官制度改革。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区的军事行动取得决定性胜利。</li>
+                </ul>
+            </div>
+
+            <!-- 1007年 -->
+            <div class="year-section">
+                <div class="year-header">公元1007年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，海上贸易继续发展，与东南亚国家往来频繁。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区取得重大胜利。</li>
+                </ul>
+            </div>
+
+            <!-- 1008年 -->
+            <div class="year-section">
+                <div class="year-header">公元1008年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，农业继续发展，人口增长。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国巩固在巴尔干地区的统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1009年 -->
+            <div class="year-section">
+                <div class="year-header">公元1009年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，文化繁荣，文学作品丰富。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国继续巩固其在巴尔干地区的控制。</li>
+                </ul>
+            </div>
+
+            <!-- 1010年 -->
+            <div class="year-section">
+                <div class="year-header">公元1010年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，继续加强中央集权。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区的统治趋于稳定。</li>
+                </ul>
+            </div>
+
+            <!-- 1011年 -->
+            <div class="year-section">
+                <div class="year-header">公元1011年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，经济文化继续发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国内部政治稳定，巴西尔二世继续推行改革。</li>
+                </ul>
+            </div>
+
+            <!-- 1012年 -->
+            <div class="year-section">
+                <div class="year-header">公元1012年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，科举制度进一步完善。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国与周边国家的关系趋于稳定。</li>
+                </ul>
+            </div>
+
+            <!-- 1013年 -->
+            <div class="year-section">
+                <div class="year-header">公元1013年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，海上贸易继续发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区保持统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1014年 -->
+            <div class="year-section">
+                <div class="year-header">公元1014年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，农业技术进步。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区巩固统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1015年 -->
+            <div class="year-section">
+                <div class="year-header">公元1015年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，文化教育发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国内部政治稳定。</li>
+                </ul>
+            </div>
+
+            <!-- 1016年 -->
+            <div class="year-section">
+                <div class="year-header">公元1016年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，经济继续发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区保持统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1017年 -->
+            <div class="year-section">
+                <div class="year-header">公元1017年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，海上贸易繁荣。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国继续巩固其统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1018年 -->
+            <div class="year-section">
+                <div class="year-header">公元1018年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，农业继续发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区保持统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1019年 -->
+            <div class="year-section">
+                <div class="year-header">公元1019年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，文化繁荣。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国内部政治稳定。</li>
+                </ul>
+            </div>
+
+            <!-- 1020年 -->
+            <div class="year-section">
+                <div class="year-header">公元1020年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，经济文化继续发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区保持统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1021年 -->
+            <div class="year-section">
+                <div class="year-header">公元1021年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，海上贸易继续发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国巩固其统治地位。</li>
+                </ul>
+            </div>
+
+            <!-- 1022年 -->
+            <div class="year-section">
+                <div class="year-header">公元1022年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，农业技术进步。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区保持统治。</li>
+                </ul>
+            </div>
+
+            <!-- 1023年 -->
+            <div class="year-section">
+                <div class="year-header">公元1023年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，文化教育发展。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国内部政治稳定。</li>
+                </ul>
+            </div>
+
+            <!-- 1024年 -->
+            <div class="year-section">
+                <div class="year-header">公元1024年</div>
+                <ul class="event-list">
+                    <li><strong>中国（北宋）：</strong>宋真宗时期，经济文化继续发展，海上贸易繁荣。</li>
+                    <li><strong>欧洲：</strong>拜占庭帝国在巴尔干地区保持统治，巴西尔二世去世，结束其长期统治。</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>本页面汇编了公元996年至1024年间世界主要历史事件</p>
+            <p>仅供参考，具体历史细节请以权威史料为准</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif">
+  <!-- Background -->
+  <rect width="900" height="650" fill="#0a0e1a"/>
+
+  <!-- Stars background -->
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="50" cy="30" r="1"/>
+    <circle cx="120" cy="80" r="1.5"/>
+    <circle cx="200" cy="40" r="1"/>
+    <circle cx="300" cy="70" r="1"/>
+    <circle cx="400" cy="25" r="1.5"/>
+    <circle cx="500" cy="60" r="1"/>
+    <circle cx="600" cy="35" r="1"/>
+    <circle cx="700" cy="80" r="1.5"/>
+    <circle cx="800" cy="45" r="1"/>
+    <circle cx="850" cy="90" r="1"/>
+    <circle cx="80" cy="150" r="1"/>
+    <circle cx="180" cy="200" r="1.5"/>
+    <circle cx="350" cy="180" r="1"/>
+    <circle cx="450" cy="160" r="1"/>
+    <circle cx="550" cy="210" r="1.5"/>
+    <circle cx="650" cy="170" r="1"/>
+    <circle cx="750" cy="200" r="1"/>
+    <circle cx="830" cy="160" r="1.5"/>
+    <circle cx="40" cy="300" r="1"/>
+    <circle cx="100" cy="400" r="1.5"/>
+    <circle cx="60" cy="500" r="1"/>
+    <circle cx="840" cy="300" r="1"/>
+    <circle cx="860" cy="420" r="1.5"/>
+    <circle cx="820" cy="520" r="1"/>
+    <circle cx="780" cy="580" r="1"/>
+    <circle cx="150" cy="600" r="1.5"/>
+    <circle cx="300" cy="620" r="1"/>
+    <circle cx="500" cy="610" r="1"/>
+    <circle cx="700" cy="620" r="1.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="450" y="50" text-anchor="middle" fill="#ffffff" font-size="28" font-weight="bold">宇宙大爆炸理论</text>
+  <text x="450" y="75" text-anchor="middle" fill="#aabbcc" font-size="14">The Big Bang Theory — 从奇点到可观测宇宙的演化</text>
+
+  <!-- Timeline line -->
+  <line x1="80" y1="320" x2="820" y2="320" stroke="#445566" stroke-width="2"/>
+  <polygon points="820,320 810,315 810,325" fill="#445566"/>
+
+  <!-- Stage 1: Singularity -->
+  <g>
+    <!-- Time marker -->
+    <circle cx="130" cy="320" r="8" fill="#ff4444"/>
+    <text x="130" y="350" text-anchor="middle" fill="#ffffff" font-size="12">t = 0</text>
+
+    <!-- Singularity visual -->
+    <circle cx="130" cy="200" r="6" fill="#ff4444"/>
+    <circle cx="130" cy="200" r="12" fill="none" stroke="#ff4444" stroke-width="1" opacity="0.5"/>
+    <circle cx="130" cy="200" r="18" fill="none" stroke="#ff4444" stroke-width="0.5" opacity="0.3"/>
+
+    <!-- Label -->
+    <text x="130" y="160" text-anchor="middle" fill="#ffaaaa" font-size="13" font-weight="bold">奇点</text>
+    <text x="130" y="240" text-anchor="middle" fill="#8899aa" font-size="11">无限致密</text>
+    <text x="130" y="255" text-anchor="middle" fill="#8899aa" font-size="11">无限高温</text>
+  </g>
+
+  <!-- Stage 2: Inflation -->
+  <g>
+    <circle cx="270" cy="320" r="8" fill="#ffaa00"/>
+    <text x="270" y="350" text-anchor="middle" fill="#ffffff" font-size="12">~10⁻³² 秒</text>
+
+    <!-- Inflation visual - expanding rings -->
+    <circle cx="270" cy="200" r="8" fill="#ffaa00"/>
+    <circle cx="270" cy="200" r="16" fill="none" stroke="#ffaa00" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="270" cy="200" r="24" fill="none" stroke="#ffaa00" stroke-width="1" opacity="0.4"/>
+    <circle cx="270" cy="200" r="32" fill="none" stroke="#ffaa00" stroke-width="0.5" opacity="0.2"/>
+
+    <!-- Expansion arrows -->
+    <line x1="270" y1="168" x2="270" y2="155" stroke="#ffaa00" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="270" y1="232" x2="270" y2="245" stroke="#ffaa00" stroke-width="1.5"/>
+    <line x1="238" y1="200" x2="225" y2="200" stroke="#ffaa00" stroke-width="1.5"/>
+    <line x1="302" y1="200" x2="315" y2="200" stroke="#ffaa00" stroke-width="1.5"/>
+
+    <!-- Label -->
+    <text x="270" y="140" text-anchor="middle" fill="#ffcc66" font-size="13" font-weight="bold">暴胀</text>
+    <text x="270" y="270" text-anchor="middle" fill="#8899aa" font-size="11">指数级膨胀</text>
+  </g>
+
+  <!-- Stage 3: Nucleosynthesis -->
+  <g>
+    <circle cx="410" cy="320" r="8" fill="#44cc88"/>
+    <text x="410" y="350" text-anchor="middle" fill="#ffffff" font-size="12">~3 分钟</text>
+
+    <!-- Nucleosynthesis visual - particles -->
+    <circle cx="410" cy="200" r="25" fill="none" stroke="#44cc88" stroke-width="1" opacity="0.3"/>
+    <!-- Protons and neutrons -->
+    <circle cx="400" cy="190" r="4" fill="#44aaff"/>
+    <circle cx="420" cy="195" r="4" fill="#8866cc"/>
+    <circle cx="410" cy="210" r="4" fill="#44aaff"/>
+    <circle cx="395" cy="208" r="3.5" fill="#8866cc"/>
+    <circle cx="425" cy="205" r="3.5" fill="#44aaff"/>
+
+    <!-- Label -->
+    <text x="410" y="160" text-anchor="middle" fill="#66ddaa" font-size="13" font-weight="bold">核合成</text>
+    <text x="410" y="250" text-anchor="middle" fill="#8899aa" font-size="11">氢、氦形成</text>
+  </g>
+
+  <!-- Stage 4: Recombination / CMB -->
+  <g>
+    <circle cx="550" cy="320" r="8" fill="#ff6644"/>
+    <text x="550" y="350" text-anchor="middle" fill="#ffffff" font-size="12">~38 万年</text>
+
+    <!-- CMB visual - radiation waves -->
+    <rect x="510" y="170" width="80" height="60" rx="4" fill="none" stroke="#ff6644" stroke-width="1" opacity="0.3"/>
+    <!-- Wave lines -->
+    <path d="M 515 190 Q 525 180, 535 190 T 555 190 T 575 190 T 595 190" fill="none" stroke="#ff6644" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 515 205 Q 525 195, 535 205 T 555 205 T 575 205 T 595 205" fill="none" stroke="#ff8866" stroke-width="1.5" opacity="0.6"/>
+    <path d="M 515 220 Q 525 210, 535 220 T 555 220 T 575 220 T 595 220" fill="none" stroke="#ffaa88" stroke-width="1.5" opacity="0.4"/>
+
+    <!-- Label -->
+    <text x="550" y="160" text-anchor="middle" fill="#ff8866" font-size="13" font-weight="bold">复合期</text>
+    <text x="550" y="250" text-anchor="middle" fill="#8899aa" font-size="11">宇宙微波背景辐射</text>
+  </g>
+
+  <!-- Stage 5: Galaxy Formation -->
+  <g>
+    <circle cx="690" cy="320" r="8" fill="#4488ff"/>
+    <text x="690" y="350" text-anchor="middle" fill="#ffffff" font-size="12">~数亿年</text>
+
+    <!-- Galaxy visual - spiral -->
+    <ellipse cx="690" cy="200" rx="30" ry="12" fill="none" stroke="#4488ff" stroke-width="1" opacity="0.3"/>
+    <path d="M 690 200 Q 705 185, 715 195 Q 720 205, 705 210" fill="none" stroke="#66aaff" stroke-width="1.5"/>
+    <path d="M 690 200 Q 675 215, 665 205 Q 660 195, 675 190" fill="none" stroke="#66aaff" stroke-width="1.5"/>
+    <circle cx="690" cy="200" r="4" fill="#88ccff"/>
+    <!-- Small stars around -->
+    <circle cx="670" cy="185" r="1" fill="#ffffff"/>
+    <circle cx="710" cy="215" r="1" fill="#ffffff"/>
+    <circle cx="720" cy="190" r="1" fill="#ffffff"/>
+    <circle cx="665" cy="210" r="1" fill="#ffffff"/>
+
+    <!-- Label -->
+    <text x="690" y="160" text-anchor="middle" fill="#88bbff" font-size="13" font-weight="bold">星系形成</text>
+    <text x="690" y="250" text-anchor="middle" fill="#8899aa" font-size="11">恒星与星系诞生</text>
+  </g>
+
+  <!-- Stage 6: Present Universe -->
+  <g>
+    <circle cx="790" cy="320" r="8" fill="#ffffff"/>
+    <text x="790" y="350" text-anchor="middle" fill="#ffffff" font-size="12">~138 亿年</text>
+
+    <!-- Present universe visual - multiple galaxies -->
+    <ellipse cx="780" cy="190" rx="15" ry="6" fill="none" stroke="#aabbff" stroke-width="1" opacity="0.5"/>
+    <circle cx="780" cy="190" r="2" fill="#ffffff"/>
+    <ellipse cx="800" cy="210" rx="12" ry="5" fill="none" stroke="#ffbbcc" stroke-width="1" opacity="0.5"/>
+    <circle cx="800" cy="210" r="2" fill="#ffffff"/>
+    <!-- Expanding space arrows -->
+    <line x1="760" y1="195" x2="748" y2="192" stroke="#667788" stroke-width="1"/>
+    <line x1="820" y1="205" x2="832" y2="208" stroke="#667788" stroke-width="1"/>
+
+    <!-- Label -->
+    <text x="790" y="160" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">今日宇宙</text>
+    <text x="790" y="250" text-anchor="middle" fill="#8899aa" font-size="11">持续膨胀中</text>
+  </g>
+
+  <!-- Bottom explanation box -->
+  <rect x="60" y="380" width="780" height="240" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+  <text x="80" y="410" fill="#ffffff" font-size="16" font-weight="bold">关键要点</text>
+
+  <!-- Key points -->
+  <g font-size="13" fill="#ccddee">
+    <!-- Point 1 -->
+    <circle cx="95" cy="440" r="4" fill="#ff4444"/>
+    <text x="110" y="445">大爆炸并非空间中的爆炸，而是空间本身的膨胀起点。</text>
+
+    <!-- Point 2 -->
+    <circle cx="95" cy="470" r="4" fill="#ffaa00"/>
+    <text x="110" y="475">暴胀阶段：宇宙在极短时间内（约 10⁻³² 秒）膨胀了至少 10²⁶ 倍。</text>
+
+    <!-- Point 3 -->
+    <circle cx="95" cy="500" r="4" fill="#44cc88"/>
+    <text x="110" y="505">宇宙微波背景辐射（CMB）是大爆炸的"余晖"，温度约 2.7 K，是最古老的观测证据。</text>
+
+    <!-- Point 4 -->
+    <circle cx="95" cy="530" r="4" fill="#ff6644"/>
+    <text x="110" y="535">哈勃定律：遥远星系的光谱红移表明宇宙正在加速膨胀（暗能量驱动）。</text>
+
+    <!-- Point 5 -->
+    <circle cx="95" cy="560" r="4" fill="#4488ff"/>
+    <text x="110" y="565">大爆炸理论目前被广泛接受，但宇宙的起源（奇点之前）仍是未解之谜。</text>
+
+    <!-- Point 6 -->
+    <circle cx="95" cy="590" r="4" fill="#ffffff"/>
+    <text x="110" y="595">可观测宇宙年龄约为 138 亿年，直径约 930 亿光年。</text>
+  </g>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 Z" fill="#ffaa00"/>
+    </marker>
+  </defs>
+
+  <!-- Footer -->
+  <text x="450" y="640" text-anchor="middle" fill="#556677" font-size="11">注：时间轴为示意性表示，实际时间尺度跨越极大范围</text>
+</svg>

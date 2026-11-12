@@ -1,9 +1,12 @@
 # Retired patches
 
-Kept for history and for the reasoning behind them. Nothing here is applied by CI:
-the workflows glob only `patches/*.patch`, never this subdirectory.
+**No patch files remain.** The last one was deleted on 2026-11-12 once its fix was
+confirmed present upstream; this note is the record of what it did and why it is gone.
 
-## `0001-vulkan-cm1-clamp-A-operand-block-index.patch` — retired 2026-10-31
+Nothing here is applied by CI: the workflows glob only `patches/*.patch`, never this
+subdirectory.
+
+## `0001-vulkan-cm1-clamp-A-operand-block-index.patch` — retired 2026-10-31, file deleted 2026-11-12
 
 **Superseded upstream at b12019** by
 [`2864937a7`](https://github.com/ggml-org/llama.cpp/commit/2864937a7) — *"vulkan: clamp A

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年-1024年世界大事记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background-color: #f5f1e8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6741);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #4a6741;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .event:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background-color: #c0392b;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #4a6741;
+        }
+
+        .event-year {
+            display: inline-block;
+            background-color: #4a6741;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+
+        .event-desc {
+            font-size: 0.98em;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .event {
+                padding: 15px;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .event::before {
+                left: -28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>公元996年 — 1024年 世界大事记</h1>
+        <p>跨越三个世纪的开端，见证欧亚大陆的政治、文化与军事变迁</p>
+    </header>
+
+    <div class="container">
+        <div class="timeline">
+
+            <div class="event">
+                <span class="event-year">996年</span>
+                <div class="event-title">宋太宗第二次北伐契丹（辽）失败</div>
+                <p class="event-desc">北宋皇帝赵光义（宋太宗）亲率大军北上攻打辽国，试图收复燕云十六州。宋军在岐沟关之战中大败，宋太宗仓皇南撤，此役标志着宋朝由攻转守的战略转折。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">997年</span>
+                <div class="event-title">宋真宗即位</div>
+                <p class="event-desc">宋太宗赵光义驾崩，其子赵恒（宋真宗）继位。此后宋朝内部政治格局发生变化，寇准、李沆等名相相继辅政。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">998年</span>
+                <div class="event-title">拜占庭帝国皇帝巴西尔二世登基</div>
+                <p class="event-desc">拜占庭（东罗马）皇帝巴西尔二世正式登基，开启其长达近半个世纪的统治。他后来被称为"保加利亚屠夫"，成功征服保加利亚第一帝国，恢复了拜占庭在巴尔干地区的霸权。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">999年</span>
+                <div class="event-title">诺曼底公国与英格兰关系紧张加剧</div>
+                <p class="event-desc">诺曼底公爵理查德二世统治时期，诺曼人与英格兰之间的政治和军事摩擦不断升级，为后来1066年诺曼征服埋下伏笔。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1000年</span>
+                <div class="event-title">千年之交——世界进入公元第二千年</div>
+                <p class="event-desc">公元1000年的到来标志着中世纪盛期的深入。欧洲各国、伊斯兰世界和东亚地区都在各自的发展轨道上推进，文化交流与冲突并存。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1004年</span>
+                <div class="event-title">澶渊之盟签订</div>
+                <p class="event-desc">北宋与辽国在澶州（今河南濮阳）签订和约，史称"澶渊之盟"。宋朝每年向辽输送岁币银十万两、绢二十万匹，双方约为兄弟之国。此后宋辽之间维持了长达百余年的和平局面。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1005年</span>
+                <div class="event-title">拜占庭帝国征服保加利亚第一帝国</div>
+                <p class="event-desc">巴西尔二世完成对保加利亚沙皇萨穆伊尔的彻底征服，保加利亚第一帝国灭亡。拜占庭帝国重新控制巴尔干半岛大部分地区，国力达到鼎盛。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1008年</span>
+                <div class="event-title">西夏李继迁称大夏国皇帝</div>
+                <p class="event-desc">党项族首领李继迁在定难军节度使的基础上，正式建立大夏国（即后来的西夏），定都兴庆府（今宁夏银川）。这是中国历史上一个重要的少数民族政权诞生。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1010年</span>
+                <div class="event-title">欧洲修道院运动持续发展</div>
+                <p class="event-desc">这一时期，克吕尼改革运动在欧洲广泛传播，推动了天主教会的内部改革和修道院制度的完善。本笃会、西多会等修会相继兴起，对欧洲文化、教育和宗教生活产生深远影响。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1015年</span>
+                <div class="event-title">诺曼底公爵罗贝尔·库尔特鲁瓦去世，威廉一世继位</div>
+                <p class="event-desc">诺曼底公爵罗贝尔二世（库尔特鲁瓦）去世，其子威廉（即后来的"征服者威廉"）继承诺曼底公国。威廉在位期间加强了诺曼底的军事力量，为日后入侵英格兰做准备。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1017年</span>
+                <div class="event-title">拜占庭皇帝巴西尔二世去世</div>
+                <p class="event-desc">拜占庭"保加利亚屠夫"巴西尔二世驾崩，结束了其长达近半个世纪的统治。他死后不久，拜占庭帝国开始面临塞尔柱突厥人从东方带来的威胁。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1020年</span>
+                <div class="event-title">宋真宗时期文化繁荣——《太平御览》编成</div>
+                <p class="event-desc">宋朝在"咸平之治"期间文化事业蓬勃发展。李昉等人奉旨编纂的大型类书《太平御览》于1013年完成，而这一时期还涌现出大量文学、史学著作，体现了宋代文化的辉煌。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1021年</span>
+                <div class="event-title">欧洲城市复兴运动兴起</div>
+                <p class="event-desc">随着农业技术进步和人口增长，西欧许多城市开始复苏。意大利北部、法兰西南部等地的商业城镇逐渐繁荣，为后来的中世纪盛期城市革命奠定基础。</p>
+            </div>
+
+            <div class="event">
+                <span class="event-year">1024年</span>
+                <div class="event-title">塞尔柱突厥人开始向安纳托利亚扩张</div>
+                <p class="event-desc">塞尔柱突厥部落在领袖阿尔普·阿尔斯兰的领导下，开始从伊朗高原向小亚细亚（安纳托利亚）推进。这标志着伊斯兰世界对拜占庭帝国东部边境构成越来越大的威胁，也为后来的曼齐刻尔特战役（1071年）埋下伏笔。</p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>本页面整理自历史资料，部分事件年份可能存在不同说法 | 公元996—1024年世界大事记</p>
+    </footer>
+</body>
+</html>

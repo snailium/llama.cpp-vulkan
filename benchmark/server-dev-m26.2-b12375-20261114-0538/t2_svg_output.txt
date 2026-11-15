@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <!-- 背景 -->
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#1a2340"/>
+      <stop offset="60%" stop-color="#0d1330"/>
+      <stop offset="100%" stop-color="#050818"/>
+    </radialGradient>
+    <radialGradient id="bangGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbe6"/>
+      <stop offset="30%" stop-color="#ffd75e"/>
+      <stop offset="65%" stop-color="#ff8c2e"/>
+      <stop offset="100%" stop-color="#b03a1a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd75e" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff8c2e" stop-opacity="0"/>
+    </radowGrad>
+  </defs>
+
+  <rect width="1200" height="850" fill="url(#bgGrad)"/>
+
+  <!-- 装饰星星 -->
+  <g fill="#ffffff">
+    <circle cx="80" cy="90" r="1.6" opacity="0.8"/>
+    <circle cx="200" cy="150" r="1.2" opacity="0.6"/>
+    <circle cx="340" cy="70" r="1.8" opacity="0.9"/>
+    <circle cx="480" cy="120" r="1.1" opacity="0.5"/>
+    <circle cx="620" cy="60" r="1.5" opacity="0.7"/>
+    <circle cx="760" cy="130" r="1.3" opacity="0.6"/>
+    <circle cx="900" cy="80" r="1.7" opacity="0.85"/>
+    <circle cx="1040" cy="150" r="1.2" opacity="0.55"/>
+    <circle cx="1130" cy="90" r="1.6" opacity="0.75"/>
+    <circle cx="150" cy="280" r="1.3" opacity="0.6"/>
+    <circle cx="1080" cy="300" r="1.5" opacity="0.7"/>
+    <circle cx="60" cy="450" r="1.4" opacity="0.65"/>
+    <circle cx="1150" cy="480" r="1.2" opacity="0.5"/>
+    <circle cx="90" cy="650" r="1.6" opacity="0.7"/>
+    <circle cx="1120" cy="680" r="1.3" opacity="0.6"/>
+    <circle cx="250" cy="780" r="1.5" opacity="0.65"/>
+    <circle cx="950" cy="790" r="1.4" opacity="0.6"/>
+  </g>
+
+  <!-- 标题 -->
+  <text x="600" y="58" text-anchor="middle" font-size="34" font-weight="bold" fill="#ffe9a8">宇宙大爆炸理论</text>
+  <text x="600" y="88" text-anchor="middle" font-size="17" fill="#9fb3d9">The Big Bang Theory · 宇宙的起源与演化</text>
+
+  <!-- 时间轴 -->
+  <line x1="120" y1="430" x2="1080" y2="430" stroke="#4a5f8c" stroke-width="2.5"/>
+  <polygon points="1080,430 1066,424 1066,436" fill="#4a5f8c"/>
+  <text x="1090" y="435" font-size="15" fill="#7d92bd">时间 →</text>
+
+  <!-- 阶段标记 -->
+  <g stroke="#7d92bd" stroke-width="1.5">
+    <line x1="220" y1="420" x2="220" y2="440"/>
+    <line x1="440" y1="420" x2="440" y2="440"/>
+    <line x1="660" y1="420" x2="660" y2="440"/>
+    <line x1="880" y1="420" x2="880" y2="440"/>
+  </g>
+
+  <!-- ===== 阶段一：奇点 ===== -->
+  <circle cx="220" cy="430" r="6" fill="#fffbe6"/>
+  <circle cx="220" cy="430" r="14" fill="url(#glowGrad)"/>
+  <text x="220" y="485" text-anchor="middle" font-size="17" font-weight="bold" fill="#ffd75e">① 奇点</text>
+  <text x="220" y="508" text-anchor="middle" font-size="13" fill="#c5d2ee">t = 0</text>
+  <text x="220" y="528" text-anchor="middle" font-size="12.5" fill="#9fb3d9">所有物质与能量</text>
+  <text x="220" y="546" text-anchor="middle" font-size="12.5" fill="#9fb3d9">集中于无限小的点</text>
+
+  <!-- ===== 阶段二：膨胀 ===== -->
+  <!-- 向外辐射的箭头表示空间膨胀 -->
+  <g stroke="#ff8c2e" stroke-width="2" fill="none" opacity="0.9">
+    <line x1="455" y1="430" x2="475" y2="410"/>
+    <polygon points="475,410 468,412 472,417" fill="#ff8c2e"/>
+    <line x1="455" y1="430" x2="475" y2="450"/>
+    <polygon points="475,450 468,448 472,443" fill="#ff8c2e"/>
+    <line x1="425" y1="430" x2="405" y2="410"/>
+    <polygon points="405,410 412,412 408,417" fill="#ff8c2e"/>
+    <line x1="425" y1="430" x2="405" y2="450"/>
+    <polygon points="405,450 412,448 408,443" fill="#ff8c2e"/>
+  </g>
+  <!-- 膨胀的圆环 -->
+  <circle cx="440" cy="430" r="30" fill="none" stroke="#ffd75e" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="440" cy="430" r="18" fill="url(#glowGrad)"/>
+  <circle cx="440" cy="430" r="7" fill="#fffbe6"/>
+
+  <text x="440" y="505" text-anchor="middle" font-size="17" font-weight="bold" fill="#ff8c2e">② 快速膨胀</text>
+  <text x="440" y="528" text-anchor="middle" font-size="13" fill="#c5d2ee">大爆炸 · 暴胀期</text>
+  <text x="440" y="548" text-anchor="middle" font-size="12.5" fill="#9fb3d9">空间以极快速率膨胀</text>
+  <text x="440" y="566" text-anchor="middle" font-size="12.5" fill="#9fb3d9">形成基本粒子</text>
+
+  <!-- ===== 阶段三：冷却与元素形成 ===== -->
+  <!-- 原子示意 -->
+  <g transform="translate(660,430)">
+    <ellipse rx="34" ry="14" fill="none" stroke="#7ec8ff" stroke-width="1.5" opacity="0.8"/>
+    <ellipse rx="14" ry="34" fill="none" stroke="#7ec8ff" stroke-width="1.5" opacity="0.8"/>
+    <circle r="6" fill="#ffd75e"/>
+    <circle cx="34" cy="0" r="3.5" fill="#fffbe6"/>
+    <circle cx="-34" cy="0" r="3.5" fill="#fffbe6"/>
+    <circle cx="0" cy="-34" r="3.5" fill="#fffbe6"/>
+  </g>
+  <text x="660" y="505" text-anchor="middle" font-size="17" font-weight="bold" fill="#7ec8ff">③ 冷却与元素形成</text>
+  <text x="660" y="528" text-anchor="middle" font-size="13" fill="#c5d2ee">约 3 分钟后</text>
+  <text x="660" y="548" text-anchor="middle" font-size="12.5" fill="#9fb3d9">质子与中子结合成</text>
+  <text x="660" y="566" text-anchor="middle" font-size="12.5" fill="#9fb3d9">氢、氦等轻元素原子核</text>
+
+  <!-- ===== 阶段四：星系与宇宙结构 ===== -->
+  <!-- 旋涡星系示意 -->
+  <g transform="translate(880,430)">
+    <path d="M0,0 C20,-18 45,-8 40,18 C36,38 8,40 -8,26" fill="none" stroke="#c9a0ff" stroke-width="2.2" opacity="0.9"/>
+    <path d="M0,0 C-20,-18 -45,-8 -40,18 C-36,38 -8,40 8,26" fill="none" stroke="#c9a0ff" stroke-width="2.2" opacity="0.7"/>
+    <circle r="8" fill="#fffbe6"/>
+    <circle r="15" fill="url(#glowGrad)"/>
+  </g>
+  <!-- 周围小星系点 -->
+  <circle cx="930" cy="400" r="4" fill="#c9a0ff" opacity="0.8"/>
+  <circle cx="825" cy="465" r="3.5" fill="#7ec8ff" opacity="0.8"/>
+  <circle cx="915" cy="470" r="3" fill="#ffd75e" opacity="0.8"/>
+
+  <text x="880" y="520" text-anchor="middle" font-size="17" font-weight="bold" fill="#c9a0ff">④ 星系与宇宙结构</text>
+  <text x="880" y="543" text-anchor="middle" font-size="13" fill="#c5d2ee">约 3.8 亿年后至今</text>
+  <text x="880" y="563" text-anchor="middle" font-size="12.5" fill="#9fb3d9">引力使物质聚集形成</text>
+  <text x="880" y="581" text-anchor="middle" font-size="12.5" fill="#9fb3d9">恒星、星系与宇宙大尺度结构</text>
+
+  <!-- 顶部：大爆炸中心辐射示意 -->
+  <g transform="translate(600,250)">
+    <circle r="70" fill="url(#bangGrad)"/>
+    <circle r="24" fill="#fffbe6"/>
+    <!-- 辐射光线 -->
+    <g stroke="#ffd75e" stroke-width="2.5" opacity="0.85">
+      <line x1="0" y1="-95" x2="0" y2="-130"/>
+      <line x1="67" y1="-67" x2="92" y2="-92"/>
+      <line x1="95" y1="0" x2="130" y2="0"/>
+      <line x1="67" y1="67" x2="92" y2="92"/>
+      <line x1="0" y1="95" x2="0" y2="130"/>
+      <line x1="-67" y1="67" x2="-92" y2="92"/>
+      <line x1="-95" y1="0" x2="-130" y2="0"/>
+      <line x1="-67" y1="-67" x2="-92" y2="-92"/>
+    </g>
+    <!-- 飞散的粒子 -->
+    <circle cx="150" cy="-40" r="3.5" fill="#fffbe6"/>
+    <circle cx="-150" cy="50" r="3" fill="#ffd75e"/>
+    <circle cx="40" cy="-155" r="3" fill="#ff8c2e"/>
+    <circle cx="-50" cy="160" r="3.5" fill="#fffbe6"/>
+  </g>
+  <text x="600" y="140" text-anchor="middle" font-size="15" fill="#ffe9a8">大爆炸：时空与物质能量瞬间诞生并高速膨胀</text>
+
+  <!-- 底部说明框 -->
+  <rect x="120" y="620" width="960" height="170" rx="14" fill="#141d3a" stroke="#33456e" stroke-width="1.5"/>
+  <text x="150" y="658" font-size="19" font-weight="bold" fill="#ffd75e">核心理念</text>
+  <g font-size="15" fill="#c5d2ee">
+    <circle cx="158" cy="692" r="4" fill="#ff8c2e"/>
+    <text x="175" y="697">宇宙并非从空间中某一点向外爆炸，而是空间本身在膨胀。</text>
+    <circle cx="158" cy="722" r="4" fill="#7ec8ff"/>
+    <text x="175" y="727">观测证据：哈勃红移（宇宙膨胀）、宇宙微波背景辐射、轻元素丰度。</text>
+    <circle cx="158" cy="752" r="4" fill="#c9a0ff"/>
+    <text x="175" y="757">时间起点约为 138 亿年前，宇宙仍在持续膨胀并趋于加速。</text>
+  </g>
+
+</svg>

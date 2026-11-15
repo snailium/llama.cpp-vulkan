@@ -1,0 +1,38 @@
+[
+  {
+    "task": "v1",
+    "prompt_n": 3528,
+    "completion_n": 899,
+    "prefill_tps": 509.7,
+    "ttft_s": 6.922,
+    "decode_tps": 69.92,
+    "draft_n": 1164,
+    "accept_pct": 52.15,
+    "K": 4,
+    "out_len": 1486
+  },
+  {
+    "task": "v2",
+    "prompt_n": 1064,
+    "completion_n": 2822,
+    "prefill_tps": 616.4,
+    "ttft_s": 1.726,
+    "decode_tps": 70.29,
+    "draft_n": 3688,
+    "accept_pct": 51.49,
+    "K": 4,
+    "out_len": 5390
+  },
+  {
+    "task": "v3",
+    "prompt_n": 4160,
+    "completion_n": 678,
+    "prefill_tps": 269.8,
+    "ttft_s": 15.42,
+    "decode_tps": 72.7,
+    "draft_n": 840,
+    "accept_pct": 55.6,
+    "K": 4,
+    "out_len": 1147
+  }
+]

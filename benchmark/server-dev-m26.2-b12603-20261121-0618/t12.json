@@ -1,0 +1,41 @@
+[
+  {
+    "task": "t1_html",
+    "verdict": "PASS",
+    "checks": {
+      "finish_reason == stop": true,
+      "balanced": true,
+      "html/head/body": true,
+      "ends at </html>": true
+    },
+    "prompt_n": 43,
+    "completion_n": 4157,
+    "prefill_tps": 181.3,
+    "ttft_s": 0.472,
+    "decode_tps": 83.41,
+    "draft_n": 4600,
+    "accept_pct": 65.35,
+    "K": 4,
+    "out_len": 12294
+  },
+  {
+    "task": "t2_svg",
+    "verdict": "PASS",
+    "checks": {
+      "finish_reason == stop": true,
+      "well-formed XML": true,
+      "single svg root": true,
+      "has viewBox": true,
+      "ends at </svg>": true
+    },
+    "prompt_n": 32,
+    "completion_n": 4316,
+    "prefill_tps": 142.3,
+    "ttft_s": 0.359,
+    "decode_tps": 95.47,
+    "draft_n": 4120,
+    "accept_pct": 79.73,
+    "K": 4,
+    "out_len": 11578
+  }
+]

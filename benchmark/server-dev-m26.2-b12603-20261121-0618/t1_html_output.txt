@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公元996年-1024年 世界大事记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background-color: #f5f0e8;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b4513;
+            font-size: 2em;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #d4a574;
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+
+        .event-list {
+            list-style: none;
+        }
+
+        .year-group {
+            margin-bottom: 25px;
+        }
+
+        .year-title {
+            background-color: #8b4513;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .event-item {
+            background-color: #faf6f0;
+            border-left: 4px solid #d4a574;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .event-item:hover {
+            background-color: #f0e8d8;
+        }
+
+        .event-title {
+            font-weight: bold;
+            color: #5a2d0c;
+            margin-bottom: 5px;
+        }
+
+        .event-desc {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .year-title {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>公元996年 - 1024年 世界大事记</h1>
+        <p class="subtitle">中世纪早期重要历史事件汇编</p>
+
+        <ul class="event-list">
+
+            <!-- 996年 -->
+            <li class="year-group">
+                <div class="year-title">公元996年</div>
+                <div class="event-item">
+                    <div class="event-title">奥托三世加冕为神圣罗马帝国皇帝</div>
+                    <div class="event-desc">年仅三岁的奥托（Otto III）在教皇约翰十五世的加冕下成为神圣罗马帝国皇帝，标志着萨利安王朝之前的奥托王朝延续。</div>
+                </div>
+            </li>
+
+            <!-- 997年 -->
+            <li class="year-group">
+                <div class="year-title">公元997年</div>
+                <div class="event-item">
+                    <div class="event-title">奥托三世正式登基</div>
+                    <div class="event-desc">奥托三世在父亲奥托二世去世后正式登上皇位，由摄政大臣管理帝国事务。</div>
+                </div>
+            </li>
+
+            <!-- 998年 -->
+            <li class="year-group">
+                <div class="year-title">公元998年</div>
+                <div class="event-item">
+                    <div class="event-title">中国北宋：太宗赵光义在位期间，继续推行文官治国政策</div>
+                    <div class="event-desc">宋太宗继续加强中央集权，完善科举制度，推动文化教育发展。</div>
+                </div>
+            </li>
+
+            <!-- 999年 -->
+            <li class="year-group">
+                <div class="year-title">公元999年</div>
+                <div class="event-item">
+                    <div class="event-title">欧洲：千年恐慌（Millennium Fear）蔓延</div>
+                    <div class="event-desc">由于当时普遍使用罗马数字纪年，许多人误以为1000年是世界的终点，导致社会动荡和宗教狂热。这一事件被称为"千年恐慌"。</div>
+                </div>
+            </li>
+
+            <!-- 1000年 -->
+            <li class="year-group">
+                <div class="year-title">公元1000年</div>
+                <div class="event-item">
+                    <div class="event-title">奥托三世前往罗马朝圣</div>
+                    <div class="event-desc">神圣罗马帝国皇帝奥托三世亲自前往罗马，向教廷致敬，体现了当时帝权与教权的密切关系。</div>
+                </div>
+            </li>
+
+            <!-- 1001年 -->
+            <li class="year-group">
+                <div class="year-title">公元1001年</div>
+                <div class="event-item">
+                    <div class="event-title">中国北宋：澶渊之盟签订</div>
+                    <div class="event-desc">宋真宗与辽国萧太后在澶州（今河南濮阳）签订和约，史称"澶渊之盟"。此后宋辽之间维持了百余年的和平局面，促进了边境贸易和文化交流。</div>
+                </div>
+            </li>
+
+            <!-- 1002年 -->
+            <li class="year-group">
+                <div class="year-title">公元1002年</div>
+                <div class="event-item">
+                    <div class="event-title">奥托三世去世，亨利二世即位</div>
+                    <div class="event-desc">神圣罗马帝国皇帝奥托三世于巴伐利亚的阿克斯巴赫去世，年仅23岁。其堂兄萨利安家族的亨利（Henry II）继位，开启萨利安王朝。</div>
+                </div>
+            </li>
+
+            <!-- 1004年 -->
+            <li class="year-group">
+                <div class="year-title">公元1004年</div>
+                <div class="event-item">
+                    <div class="event-title">亨利二世加冕为神圣罗马帝国皇帝</div>
+                    <div class="event-desc">教皇约翰十八世在图尔（Tours）为亨利二世加冕，正式确立其神圣罗马帝国皇帝的地位。</div>
+                </div>
+            </li>
+
+            <!-- 1006年 -->
+            <li class="year-group">
+                <div class="year-title">公元1006年</div>
+                <div class="event-item">
+                    <div class="event-title">中国北宋：毕昇发明活字印刷术</div>
+                    <div class="event-desc">北宋平民毕昇发明了胶泥活字印刷术，这是世界上最早的活字印刷技术，比德国古腾堡的金属活字印刷术早约400年，对文化传播产生了深远影响。</div>
+                </div>
+            </li>
+
+            <!-- 1008年 -->
+            <li class="year-group">
+                <div class="year-title">公元1008年</div>
+                <div class="event-item">
+                    <div class="event-title">诺曼征服意大利南部开始</div>
+                    <div class="event-desc">诺曼人开始在意大利南部建立据点，逐渐取代拜占庭帝国和伦巴第人的统治，为后来罗伯特·吉斯卡尔征服西西里岛奠定基础。</div>
+                </div>
+            </li>
+
+            <!-- 1009年 -->
+            <li class="year-group">
+                <div class="year-title">公元1009年</div>
+                <div class="event-item">
+                    <div class="event-title">中国北宋：宋真宗大兴土木，修建玉清昭应宫</div>
+                    <div class="event-desc">宋真宗以"天书下降"为由，大建道观，耗费巨资，反映了当时道教在宫廷中的影响。</div>
+                </div>
+            </li>
+
+            <!-- 1010年 -->
+            <li class="year-group">
+                <div class="year-title">公元1010年</div>
+                <div class="event-item">
+                    <div class="event-title">拜占庭帝国：巴西尔二世收复巴尔干部分地区</div>
+                    <div class="event-desc">拜占庭皇帝巴西尔二世（Basil II）继续其东征西讨的政策，试图恢复帝国在巴尔干半岛的领土。</div>
+                </div>
+            </li>
+
+            <!-- 1012年 -->
+            <li class="year-group">
+                <div class="year-title">公元1012年</div>
+                <div class="event-item">
+                    <div class="event-title">诺曼人：罗伯特·吉斯卡尔征服卡普阿</div>
+                    <div class="event-desc">诺曼公爵罗伯特·吉斯卡尔（Robert Guiscard）攻占南意大利的卡普阿，进一步巩固了诺曼人在意大利南部的势力。</div>
+                </div>
+            </li>
+
+            <!-- 1013年 -->
+            <li class="year-group">
+                <div class="year-title">公元1013年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：坎特伯雷大主教埃尔弗赫去世</div>
+                    <div class="event-desc">坎特伯雷大主教埃尔弗赫（Elphegus）被丹麦国王斯文·福克比德杀害，后被封为圣徒。这一事件加剧了英格兰与丹麦之间的紧张关系。</div>
+                </div>
+            </li>
+
+            <!-- 1014年 -->
+            <li class="year-group">
+                <div class="year-title">公元1014年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：克努特大帝入侵英格兰</div>
+                    <div class="event-desc">丹麦国王斯文·福克比德去世后，其子克努特（Cnut the Great）率军入侵英格兰。英格兰国王埃塞尔雷德二世试图抵抗但未能成功。</div>
+                </div>
+            </li>
+
+            <!-- 1015年 -->
+            <li class="year-group">
+                <div class="year-title">公元1015年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：克努特征服英格兰</div>
+                    <div class="event-desc">克努特大帝击败埃塞尔雷德二世，成为英格兰国王。此后丹麦对英格兰进行了长达十余年的统治。</div>
+                </div>
+            </li>
+
+            <!-- 1016年 -->
+            <li class="year-group">
+                <div class="year-title">公元1016年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：埃塞尔雷德二世去世，克努特巩固王位</div>
+                    <div class="event-desc">英格兰国王埃塞尔雷德二世去世，其子埃德蒙·伊尔英格短暂抵抗克努特，但最终失败。克努特正式确立对英格兰的统治。</div>
+                </div>
+            </li>
+
+            <!-- 1017年 -->
+            <li class="year-group">
+                <div class="year-title">公元1017年</div>
+                <div class="event-item">
+                    <div class="event-title">拜占庭帝国：巴西尔二世击败保加利亚沙皇萨穆伊尔</div>
+                    <div class="event-desc">在克勒迪翁战役（Battle of Kleidion）中，拜占庭皇帝巴西尔二世彻底击败保加利亚军队，保加利亚沙皇萨穆伊尔战死或受伤后不久去世。拜占庭帝国重新控制巴尔干大部分地区。</div>
+                </div>
+            </li>
+
+            <!-- 1018年 -->
+            <li class="year-group">
+                <div class="year-title">公元1018年</div>
+                <div class="event-item">
+                    <div class="event-title">诺曼人：罗伯特·吉斯卡尔围攻巴里</div>
+                    <div class="event-desc">诺曼公爵罗伯特·吉斯卡尔开始围攻拜占庭在意大利南部的最后据点巴里（Bari），这场围城战持续了数年。</div>
+                </div>
+            </li>
+
+            <!-- 1019年 -->
+            <li class="year-group">
+                <div class="year-title">公元1019年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：克努特大帝加冕为英格兰国王</div>
+                    <div class="event-desc">克努特在温切斯特正式加冕为英格兰国王，同时他也是丹麦、挪威的国王，建立了庞大的"北海帝国"。</div>
+                </div>
+            </li>
+
+            <!-- 1020年 -->
+            <li class="year-group">
+                <div class="year-title">公元1020年</div>
+                <div class="event-item">
+                    <div class="event-title">诺曼人：巴里陷落，诺曼人控制意大利南部</div>
+                    <div class="event-desc">经过长期围困，诺曼人攻占拜占庭在意大利南部的最后一座城市巴里。至此，诺曼人基本控制了意大利南部的大部分地区，建立了诺曼公国。</div>
+                </div>
+            </li>
+
+            <!-- 1021年 -->
+            <li class="year-group">
+                <div class="year-title">公元1021年</div>
+                <div class="event-item">
+                    <div class="event-title">中国北宋：宋真宗去世，仁宗即位（实际为1022年，此处记录背景）</div>
+                    <div class="event-desc">宋真宗赵恒于1022年去世，其子赵祯即位，即宋仁宗。在位期间出现了"仁宗盛治"的局面。</div>
+                </div>
+            </li>
+
+            <!-- 1022年 -->
+            <li class="year-group">
+                <div class="year-title">公元1022年</div>
+                <div class="event-item">
+                    <div class="event-title">中国北宋：宋仁宗即位</div>
+                    <div class="event-desc">宋真宗去世，皇子赵祯即位，改明年号为天圣。在太后刘氏（章献明肃皇后）和宰相吕夷简、张知白等人的辅佐下，北宋进入相对繁荣稳定的时期。</div>
+                </div>
+            </li>
+
+            <!-- 1023年 -->
+            <li class="year-group">
+                <div class="year-title">公元1023年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：克努特大帝去世，哈罗德二世短暂称王</div>
+                    <div class="event-desc">克努特大帝在诺福克的阿什德姆去世。其子哈康·斯文松（Harald II）被拥立为英格兰国王，但不久后去世。</div>
+                </div>
+            </li>
+
+            <!-- 1024年 -->
+            <li class="year-group">
+                <div class="year-title">公元1024年</div>
+                <div class="event-item">
+                    <div class="event-title">英格兰：克努特之子哈康去世，英格兰王位更迭</div>
+                    <div class="event-desc">哈康·斯文松在加冕后不久去世。随后克努特的另一子卡努特（Canute IV，即后来的丹麦国王）短暂统治，最终克努特大帝的遗孀艾米塔与威塞克斯家族的坎特伯雷大主教合作，拥立埃德蒙·伊尔英格之子为傀儡国王，英格兰陷入政治混乱。</div>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="footer">
+            <p>注：以上事件基于历史记载整理，部分细节可能因史料差异而有所不同。中世纪早期历史记录有限，某些事件的年份和细节可能存在争议。</p>
+            <p style="margin-top: 10px;">© 2024 世界大事记 | 公元996年 - 1024年</p>
+        </div>
+    </div>
+</body>
+</html>

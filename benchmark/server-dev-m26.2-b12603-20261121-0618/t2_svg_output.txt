@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+    <defs>
+        <!-- Background Gradients -->
+        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#050510" />
+            <stop offset="50%" stop-color="#0A0F24" />
+            <stop offset="100%" stop-color="#1A0B2E" />
+        </linearGradient>
+
+        <!-- Big Bang Core Gradients -->
+        <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="20%" stop-color="#FFD166" />
+            <stop offset="50%" stop-color="#EF476F" />
+            <stop offset="80%" stop-color="#9D4EDD" />
+            <stop offset="100%" stop-color="#3A0CA3" stop-opacity="0" />
+        </radialGradient>
+
+        <!-- Time Arrow Gradient -->
+        <linearGradient id="time-arrow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFD166" />
+            <stop offset="50%" stop-color="#EF476F" />
+            <stop offset="100%" stop-color="#9D4EDD" />
+        </linearGradient>
+
+        <!-- CMB Gradient -->
+        <radialGradient id="cmb-gradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FF7B00" stop-opacity="0.8" />
+            <stop offset="50%" stop-color="#E63946" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#D62828" stop-opacity="0.4" />
+        </radialGradient>
+
+        <!-- Galaxy Gradients -->
+        <linearGradient id="galaxy-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="50%" stop-color="#4CC9F0" />
+            <stop offset="100%" stop-color="#7209B7" />
+        </linearGradient>
+
+        <!-- Star Glows -->
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+
+        <!-- Text Styling -->
+        <style>
+            .title { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; font-size: 36px; font-weight: bold; fill: #FFFFFF; letter-spacing: 2px; }
+            .subtitle { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; font-size: 18px; fill: #A0A0B0; }
+            .stage-title { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; font-size: 22px; font-weight: bold; fill: #FFFFFF; }
+            .stage-time { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; font-size: 14px; fill: #FFD166; font-weight: bold; }
+            .desc-text { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; font-size: 14px; fill: #E0E0E0; line-height: 1.5; }
+            .label { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; font-size: 12px; fill: #FFFFFF; opacity: 0.8; }
+        </style>
+    </defs>
+
+    <!-- Background -->
+    <rect width="1200" height="800" fill="url(#bg-gradient)" />
+
+    <!-- Starfield Background (Static) -->
+    <g id="starfield">
+        <!-- Random stars to create depth -->
+        <circle cx="150" cy="120" r="1.5" fill="#FFF" opacity="0.8"/>
+        <circle cx="300" cy="80" r="1" fill="#4CC9F0" opacity="0.6"/>
+        <circle cx="450" cy="150" r="2" fill="#FFF" opacity="0.9"/>
+        <circle cx="600" cy="90" r="1" fill="#EF476F" opacity="0.7"/>
+        <circle cx="800" cy="130" r="1.5" fill="#FFF" opacity="0.5"/>
+        <circle cx="1000" cy="100" r="2" fill="#9D4EDD" opacity="0.8"/>
+        <circle cx="1100" cy="160" r="1" fill="#FFF" opacity="0.6"/>
+        
+        <circle cx="100" cy="300" r="1" fill="#FFF" opacity="0.7"/>
+        <circle cx="250" cy="350" r="1.5" fill="#4CC9F0" opacity="0.8"/>
+        <circle cx="400" cy="280" r="1" fill="#FFF" opacity="0.4"/>
+        <circle cx="750" cy="320" r="2" fill="#FFF" opacity="0.9"/>
+        <circle cx="900" cy="290" r="1" fill="#EF476F" opacity="0.5"/>
+        <circle cx="1150" cy="340" r="1.5" fill="#FFF" opacity="0.8"/>
+
+        <circle cx="200" cy="650" r="1.5" fill="#FFF" opacity="0.9"/>
+        <circle cx="350" cy="700" r="1" fill="#9D4EDD" opacity="0.7"/>
+        <circle cx="500" cy="680" r="2" fill="#FFF" opacity="0.6"/>
+        <circle cx="700" cy="720" r="1" fill="#4CC9F0" opacity="0.8"/>
+        <circle cx="850" cy="660" r="1.5" fill="#FFF" opacity="0.5"/>
+        <circle cx="1050" cy="710" r="2" fill="#EF476F" opacity="0.9"/>
+    </g>
+
+    <!-- Title Section -->
+    <g id="title-section" transform="translate(600, 60)">
+        <text x="0" y="0" class="title" text-anchor="middle">宇宙大爆炸理论 (The Big Bang Theory)</text>
+        <text x="0" y="30" class="subtitle" text-anchor="middle">从奇点到可观测宇宙的时空演化</text>
+    </g>
+
+    <!-- Main Timeline Arrow -->
+    <g id="timeline">
+        <line x1="150" y1="400" x2="1050" y2="400" stroke="url(#time-arrow)" stroke-width="4" />
+        <polygon points="1050,390 1070,400 1050,410" fill="#9D4EDD" />
+        <text x="1060" y="430" class="stage-time" text-anchor="middle">时间 (Time)</text>
+    </g>
+
+    <!-- STAGE 1: The Singularity (奇点) -->
+    <g id="stage-1" transform="translate(250, 400)">
+        <!-- Pulsing core effect simulated with concentric circles -->
+        <circle cx="0" cy="0" r="80" fill="url(#core-glow)" opacity="0.3" />
+        <circle cx="0" cy="0" r="50" fill="url(#core-glow)" opacity="0.6" />
+        <circle cx="0" cy="0" r="20" fill="#FFFFFF" filter="url(#glow)" />
+        
+        <!-- Title & Time -->
+        <text x="0" y="-120" class="stage-title" text-anchor="middle">阶段 1：奇点</text>
+        <text x="0" y="-95" class="stage-time" text-anchor="middle">t = 0 秒</text>
+        
+        <!-- Description Box -->
+        <rect x="-120" y="100" width="240" height="90" rx="8" fill="#FFFFFF" opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.2" />
+        <text x="0" y="130" class="desc-text" text-anchor="middle">时空的起点，所有物质与能量</text>
+        <text x="0" y="150" class="desc-text" text-anchor="middle">集中在无限小、密度无限的点。</text>
+        <text x="0" y="170" class="desc-text" text-anchor="middle">物理定律在此处失效。</text>
+        
+        <!-- Connecting line -->
+        <line x1="0" y1="20" x2="0" y2="100" stroke="#FFFFFF" stroke-opacity="0.3" stroke-dasharray="4 4" />
+    </g>
+
+    <!-- STAGE 2: Inflation & CMB (暴胀与宇宙微波背景) -->
+    <g id="stage-2" transform="translate(500, 400)">
+        <!-- Expanding Space (Concentric rings) -->
+        <circle cx="0" cy="0" r="100" fill="none" stroke="#EF476F" stroke-width="1" opacity="0.3" />
+        <circle cx="0" cy="0" r="70" fill="none" stroke="#FFD166" stroke-width="2" opacity="0.5" />
+        
+        <!-- CMB Glow -->
+        <circle cx="0" cy="0" r="40" fill="url(#cmb-gradient)" filter="url(#glow)" />
+        
+        <!-- Title & Time -->
+        <text x="0" y="-120" class="stage-title" text-anchor="middle">阶段 2：暴胀与冷却</text>
+        <text x="0" y="-95" class="stage-time" text-anchor="middle">t = 380,000 年</text>
+        
+        <!-- Description Box -->
+        <rect x="-140" y="120" width="280" height="110" rx="8" fill="#FFFFFF" opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.2" />
+        <text x="0" y="150" class="desc-text" text-anchor="middle">宇宙经历指数级膨胀，温度急剧下降。</text>
+        <text x="0" y="170" class="desc-text" text-anchor="middle">电子与质子结合形成中性氢原子，</text>
+        <text x="0" y="190" class="desc-text" text-anchor="middle">光子得以自由传播，形成宇宙微波背景辐射 (CMB)。</text>
+        
+        <!-- Connecting line -->
+        <line x1="0" y1="40" x2="0" y2="120" stroke="#FFFFFF" stroke-opacity="0.3" stroke-dasharray="4 4" />
+    </g>
+
+    <!-- STAGE 3: Formation of Galaxies (星系形成) -->
+    <g id="stage-3" transform="translate(750, 400)">
+        <!-- Background Nebula -->
+        <ellipse cx="0" cy="0" rx="120" ry="80" fill="#9D4EDD" opacity="0.1" filter="url(#glow)" />
+        
+        <!-- Spiral Galaxy 1 (Main) -->
+        <g transform="rotate(-30)">
+            <ellipse cx="0" cy="0" rx="60" ry="20" fill="none" stroke="url(#galaxy-grad-1)" stroke-width="4" opacity="0.8" />
+            <ellipse cx="0" cy="0" rx="40" ry="12" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6" />
+            <circle cx="0" cy="0" r="5" fill="#FFFFFF" filter="url(#glow)" />
+        </g>
+        
+        <!-- Spiral Galaxy 2 (Smaller, offset) -->
+        <g transform="translate(40, -30) rotate(15) scale(0.6)">
+            <ellipse cx="0" cy="0" rx="60" ry="20" fill="none" stroke="#4CC9F0" stroke-width="4" opacity="0.7" />
+            <circle cx="0" cy="0" r="5" fill="#FFFFFF" filter="url(#glow)" />
+        </g>
+
+        <!-- Title & Time -->
+        <text x="0" y="-120" class="stage-title" text-anchor="middle">阶段 3：星系形成</text>
+        <text x="0" y="-95" class="stage-time" text-anchor="middle">t = 数亿年</text>
+        
+        <!-- Description Box -->
+        <rect x="-130" y="120" width="260" height="90" rx="8" fill="#FFFFFF" opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.2" />
+        <text x="0" y="150" class="desc-text" text-anchor="middle">引力使暗物质和气体聚集，</text>
+        <text x="0" y="170" class="desc-text" text-anchor="middle">形成恒星、星系及宇宙大尺度结构。</text>
+        <text x="0" y="190" class="desc-text" text-anchor="middle">宇宙网 (Cosmic Web) 开始显现。</text>
+        
+        <!-- Connecting line -->
+        <line x1="0" y1="20" x2="0" y2="120" stroke="#FFFFFF" stroke-opacity="0.3" stroke-dasharray="4 4" />
+    </g>
+
+    <!-- STAGE 4: Present Day Universe (现代宇宙) -->
+    <g id="stage-4" transform="translate(980, 400)">
+        <!-- Expanding Space visualization -->
+        <circle cx="0" cy="0" r="130" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.1" />
+        
+        <!-- Distant Galaxies -->
+        <g transform="translate(-60, -40) scale(0.4)">
+            <ellipse cx="0" cy="0" rx="50" ry="15" fill="none" stroke="#EF476F" stroke-width="3" opacity="0.8" />
+        </g>
+        <g transform="translate(50, -60) scale(0.3)">
+            <ellipse cx="0" cy="0" rx="50" ry="15" fill="none" stroke="#4CC9F0" stroke-width="3" opacity="0.8" />
+        </g>
+        <g transform="translate(-40, 50) scale(0.5)">
+            <ellipse cx="0" cy="0" rx="50" ry="15" fill="none" stroke="#FFD166" stroke-width="3" opacity="0.8" />
+        </g>
+        
+        <!-- Milky Way (Our Galaxy) -->
+        <g transform="translate(20, 10)">
+            <ellipse cx="0" cy="0" rx="45" ry="15" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.9" />
+            <circle cx="0" cy="0" r="4" fill="#FFD166" filter="url(#glow)" />
+            <!-- Earth marker -->
+            <circle cx="25" cy="-5" r="1.5" fill="#4CC9F0" />
+        </g>
+
+        <!-- Title & Time -->
+        <text x="0" y="-130" class="stage-title" text-anchor="middle">阶段 4：现代宇宙</text>
+        <text x="0" y="-105" class="stage-time" text-anchor="middle">t = 138 亿年 (现在)</text>
+        
+        <!-- Description Box -->
+        <rect x="-120" y="140" width="240" height="90" rx="8" fill="#FFFFFF" opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.2" />
+        <text x="0" y="170" class="desc-text" text-anchor="middle">受暗能量驱动，宇宙正在加速膨胀。</text>
+        <text x="0" y="190" class="desc-text" text-anchor="middle">包含数千亿个星系，以及生命所在的</text>
+        <text x="0" y="210" class="desc-text" text-anchor="middle">地球（蓝色小点）。</text>
+        
+        <!-- Connecting line -->
+        <line x1="0" y1="45" x2="0" y2="140" stroke="#FFFFFF" stroke-opacity="0.3" stroke-dasharray="4 4" />
+    </g>
+
+    <!-- Footer / Credits -->
+    <text x="600" y="760" class="subtitle" text-anchor="middle" opacity="0.5">基于标准宇宙学模型 (ΛCDM) 的示意图</text>
+</svg>

@@ -108,13 +108,26 @@ WORKDIR /app
 
 COPY . .
 
-RUN mkdir -p tools/ui/dist
-COPY --from=web /app/tools/ui/dist/ tools/ui/dist/
+# No tools/ui/dist on purpose. We build with BUILD_WEBUI=0, so the `web` stage can only
+# produce a placeholder page; handing that to the UI provisioning script makes it look
+# like a real (but incomplete) asset tree, which newer upstream code rejects outright.
+# Leaving the directory absent lets scripts/ui-assets.cmake take its documented
+# "building without an embedded UI" path instead. See the LLAMA_BUILD_UI note below.
 
 # Build with Vulkan + dynamic backends + all CPU variants.
 # No GGML_VULKAN_DEBUG / CHECK_RESULTS — those are dev-only and slow the hot path.
 # Shader AOT (glslc) is done at build time by ggml's shader pipeline; runtime JIT
 # of compute shaders still happens per-device on first use (cached in ~/.cache/llama.cpp).
+# LLAMA_BUILD_UI / LLAMA_USE_PREBUILT_UI are both forced OFF on purpose.
+# tools/CMakeLists.txt adds `tools/ui` unconditionally whenever LLAMA_BUILD_SERVER is
+# on, and upstream (after v1.0.0) made the UI resolve a prebuilt bundle from the
+# ggml-org/llama-ui Hugging Face bucket by default. That download is keyed on the
+# upstream build number, and in our subtree it resolves to a tag that does not exist,
+# so the build fell back to `latest`, extracted a bundle the current validator rejects
+# ("UI: missing required asset(s)"), and failed the whole image build at
+# scripts/ui-assets.cmake. We serve this container over the API only, so the embedded
+# chat UI is dead weight here: turning both options off removes a build-time network
+# dependency and a class of silent breakage that tracks someone else's bucket.
 RUN echo "Building llama.cpp with Vulkan backend (dual-target: B70 + 7900 XTX)" && \
     cmake -S llama.cpp -B build -G Ninja \
       -DCMAKE_BUILD_TYPE=Release \
@@ -122,7 +135,9 @@ RUN echo "Building llama.cpp with Vulkan backend (dual-target: B70 + 7900 XTX)" 
       -DGGML_VULKAN=${GGML_VULKAN} \
       -DGGML_BACKEND_DL=ON \
       -DGGML_CPU_ALL_VARIANTS=ON \
-      -DLLAMA_BUILD_TESTS=OFF && \
+      -DLLAMA_BUILD_TESTS=OFF \
+      -DLLAMA_BUILD_UI=OFF \
+      -DLLAMA_USE_PREBUILT_UI=OFF && \
     cmake --build build --config Release -j$(nproc)
 
 # Stage every runtime/shared library into /app/lib. libggml.so + libggml-base.so
